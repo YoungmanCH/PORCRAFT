@@ -3,7 +3,7 @@ const adjustDragonForObjSelectorSize = () => {
   let screenPosition = [0, -0.9, 0];
 
   if (window.innerWidth < 150) {
-    screenScale = [0.0055, 0.0025, 0.0025];
+    screenScale = [0.015, 0.015, 0.015];
   } else {
     screenScale = [0.015, 0.015, 0.015];
   }

@@ -17,6 +17,7 @@ import islandScene from '../assets/3d/tropical_island.glb'
 const Island = (props) => {
   const islandRef = useRef();
   const { nodes, materials } = useGLTF(islandScene);
+  
   return (
     <a.group ref={islandRef} {...props}>
       <group name="Sketchfab_Scene">
