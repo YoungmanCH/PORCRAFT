@@ -20,18 +20,13 @@ const Editor = () => {
   };
 
   return (
-    <section className="w-full h-screen relative">
-      <div style={{ display: "flex", height: "100vh" }}>
-        <div style={{ width: "20%", background: "#f0f0f0" }}>
-          {/* オブジェクト選択エリア */}
-          <ObjectSelector addObject={addObject} />
-        </div>
+    <section className="w-full h-screen flex overflow-hidden">
+      {/* オブジェクト選択エリア */}
+      <ObjectSelector addObject={addObject} />
 
-        <div style={{ flex: 1 }}>
-          <div>3D EDITOR AREA</div>
-          {/* 3Dエディタエリア */}
-          <EditorCanvas objects={objects} />
-        </div>
+      {/* 3Dエディタエリア */}
+      <div className="flex-grow h-full">
+        <EditorCanvas objects={objects} />
       </div>
     </section>
   );

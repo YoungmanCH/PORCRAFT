@@ -6,8 +6,8 @@ import Island from "../../models/island";
 import adjustIslandForScreenSize from "../../features/AdjustIslandForScreen";
 
 const EditorCanvas = () => {
-  const [islandScale, islandPosition ] =
-  adjustIslandForScreenSize();
+  const [ islandScale, islandPosition ] =
+    adjustIslandForScreenSize();
 
   return (
     <Canvas

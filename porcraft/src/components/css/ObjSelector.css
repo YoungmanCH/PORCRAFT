@@ -1,0 +1,31 @@
+.objSelector {
+  position: fixed; /* 位置を固定 */
+  top: 0; /* 画面上部からスタート */
+  left: -100%; /* デフォルトで画面外に隠れる */
+  width: 350px;
+  height: 100%;
+  background: #fff;
+  transition: left 0.3s; /* 左からのスライドをスムーズに */
+  z-index: 100; /* 他の要素より前に表示 */
+}
+
+.objSelector.open {
+  left: 0; /* サイドバーを表示する */
+}
+
+.object-selector-container {
+  position: relative;
+}
+
+.open-selector-btn {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 200;
+}
+
+.canvas-container {
+  width: 100%; /* キャンバスコンテナの幅を画面幅に合わせる */
+  height: 100vh; /* キャンバスコンテナの高さを画面高さに合わせる */
+  overflow: hidden; /* キャンバスがはみ出した場合に隠す */
+}
