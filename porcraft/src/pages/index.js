@@ -1,9 +1,8 @@
+import About from './About';
+import Editor from './Editor';
+import Export from './Export';
+import Help from './Help';
 import Home from './Home';
+import ModelsLibrary from './ModelsLibrary';
 
-export { Home };
-
-// import About from './About';
-// import Projects from './Projects';
-// import Contact from './Contact';
-
-// export { Home, About, Projects, Contact };
+export { Home, About, Editor, Export, Help, ModelsLibrary };

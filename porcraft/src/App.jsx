@@ -1,18 +1,39 @@
-import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import { Home } from './pages';
+import {
+  Route,
+  BrowserRouter as Router,
+  Routes,
+  useLocation,
+} from "react-router-dom";
+import { About, Editor, Export, Help, Home, ModelsLibrary } from "./pages";
+import Navbar from "./components/Navbar";
+
+// LocationProvider コンポーネントを作成して、location を子コンポーネントで利用可能にします。
+const LocationProvider = ({ children }) => {
+  const location = useLocation();
+  return children(location);
+};
 
 const App = () => {
   return (
-    <main className="bg-slate-300/20 h-full">
-      <Router>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          {/* <Route path="/about" element={<About />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/contact" element={<Contact />} /> */}
-        </Routes>
-      </Router>
-    </main>
+    <Router>
+      {/* LocationProvider コンポーネントを使用して、
+      現在の location に基づいて Navbar の表示を制御します。*/}
+      <LocationProvider>
+        {(location) => (
+          <main className="bg-slate-300/20 h-full">
+            {location.pathname !== "/editor" && <Navbar />}
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/editor" element={<Editor />} />
+              <Route path="/export" element={<Export />} />
+              <Route path="/help" element={<Help />} />
+              <Route path="/modelsLibrary" element={<ModelsLibrary />} />
+            </Routes>
+          </main>
+        )}
+      </LocationProvider>
+    </Router>
   );
 };
 
