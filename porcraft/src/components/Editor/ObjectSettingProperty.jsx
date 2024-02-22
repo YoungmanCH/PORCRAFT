@@ -2,13 +2,24 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 
-const ObjectSettingProperty = ({ id, name, position, setPosition }) => {
+const ObjectSettingProperty = ({
+  id,
+  name,
+  position,
+  rotation,
+  setPosition,
+  setRotation,
+}) => {
   const [currentPosition, setCurrentPosition] = useState({
     x: position[0],
     y: position[1],
     z: position[2],
   });
-  const [rotation, setRotation] = useState({ x: "", y: "", z: "" });
+  const [currentRotation, setCurrentRotation] = useState({
+    x: rotation[0],
+    y: rotation[1],
+    z: rotation[2],
+  });
   const [scale, setScale] = useState({ x: "", y: "", z: "" });
 
   const handleChangePosition = (e) => {
@@ -22,10 +33,11 @@ const ObjectSettingProperty = ({ id, name, position, setPosition }) => {
 
   const handleChangeRotation = (e) => {
     const { name, value } = e.target;
-    setRotation((prevRotation) => ({
+    setCurrentRotation((prevRotation) => ({
       ...prevRotation,
       [name]: value.slice(0, 5), // 最大5桁の数字を保持
     }));
+    console.log('currentRotation:', {currentRotation})
   };
 
   const handleChangeScale = (e) => {
@@ -48,7 +60,19 @@ const ObjectSettingProperty = ({ id, name, position, setPosition }) => {
         currentPosition.z,
       ]);
     }
-  }, [currentPosition]);
+
+    if (
+      rotation.x !== currentRotation.x ||
+      rotation.y !== currentRotation.y ||
+      rotation.z !== currentRotation.z
+    ) {
+      setRotation(id, [
+        currentRotation.x,
+        currentRotation.y,
+        currentRotation.z,
+      ]);
+    }
+  }, [currentPosition, currentRotation]);
 
   return (
     <div className="font-semibold">
@@ -111,7 +135,7 @@ const ObjectSettingProperty = ({ id, name, position, setPosition }) => {
                 name="x"
                 type="number"
                 className="text-gray-800 w-16"
-                value={rotation.x}
+                value={currentRotation.x}
                 onChange={handleChangeRotation}
               />
             </div>
@@ -124,7 +148,7 @@ const ObjectSettingProperty = ({ id, name, position, setPosition }) => {
                 name="y"
                 type="number"
                 className="text-gray-800 w-16"
-                value={rotation.y}
+                value={currentRotation.y}
                 onChange={handleChangeRotation}
               />
             </div>
@@ -137,7 +161,7 @@ const ObjectSettingProperty = ({ id, name, position, setPosition }) => {
                 name="z"
                 type="number"
                 className="text-gray-800 w-16"
-                value={rotation.z}
+                value={currentRotation.z}
                 onChange={handleChangeRotation}
               />
             </div>

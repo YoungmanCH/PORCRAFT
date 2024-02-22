@@ -5,9 +5,8 @@ import { useState } from "react";
 import "../css/ObjSetting.css";
 import ObjectSettingProperty from "./ObjectSettingProperty";
 
-const ObjectSetting = ({objects, setPosition}) => {
+const ObjectSetting = ({ objects, setPosition, setRotation }) => {
   const [isObjSelectorOpen, setObjSettingOpen] = useState(false);
-
 
   return (
     <section className="open-setting-btn">
@@ -24,7 +23,12 @@ const ObjectSetting = ({objects, setPosition}) => {
         <div className="font-semibold">Settings</div>
         <hr />
         {objects.map((obj) => (
-          <ObjectSettingProperty key={obj.id} setPosition={setPosition} {...obj} />
+          <ObjectSettingProperty
+            key={obj.id}
+            setPosition={setPosition}
+            setRotation={setRotation}
+            {...obj}
+          />
         ))}
       </div>
     </section>
