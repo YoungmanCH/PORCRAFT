@@ -1,17 +1,11 @@
-import { useEffect } from "react";
-
-import ObjectSelector from "../components/Editor/ObjectSelector";
 import EditorCanvas from "../components/Editor/EditorCanvas";
-import useAddedObjects from "../features/UseAddedObjects";
+import ObjectSelector from "../components/Editor/ObjectSelector";
 import ObjectSetting from "../components/Editor/ObjectSetting";
 
+import useAddedObjects from "../features/UseAddedObjects";
+
 const Editor = () => {
-  const [objects, addObject] = useAddedObjects();
-
-  useEffect(() => {
-    console.log("Editor: objects updated", objects)
-  }, [objects]);
-
+  const [objects, addObject, setPosition] = useAddedObjects();
 
   return (
     <section className="w-full h-screen flex overflow-hidden">
@@ -24,7 +18,7 @@ const Editor = () => {
       </div>
 
       {/* オブジェクト設定エリア */}
-      <ObjectSetting objects={objects} />
+      <ObjectSetting objects={objects} setPosition={setPosition}/>
     </section>
   );
 };

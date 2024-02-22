@@ -9,7 +9,7 @@ import Person from "../models/person";
 import House from "../models/house";
 import AdjustHouseForScreenSize from "../features/AdjustScreenSize/AdjustHouseForScreenSize";
 
-const ObjectComponents = ({ name }) => {
+const ObjectComponents = ({ name, position }) => {
   let component = null;
   const [houseScale] = AdjustHouseForScreenSize();
 
@@ -19,7 +19,7 @@ const ObjectComponents = ({ name }) => {
         <Suspense fallback={<Loader />}>
           <ambientLight intensity={0.5} />
           <pointLight position={[10, 10, 10]} />
-          <Dragon position={[-1, 1, 0]} scale={[0.003, 0.003, 0.003]} />
+          <Dragon position={position} scale={[0.003, 0.003, 0.003]} />
           {/* <OrbitControls /> */}
         </Suspense>
       );
@@ -29,7 +29,7 @@ const ObjectComponents = ({ name }) => {
         <Suspense fallback={<Loader />}>
           <ambientLight intensity={0.5} />
           <pointLight position={[10, 10, 10]} />
-          <Person position={[0, -0.5, 0]} scale={[0.05, 0.05, 0.05]} />
+          <Person position={position} scale={[0.05, 0.05, 0.05]} />
           {/* <OrbitControls /> */}
         </Suspense>
       );
@@ -39,7 +39,7 @@ const ObjectComponents = ({ name }) => {
         <Suspense fallback={<Loader />}>
           <ambientLight intensity={0.5} />
           <pointLight position={[10, 10, 10]} />
-          <House position={[-1, -1, -1]} scale={houseScale} />
+          <House position={position} scale={houseScale} />
           {/* <OrbitControls /> */}
         </Suspense>
       );
