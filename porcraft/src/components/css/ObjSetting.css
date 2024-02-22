@@ -2,7 +2,7 @@
   position: fixed; /* 位置を固定 */
   top: 0; /* 画面上部からスタート */
   right: -100%; /* デフォルトで画面外に隠れる */
-  width: 250px;
+  width: 300px;
   height: 100%;
   background: #fff;
   transition: right 0.3s; /* 右からのスライドをスムーズに */
