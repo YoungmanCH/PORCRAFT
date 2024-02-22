@@ -21,7 +21,8 @@ const Dragon = (props) => {
   return (
     <a.group ref={dragonRef} {...props}>
       <group name="Sketchfab_Scene">
-        <group name="Sketchfab_model" rotation={[-Math.PI / 2, 0, 0]}>
+        <group name="Sketchfab_model" rotation={[-Math.PI / 2, 0, 1]}>
+        {/* <group name="Sketchfab_model" rotation={[-Math.PI / 2, 0, 0]}> */}
           <group name="a37ae885434e4cbfb12582fda61a107fabccleanermaterialmergergles">
             <group name="Object_2" rotation={[Math.PI / 2, 0, 0]}>
               <group name="Object_3">
