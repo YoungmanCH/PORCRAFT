@@ -1,29 +1,31 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-unknown-property */
 import { Suspense, useState } from "react";
 
-import "../css/ObjSelector.css";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 
 import Loader from "../Loader";
 
-import adjustDragonForObjSelectorSize from "../../features/AdjustDragonForObjSelector";
-import adjustHouseForObjSelectorSize from "../../features/adjustHouseForObjSelectorSize";
-import useAddedObjects from "../../features/UseAddedObjects";
+import "../css/ObjSelector.css";
+
+import adjustDragonForObjSelectorSize from "../../features/AdjustSelectorSize/AdjustDragonForObjSelector";
+import adjustHouseForObjSelectorSize from "../../features/AdjustSelectorSize/AdjustHouseForObjSelectorSize";
 
 import Dragon from "../../models/dragon";
 import House from "../../models/house";
 import Person from "../../models/person";
+import AdjustPersonForObjSelectorSize from "../../features/AdjustSelectorSize/AdjustPersonForObjSelectorSize";
 
-const ObjectSelector = () => {
+const ObjectSelector = ({ objects, addObject }) => {
   const [isObjSelectorOpen, setObjSelectorOpen] = useState(false);
   const [dragonScale, dragonPosition] = adjustDragonForObjSelectorSize();
+  const [personScale, personPosition] = AdjustPersonForObjSelectorSize();
   const [houseScale, housePosition] = adjustHouseForObjSelectorSize();
-  const [objects, addObject] = useAddedObjects();
 
-  const handleAddObject = (modelName) => {
-    addObject(modelName);
+  const handleAddObject = (name) => {
+    addObject(name);
   };
 
   return (
@@ -32,7 +34,7 @@ const ObjectSelector = () => {
         Selector
       </button>
       <div className={`objSelector ${isObjSelectorOpen ? "open" : ""}`}>
-        {/* サイドバーのコンテンツ */}
+        {/* 左サイドバーのコンテンツ */}
         <button className="btn" onClick={() => setObjSelectorOpen(false)}>
           Close
         </button>
@@ -48,7 +50,7 @@ const ObjectSelector = () => {
             <button
               className="btn"
               onClick={() => {
-                handleAddObject("Flying_dragon");
+                handleAddObject("Flying dragon");
               }}
             >
               Use
@@ -73,7 +75,7 @@ const ObjectSelector = () => {
             <button
               className="btn"
               onClick={() => {
-                handleAddObject("Normal_person");
+                handleAddObject("Normal person");
               }}
             >
               Use
@@ -85,7 +87,7 @@ const ObjectSelector = () => {
               <ambientLight intensity={10} />
               <hemisphereLight intensity={10} />
 
-              <Person />
+              <Person scale={personScale} position={personPosition} />
             </Suspense>
             <OrbitControls />
           </Canvas>

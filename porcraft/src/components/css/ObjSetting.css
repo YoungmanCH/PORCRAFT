@@ -1,0 +1,27 @@
+.objSetting {
+  position: fixed; /* 位置を固定 */
+  top: 0; /* 画面上部からスタート */
+  right: -100%; /* デフォルトで画面外に隠れる */
+  width: 250px;
+  height: 100%;
+  background: #fff;
+  transition: right 0.3s; /* 右からのスライドをスムーズに */
+  z-index: 100; /* 他の要素より前に表示 */
+  display: flex;
+  flex-direction: column; /* コンテンツを縦に並べる */
+}
+
+.objSetting.open {
+  right: 0;
+}
+
+.open-setting-btn {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 200;
+}
+
+.btn {
+  align-self: flex-end;
+}
