@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
+
 import { useEffect, useState } from "react";
 
 const ObjectSettingProperty = ({
@@ -7,8 +8,10 @@ const ObjectSettingProperty = ({
   name,
   position,
   rotation,
+  scale,
   setPosition,
   setRotation,
+  setScale,
 }) => {
   const [currentPosition, setCurrentPosition] = useState({
     x: position[0],
@@ -20,7 +23,11 @@ const ObjectSettingProperty = ({
     y: rotation[1],
     z: rotation[2],
   });
-  const [scale, setScale] = useState({ x: "", y: "", z: "" });
+  const [currentScale, setCurrentScale] = useState({
+    x: scale[0],
+    y: scale[1],
+    z: scale[2],
+  });
 
   const handleChangePosition = (e) => {
     const { name, value } = e.target;
@@ -28,7 +35,6 @@ const ObjectSettingProperty = ({
       ...prevPosition,
       [name]: value.slice(0, 5), // 最大5桁の数字を保持
     }));
-    // console.log("currentPosition:", { currentPosition });
   };
 
   const handleChangeRotation = (e) => {
@@ -37,12 +43,11 @@ const ObjectSettingProperty = ({
       ...prevRotation,
       [name]: value.slice(0, 5), // 最大5桁の数字を保持
     }));
-    console.log('currentRotation:', {currentRotation})
   };
 
   const handleChangeScale = (e) => {
     const { name, value } = e.target;
-    setScale((prevScale) => ({
+    setCurrentScale((prevScale) => ({
       ...prevScale,
       [name]: value.slice(0, 5), // 最大5桁の数字を保持
     }));
@@ -72,7 +77,19 @@ const ObjectSettingProperty = ({
         currentRotation.z,
       ]);
     }
-  }, [currentPosition, currentRotation]);
+    
+    if (
+      scale.x !== currentScale.x ||
+      scale.y !== currentScale.y ||
+      scale.z !== currentScale.z
+    ) {
+      setScale(id, [
+        currentScale.x,
+        currentScale.y,
+        currentScale.z,
+      ]);
+    }
+  }, [currentPosition, currentRotation, currentScale]);
 
   return (
     <div className="font-semibold">
@@ -180,7 +197,7 @@ const ObjectSettingProperty = ({
                 name="x"
                 type="number"
                 className="text-gray-800 w-16"
-                value={scale.x}
+                value={currentScale.x}
                 onChange={handleChangeScale}
               />
             </div>
@@ -193,7 +210,7 @@ const ObjectSettingProperty = ({
                 name="y"
                 type="number"
                 className="text-gray-800 w-16"
-                value={scale.y}
+                value={currentScale.y}
                 onChange={handleChangeScale}
               />
             </div>
@@ -206,7 +223,7 @@ const ObjectSettingProperty = ({
                 name="z"
                 type="number"
                 className="text-gray-800 w-16"
-                value={scale.z}
+                value={currentScale.z}
                 onChange={handleChangeScale}
               />
             </div>

@@ -1,7 +1,6 @@
 /* eslint-disable react/no-unknown-property */
 
-import { Suspense } from "react";
-// import { OrbitControls } from "@react-three/drei";
+import { Suspense, useEffect } from "react";
 
 import Loader from "./Loader";
 import Dragon from "../models/dragon";
@@ -9,9 +8,17 @@ import Person from "../models/person";
 import House from "../models/house";
 import AdjustHouseForScreenSize from "../features/AdjustScreenSize/AdjustHouseForScreenSize";
 
-const ObjectComponents = ({ name, position, rotation }) => {
+const ObjectComponents = ({ id, name, position, rotation, scale, setScale }) => {
   let component = null;
   const [houseScale] = AdjustHouseForScreenSize();
+
+  // useEffect(() => {
+  //   setScale(id, [
+  //     houseScale[0],
+  //     houseScale[1],
+  //     houseScale[2],
+  //   ]);
+  // });
 
   switch (name) {
     case "Flying dragon":
@@ -22,9 +29,9 @@ const ObjectComponents = ({ name, position, rotation }) => {
           <Dragon
             position={position}
             rotation={rotation}
-            scale={[0.003, 0.003, 0.003]}
+            scale={scale}
+            // scale={[0.003, 0.003, 0.003]}
           />
-          {/* <OrbitControls /> */}
         </Suspense>
       );
       break;
@@ -36,9 +43,9 @@ const ObjectComponents = ({ name, position, rotation }) => {
           <Person
             position={position}
             rotation={rotation}
-            scale={[0.05, 0.05, 0.05]}
+            scale={scale} 
+            // scale={[0.05, 0.05, 0.05]}
           />
-          {/* <OrbitControls /> */}
         </Suspense>
       );
       break;
@@ -50,9 +57,9 @@ const ObjectComponents = ({ name, position, rotation }) => {
           <House 
             position={position} 
             rotation={rotation} 
-            scale={houseScale} 
+            scale={scale} 
+            // scale={houseScale} 
           />
-          {/* <OrbitControls /> */}
         </Suspense>
       );
       break;

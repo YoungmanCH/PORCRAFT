@@ -5,7 +5,8 @@ import ObjectSetting from "../components/Editor/ObjectSetting";
 import useAddedObjects from "../features/UseAddedObjects";
 
 const Editor = () => {
-  const [objects, addObject, setPosition, setRotation] = useAddedObjects();
+  const [objects, addObject, setPosition, setRotation, setScale] =
+    useAddedObjects();
 
   return (
     <section className="w-full h-screen flex overflow-hidden">
@@ -14,7 +15,7 @@ const Editor = () => {
 
       {/* 3Dエディタエリア */}
       <div className="flex-grow h-full">
-        <EditorCanvas objects={objects} />
+        <EditorCanvas objects={objects} setScale={setScale} />
       </div>
 
       {/* オブジェクト設定エリア */}
@@ -22,6 +23,7 @@ const Editor = () => {
         objects={objects}
         setPosition={setPosition}
         setRotation={setRotation}
+        setScale={setScale}
       />
     </section>
   );
