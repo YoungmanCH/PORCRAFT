@@ -1,15 +1,34 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
+
 import { useEffect, useState } from "react";
 
-const ObjectSettingProperty = ({ id, name, position, setPosition }) => {
+const ObjectSettingProperty = ({
+  id,
+  name,
+  position,
+  rotation,
+  scale,
+  setPosition,
+  setRotation,
+  setScale,
+  removeObject,
+}) => {
   const [currentPosition, setCurrentPosition] = useState({
     x: position[0],
     y: position[1],
     z: position[2],
   });
-  const [rotation, setRotation] = useState({ x: "", y: "", z: "" });
-  const [scale, setScale] = useState({ x: "", y: "", z: "" });
+  const [currentRotation, setCurrentRotation] = useState({
+    x: rotation[0],
+    y: rotation[1],
+    z: rotation[2],
+  });
+  const [currentScale, setCurrentScale] = useState({
+    x: scale[0],
+    y: scale[1],
+    z: scale[2],
+  });
 
   const handleChangePosition = (e) => {
     const { name, value } = e.target;
@@ -17,12 +36,11 @@ const ObjectSettingProperty = ({ id, name, position, setPosition }) => {
       ...prevPosition,
       [name]: value.slice(0, 5), // 最大5桁の数字を保持
     }));
-    // console.log("currentPosition:", { currentPosition });
   };
 
   const handleChangeRotation = (e) => {
     const { name, value } = e.target;
-    setRotation((prevRotation) => ({
+    setCurrentRotation((prevRotation) => ({
       ...prevRotation,
       [name]: value.slice(0, 5), // 最大5桁の数字を保持
     }));
@@ -30,11 +48,15 @@ const ObjectSettingProperty = ({ id, name, position, setPosition }) => {
 
   const handleChangeScale = (e) => {
     const { name, value } = e.target;
-    setScale((prevScale) => ({
+    setCurrentScale((prevScale) => ({
       ...prevScale,
       [name]: value.slice(0, 5), // 最大5桁の数字を保持
     }));
   };
+
+  const handleRemoveObject = (id) => {
+    removeObject(id);
+  }
 
   useEffect(() => {
     if (
@@ -48,11 +70,39 @@ const ObjectSettingProperty = ({ id, name, position, setPosition }) => {
         currentPosition.z,
       ]);
     }
-  }, [currentPosition]);
+
+    if (
+      rotation.x !== currentRotation.x ||
+      rotation.y !== currentRotation.y ||
+      rotation.z !== currentRotation.z
+    ) {
+      setRotation(id, [
+        currentRotation.x,
+        currentRotation.y,
+        currentRotation.z,
+      ]);
+    }
+
+    if (
+      scale.x !== currentScale.x ||
+      scale.y !== currentScale.y ||
+      scale.z !== currentScale.z
+    ) {
+      setScale(id, [currentScale.x, currentScale.y, currentScale.z]);
+    }
+  }, [currentPosition, currentRotation, currentScale]);
 
   return (
-    <div className="font-semibold">
-      {name}
+    <div>
+      <div className="flex justify-between">
+        <sapn className="font-semibold">{name}</sapn>
+        <button
+          className="rounded-full bg-white p-2 hover:bg-gray-100 text-sm"
+          onClick={() => handleRemoveObject(id)}
+        >
+        ✕
+        </button>
+      </div>
       <div className="flex items-center space-x-4">
         <div>
           Position
@@ -111,7 +161,7 @@ const ObjectSettingProperty = ({ id, name, position, setPosition }) => {
                 name="x"
                 type="number"
                 className="text-gray-800 w-16"
-                value={rotation.x}
+                value={currentRotation.x}
                 onChange={handleChangeRotation}
               />
             </div>
@@ -124,7 +174,7 @@ const ObjectSettingProperty = ({ id, name, position, setPosition }) => {
                 name="y"
                 type="number"
                 className="text-gray-800 w-16"
-                value={rotation.y}
+                value={currentRotation.y}
                 onChange={handleChangeRotation}
               />
             </div>
@@ -137,7 +187,7 @@ const ObjectSettingProperty = ({ id, name, position, setPosition }) => {
                 name="z"
                 type="number"
                 className="text-gray-800 w-16"
-                value={rotation.z}
+                value={currentRotation.z}
                 onChange={handleChangeRotation}
               />
             </div>
@@ -156,7 +206,7 @@ const ObjectSettingProperty = ({ id, name, position, setPosition }) => {
                 name="x"
                 type="number"
                 className="text-gray-800 w-16"
-                value={scale.x}
+                value={currentScale.x}
                 onChange={handleChangeScale}
               />
             </div>
@@ -169,7 +219,7 @@ const ObjectSettingProperty = ({ id, name, position, setPosition }) => {
                 name="y"
                 type="number"
                 className="text-gray-800 w-16"
-                value={scale.y}
+                value={currentScale.y}
                 onChange={handleChangeScale}
               />
             </div>
@@ -182,7 +232,7 @@ const ObjectSettingProperty = ({ id, name, position, setPosition }) => {
                 name="z"
                 type="number"
                 className="text-gray-800 w-16"
-                value={scale.z}
+                value={currentScale.z}
                 onChange={handleChangeScale}
               />
             </div>

@@ -9,7 +9,7 @@ import Island from "../../models/island";
 import adjustIslandForScreenSize from "../../features/AdjustScreenSize/AdjustIslandForScreen";
 import ObjectComponents from "../ObjectComponents";
 
-const EditorCanvas = ({objects}) => {
+const EditorCanvas = ({ objects, setScale }) => {
   const [islandScale, islandPosition] = adjustIslandForScreenSize();
 
   return (
@@ -23,7 +23,7 @@ const EditorCanvas = ({objects}) => {
 
         <Island scale={islandScale} position={islandPosition} />
         {objects.map((obj) => (
-          <ObjectComponents key={obj.id} {...obj} />
+          <ObjectComponents key={obj.id} setScale={setScale} {...obj} />
         ))}
       </Suspense>
       <OrbitControls />
