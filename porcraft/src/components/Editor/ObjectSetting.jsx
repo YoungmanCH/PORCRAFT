@@ -5,7 +5,13 @@ import { useState } from "react";
 import "../css/ObjSetting.css";
 import ObjectSettingProperty from "./ObjectSettingProperty";
 
-const ObjectSetting = ({ objects, setPosition, setRotation, setScale }) => {
+const ObjectSetting = ({
+  objects,
+  setPosition,
+  setRotation,
+  setScale,
+  removeObject,
+}) => {
   const [isObjSelectorOpen, setObjSettingOpen] = useState(false);
 
   return (
@@ -28,6 +34,7 @@ const ObjectSetting = ({ objects, setPosition, setRotation, setScale }) => {
             setPosition={setPosition}
             setRotation={setRotation}
             setScale={setScale}
+            removeObject={removeObject}
             {...obj}
           />
         ))}

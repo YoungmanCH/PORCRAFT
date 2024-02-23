@@ -5,7 +5,7 @@ import ObjectSetting from "../components/Editor/ObjectSetting";
 import useAddedObjects from "../features/UseAddedObjects";
 
 const Editor = () => {
-  const [objects, addObject, setPosition, setRotation, setScale] =
+  const [objects, addObject, setPosition, setRotation, setScale, removeObject] =
     useAddedObjects();
 
   return (
@@ -24,6 +24,7 @@ const Editor = () => {
         setPosition={setPosition}
         setRotation={setRotation}
         setScale={setScale}
+        removeObject={removeObject}
       />
     </section>
   );

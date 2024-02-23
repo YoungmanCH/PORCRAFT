@@ -1,24 +1,15 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/no-unknown-property */
 
-import { Suspense, useEffect } from "react";
+import { Suspense } from "react";
 
 import Loader from "./Loader";
 import Dragon from "../models/dragon";
 import Person from "../models/person";
 import House from "../models/house";
-import AdjustHouseForScreenSize from "../features/AdjustScreenSize/AdjustHouseForScreenSize";
 
-const ObjectComponents = ({ id, name, position, rotation, scale, setScale }) => {
+const ObjectComponents = ({ name, position, rotation, scale }) => {
   let component = null;
-  const [houseScale] = AdjustHouseForScreenSize();
-
-  // useEffect(() => {
-  //   setScale(id, [
-  //     houseScale[0],
-  //     houseScale[1],
-  //     houseScale[2],
-  //   ]);
-  // });
 
   switch (name) {
     case "Flying dragon":
@@ -30,7 +21,6 @@ const ObjectComponents = ({ id, name, position, rotation, scale, setScale }) => 
             position={position}
             rotation={rotation}
             scale={scale}
-            // scale={[0.003, 0.003, 0.003]}
           />
         </Suspense>
       );
@@ -44,7 +34,6 @@ const ObjectComponents = ({ id, name, position, rotation, scale, setScale }) => 
             position={position}
             rotation={rotation}
             scale={scale} 
-            // scale={[0.05, 0.05, 0.05]}
           />
         </Suspense>
       );
@@ -58,7 +47,6 @@ const ObjectComponents = ({ id, name, position, rotation, scale, setScale }) => 
             position={position} 
             rotation={rotation} 
             scale={scale} 
-            // scale={houseScale} 
           />
         </Suspense>
       );

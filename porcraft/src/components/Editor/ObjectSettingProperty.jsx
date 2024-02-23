@@ -12,6 +12,7 @@ const ObjectSettingProperty = ({
   setPosition,
   setRotation,
   setScale,
+  removeObject,
 }) => {
   const [currentPosition, setCurrentPosition] = useState({
     x: position[0],
@@ -53,6 +54,10 @@ const ObjectSettingProperty = ({
     }));
   };
 
+  const handleRemoveObject = (id) => {
+    removeObject(id);
+  }
+
   useEffect(() => {
     if (
       position.x !== currentPosition.x ||
@@ -77,23 +82,27 @@ const ObjectSettingProperty = ({
         currentRotation.z,
       ]);
     }
-    
+
     if (
       scale.x !== currentScale.x ||
       scale.y !== currentScale.y ||
       scale.z !== currentScale.z
     ) {
-      setScale(id, [
-        currentScale.x,
-        currentScale.y,
-        currentScale.z,
-      ]);
+      setScale(id, [currentScale.x, currentScale.y, currentScale.z]);
     }
   }, [currentPosition, currentRotation, currentScale]);
 
   return (
-    <div className="font-semibold">
-      {name}
+    <div>
+      <div className="flex justify-between">
+        <sapn className="font-semibold">{name}</sapn>
+        <button
+          className="rounded-full bg-white p-2 hover:bg-gray-100 text-sm"
+          onClick={() => handleRemoveObject(id)}
+        >
+        ✕
+        </button>
+      </div>
       <div className="flex items-center space-x-4">
         <div>
           Position
