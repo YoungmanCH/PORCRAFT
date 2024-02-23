@@ -6,6 +6,8 @@ import {
 } from "react-router-dom";
 import { About, Editor, Export, Help, Home, ModelsLibrary } from "./pages";
 import Navbar from "./components/Navbar";
+import Howto from "./pages/Howto";
+import Sample from "./pages/Sample";
 
 // LocationProvider コンポーネントを作成して、location を子コンポーネントで利用可能にします。
 const LocationProvider = ({ children }) => {
@@ -28,6 +30,8 @@ const App = () => {
               <Route path="/editor" element={<Editor />} />
               <Route path="/export" element={<Export />} />
               <Route path="/help" element={<Help />} />
+              <Route path="/howto" element={<Howto />}/>
+              <Route path="/sample" element={<Sample />}/>
               <Route path="/modelsLibrary" element={<ModelsLibrary />} />
             </Routes>
           </main>
