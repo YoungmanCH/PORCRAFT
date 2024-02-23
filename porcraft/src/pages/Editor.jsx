@@ -1,4 +1,5 @@
 import EditorCanvas from "../components/Editor/EditorCanvas";
+import ExportButton from "../components/Editor/ExportButton";
 import ObjectSelector from "../components/Editor/ObjectSelector";
 import ObjectSetting from "../components/Editor/ObjectSetting";
 
@@ -12,6 +13,9 @@ const Editor = () => {
     <section className="w-full h-screen flex overflow-hidden">
       {/* オブジェクト選択エリア */}
       <ObjectSelector objects={objects} addObject={addObject} />
+      
+      {/* Exportボタン */}
+      <ExportButton />
 
       {/* 3Dエディタエリア */}
       <div className="flex-grow h-full">
