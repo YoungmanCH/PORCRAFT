@@ -10,7 +10,8 @@ import adjustIslandForScreenSize from "../../features/AdjustScreenSize/AdjustIsl
 import ObjectComponents from "../ObjectComponents";
 
 const EditorCanvas = ({ objects, setScale }) => {
-  const [islandScale, islandPosition] = adjustIslandForScreenSize();
+  const [islandScale, islandPosition, islandRotation] =
+    adjustIslandForScreenSize();
 
   return (
     <Canvas
@@ -21,7 +22,11 @@ const EditorCanvas = ({ objects, setScale }) => {
         <ambientLight intensity={0.5} />
         <pointLight position={[10, 10, 10]} />
 
-        <Island scale={islandScale} position={islandPosition} />
+        <Island
+          scale={islandScale}
+          position={islandPosition}
+          rotation={islandRotation}
+        />
         {objects.map((obj) => (
           <ObjectComponents key={obj.id} setScale={setScale} {...obj} />
         ))}

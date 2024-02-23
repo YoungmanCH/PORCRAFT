@@ -6,7 +6,7 @@
   height: 100%;
   background: #fff;
   transition: left 0.3s; /* 左からのスライドをスムーズに */
-  z-index: 100; /* 他の要素より前に表示 */
+  z-index: 10; /* 他の要素より前に表示 */
 }
 
 .objSelector.open {
@@ -21,7 +21,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 200;
+  z-index: 20;
 }
 
 .canvas-container {
