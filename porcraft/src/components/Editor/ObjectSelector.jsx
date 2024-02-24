@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-unknown-property */
+
 import { Suspense, useState } from "react";
 
 import { Canvas } from "@react-three/fiber";
@@ -13,19 +14,20 @@ import "../css/ObjSelector.css";
 import adjustDragonForObjSelectorSize from "../../features/AdjustSelectorSize/AdjustDragonForObjSelector";
 import adjustHouseForObjSelectorSize from "../../features/AdjustSelectorSize/AdjustHouseForObjSelectorSize";
 
-import Dragon from "../../models/dragon";
-import House from "../../models/house";
-import Person from "../../models/person";
-import AdjustPersonForObjSelectorSize from "../../features/AdjustSelectorSize/AdjustPersonForObjSelectorSize";
+import Dragon from "../../models/Dragon";
+import House from "../../models/House";
+import Person from "../../models/Person";
+import adjustPersonForObjSelectorSize from "../../features/AdjustSelectorSize/AdjustPersonForObjSelectorSize";
 
 const ObjectSelector = ({ objects, addObject }) => {
   const [isObjSelectorOpen, setObjSelectorOpen] = useState(false);
+
   const [dragonScale, dragonPosition] = adjustDragonForObjSelectorSize();
-  const [personScale, personPosition] = AdjustPersonForObjSelectorSize();
+  const [personScale, personPosition] = adjustPersonForObjSelectorSize();
   const [houseScale, housePosition] = adjustHouseForObjSelectorSize();
 
-  const handleAddObject = (name) => {
-    addObject(name);
+  const handleAddObject = (name, modelPath) => {
+    addObject(name, modelPath);
   };
 
   return (
@@ -50,7 +52,7 @@ const ObjectSelector = ({ objects, addObject }) => {
             <button
               className="btn"
               onClick={() => {
-                handleAddObject("Flying dragon");
+                handleAddObject("Flying dragon", "/assets/3d/dragon_flying.glb");
               }}
             >
               Use
@@ -75,7 +77,7 @@ const ObjectSelector = ({ objects, addObject }) => {
             <button
               className="btn"
               onClick={() => {
-                handleAddObject("Normal person");
+                handleAddObject("Normal person", "/assets/3d/person.glb");
               }}
             >
               Use
@@ -100,7 +102,7 @@ const ObjectSelector = ({ objects, addObject }) => {
             <button
               className="btn"
               onClick={() => {
-                handleAddObject("House");
+                handleAddObject("House", "/assets/3d/house.glb");
               }}
             >
               Use

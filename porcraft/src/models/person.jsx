@@ -12,10 +12,9 @@ import { useGLTF } from "@react-three/drei";
 import { useFrame, useThree } from '@react-three/fiber';
 import { a } from '@react-spring/three';
 
-import personScene from '../assets/3d/person.glb';
-
 const Person = (props) => {
   const personRef = useRef();
+  const personScene = '/assets/3d/person.glb';
   const { nodes, materials } = useGLTF(personScene);
 
   return (

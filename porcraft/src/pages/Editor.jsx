@@ -6,16 +6,23 @@ import ObjectSetting from "../components/Editor/ObjectSetting";
 import useAddedObjects from "../features/UseAddedObjects";
 
 const Editor = () => {
-  const [objects, addObject, setPosition, setRotation, setScale, removeObject] =
-    useAddedObjects();
+  const [
+    objects,
+    addObject,
+    setPosition,
+    setRotation,
+    setScale,
+    removeObject,
+    serializeObjects,
+  ] = useAddedObjects();
 
   return (
     <section className="w-full h-screen flex overflow-hidden">
       {/* オブジェクト選択エリア */}
       <ObjectSelector objects={objects} addObject={addObject} />
-      
+
       {/* Exportボタン */}
-      <ExportButton />
+      <ExportButton objects={objects} serializeObjects={serializeObjects} />
 
       {/* 3Dエディタエリア */}
       <div className="flex-grow h-full">

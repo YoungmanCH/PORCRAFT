@@ -4,9 +4,9 @@
 import { Suspense } from "react";
 
 import Loader from "./Loader";
-import Dragon from "../models/dragon";
-import Person from "../models/person";
-import House from "../models/house";
+import Dragon from "../models/Dragon";
+import Person from "../models/Person";
+import House from "../models/House";
 
 const ObjectComponents = ({ name, position, rotation, scale }) => {
   let component = null;
@@ -17,11 +17,7 @@ const ObjectComponents = ({ name, position, rotation, scale }) => {
         <Suspense fallback={<Loader />}>
           <ambientLight intensity={0.5} />
           <pointLight position={[10, 10, 10]} />
-          <Dragon
-            position={position}
-            rotation={rotation}
-            scale={scale}
-          />
+          <Dragon position={position} rotation={rotation} scale={scale} />
         </Suspense>
       );
       break;
@@ -30,11 +26,7 @@ const ObjectComponents = ({ name, position, rotation, scale }) => {
         <Suspense fallback={<Loader />}>
           <ambientLight intensity={0.5} />
           <pointLight position={[10, 10, 10]} />
-          <Person
-            position={position}
-            rotation={rotation}
-            scale={scale} 
-          />
+          <Person position={position} rotation={rotation} scale={scale} />
         </Suspense>
       );
       break;
@@ -43,11 +35,7 @@ const ObjectComponents = ({ name, position, rotation, scale }) => {
         <Suspense fallback={<Loader />}>
           <ambientLight intensity={0.5} />
           <pointLight position={[10, 10, 10]} />
-          <House 
-            position={position} 
-            rotation={rotation} 
-            scale={scale} 
-          />
+          <House position={position} rotation={rotation} scale={scale} />
         </Suspense>
       );
       break;

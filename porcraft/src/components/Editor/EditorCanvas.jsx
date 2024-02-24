@@ -5,7 +5,7 @@ import { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import Loader from "../Loader";
-import Island from "../../models/island";
+import Island from "../../models/Island";
 import adjustIslandForScreenSize from "../../features/AdjustScreenSize/AdjustIslandForScreen";
 import ObjectComponents from "../ObjectComponents";
 
