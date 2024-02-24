@@ -95,7 +95,7 @@ const ObjectSettingProperty = ({
   return (
     <div>
       <div className="flex justify-between">
-        <sapn className="font-semibold">{name}</sapn>
+        <span className="font-semibold">{name}</span>
         <button
           className="rounded-full bg-white p-2 hover:bg-gray-100 text-sm"
           onClick={() => handleRemoveObject(id)}

@@ -28,14 +28,6 @@ const Navbar = () => {
           Models
         </NavLink>
         <NavLink
-          to="/export"
-          className={({ isActive }) =>
-            isActive ? "text-green-600" : "text-black"
-          }
-        >
-          Export
-        </NavLink>
-        <NavLink
           to="/help"
           className={({ isActive }) =>
             isActive ? "text-green-600" : "text-black"

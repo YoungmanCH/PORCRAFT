@@ -1,7 +1,7 @@
 import { useState } from "react";
-import AdjustHouseForScreenSize from "./AdjustScreenSize/AdjustHouseForScreenSize";
-import AdjustDragonForScreenSize from "./AdjustScreenSize/AdjustDragonForScreenSize";
-import AdjustPersonForScreenSize from "./AdjustScreenSize/AdjustPersonForScreenSize";
+import adjustDragonForScreenSize from "./AdjustScreenSize/AdjustDragonForScreenSize";
+import adjustPersonForScreenSize from "./AdjustScreenSize/AdjustPersonForScreenSize";
+import adjustHouseForScreenSize from "./AdjustScreenSize/AdjustHouseForScreenSize";
 
 const useAddedObjects = () => {
   // objects: [{ id: String, type: String, position: Array }]
@@ -16,22 +16,22 @@ const useAddedObjects = () => {
   // オブジェクトにデフォルトのスケールを設定
   let scale = [0.05, 0.05, 0.05];
 
-  const [dragonScale] = AdjustDragonForScreenSize();
-  const [personScale] = AdjustPersonForScreenSize();
-  const [houseScale] = AdjustHouseForScreenSize();
+  const [dragonScale] = adjustDragonForScreenSize();
+  const [personScale] = adjustPersonForScreenSize();
+  const [houseScale] = adjustHouseForScreenSize();
 
-  const addObject = (name) => {
+  const addObject = (name, modelPath) => {
     // 簡易的なID生成
     const id = Math.random().toString(36).substr(2, 9);
 
     // オブジェクトの種別毎にデフォルトのスケールを設定
-    if (name === 'Flying dragon') scale = dragonScale;
-    if (name === 'Normal person') scale = personScale;
-    if (name === 'House') scale = houseScale;
+    if (name === "Flying dragon") scale = dragonScale;
+    if (name === "Normal person") scale = personScale;
+    if (name === "House") scale = houseScale;
 
     setObjects((currentObjects) => [
       ...currentObjects,
-      { id, name, position, rotation, scale },
+      { id, name, position, rotation, scale, modelPath },
     ]);
   };
 
@@ -65,7 +65,30 @@ const useAddedObjects = () => {
     );
   };
 
-  return [objects, addObject, setPosition, setRotation, setScale, removeObject];
+  const serializeObjects = (objects) => {
+    console.log("serializeObjects:", { objects });
+    const sceneObjects = objects.map((obj) => {
+      return {
+        id: obj.id,
+        name: obj.name, // 例: 'Island', 'ObjectComponent'
+        position: [obj.position[0], obj.position[1], obj.position[2]],
+        rotation: [obj.rotation[0], obj.rotation[1], obj.rotation[2]],
+        scale: [obj.scale[0], obj.scale[1], obj.scale[2]],
+      };
+    });
+
+    return JSON.stringify(sceneObjects, null, 2); // 整形してJSON文字列を返す
+  };
+
+  return [
+    objects,
+    addObject,
+    setPosition,
+    setRotation,
+    setScale,
+    removeObject,
+    serializeObjects,
+  ];
 };
 
 export default useAddedObjects;

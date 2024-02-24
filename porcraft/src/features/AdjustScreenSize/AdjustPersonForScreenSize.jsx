@@ -1,4 +1,4 @@
-const AdjustPersonForScreenSize = () => {
+const adjustPersonForScreenSize = () => {
   let screenScale = null;
   if (window.innerWidth < 768) {
     screenScale = [0.05, 0.05, 0.05];
@@ -8,4 +8,4 @@ const AdjustPersonForScreenSize = () => {
   return [screenScale];
 };
 
-export default AdjustPersonForScreenSize
+export default adjustPersonForScreenSize

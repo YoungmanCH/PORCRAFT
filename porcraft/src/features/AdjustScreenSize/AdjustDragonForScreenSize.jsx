@@ -1,4 +1,4 @@
-const AdjustDragonForScreenSize = () => {
+const adjustDragonForScreenSize = () => {
   let screenScale = null;
   if (window.innerWidth < 768) {
     screenScale = [0.003, 0.003, 0.003];
@@ -8,4 +8,4 @@ const AdjustDragonForScreenSize = () => {
   return [screenScale];
 };
 
-export default AdjustDragonForScreenSize
+export default adjustDragonForScreenSize

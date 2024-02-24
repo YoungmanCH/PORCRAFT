@@ -12,10 +12,9 @@ import { useGLTF } from "@react-three/drei";
 import { useFrame, useThree } from '@react-three/fiber';
 import { a } from '@react-spring/three';
 
-import dragonScene from '../assets/3d/dragon_flying.glb';
-
 const Dragon = (props) => {
   const dragonRef = useRef();
+  const dragonScene = '/assets/3d/dragon_flying.glb';
   const { nodes, materials } = useGLTF(dragonScene);
 
   return (

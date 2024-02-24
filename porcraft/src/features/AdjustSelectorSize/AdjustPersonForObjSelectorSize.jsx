@@ -1,4 +1,4 @@
-const AdjustPersonForObjSelectorSize = () => {
+const adjustPersonForObjSelectorSize = () => {
   let screenScale = null;
   let screenPosition = [0, 0, 0];
 
@@ -10,4 +10,4 @@ const AdjustPersonForObjSelectorSize = () => {
   return [screenScale, screenPosition];
 }
 
-export default AdjustPersonForObjSelectorSize
+export default adjustPersonForObjSelectorSize

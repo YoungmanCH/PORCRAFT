@@ -1,4 +1,4 @@
-const AdjustHouseForScreenSize = () => {
+const adjustHouseForScreenSize = () => {
   let screenScale = null;
   if (window.innerWidth < 768) {
     screenScale = [0.05, 0.05, 0.05];
@@ -8,4 +8,4 @@ const AdjustHouseForScreenSize = () => {
   return [screenScale];
 };
 
-export default AdjustHouseForScreenSize;
+export default adjustHouseForScreenSize;
