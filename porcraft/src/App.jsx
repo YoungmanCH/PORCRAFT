@@ -4,8 +4,10 @@ import {
   Routes,
   useLocation,
 } from "react-router-dom";
-import { About, Editor, Help, Home, ModelsLibrary } from "./pages";
+
 import Navbar from "./components/Navbar";
+
+import { About, Editor, Help, Home, ModelsLibrary, Preview } from "./pages";
 import Howto from "./pages/Howto";
 import Sample from "./pages/Sample";
 
@@ -30,6 +32,7 @@ const App = () => {
               <Route path="/editor" element={<Editor />} />
               <Route path="/help" element={<Help />} />
               <Route path="/howto" element={<Howto />}/>
+              <Route path="/preview" element={<Preview />} />
               <Route path="/sample" element={<Sample />}/>
               <Route path="/modelsLibrary" element={<ModelsLibrary />} />
             </Routes>
