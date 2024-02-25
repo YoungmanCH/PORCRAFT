@@ -6,102 +6,82 @@ Source: https://sketchfab.com/3d-models/pizza-model-c0b338ca475d4147bfba00b071e0
 Title: Pizza Model
 */
 
-import React, { useRef } from "react";
+import { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
+import { useFrame, useThree } from '@react-three/fiber';
+import { a } from '@react-spring/three';
 
-export function Model(props) {
-  const { nodes, materials } = useGLTF("/pizza_model.glb");
+const Pizza = (props) => {
+  const pizzaRef = useRef();
+  const pizzaScene = 'assets/3d/pizza_model.glb';
+  const { nodes, materials } = useGLTF(pizzaScene);
+
   return (
-    <group {...props} dispose={null}>
-      <group scale={0.01}>
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.pCylinder35_blinn4_0.geometry}
-          material={materials.blinn4}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.pCylinder35_blinn3_0.geometry}
-          material={materials.blinn3}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.pCylinder35_blinn13_0.geometry}
-          material={materials.blinn13}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.pCylinder35_blinn1_0.geometry}
-          material={materials.blinn1}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.pCylinder35_blinn2_0.geometry}
-          material={materials.blinn2}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.pCylinder35_blinn2_0_1.geometry}
-          material={materials.blinn2}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.pCylinder35_blinn12_0.geometry}
-          material={materials.blinn12}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.pCylinder35_blinn6_0.geometry}
-          material={materials.blinn6}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.pCylinder35_blinn8_0.geometry}
-          material={materials.blinn8}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.pCylinder35_blinn10_0.geometry}
-          material={materials.blinn10}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.pCylinder35_blinn7_0.geometry}
-          material={materials.blinn7}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.pCylinder35_blinn9_0.geometry}
-          material={materials.blinn9}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.pCylinder35_blinn11_0.geometry}
-          material={materials.blinn11}
-        />
+    <a.group ref={pizzaRef} {...props}>
+      <group name="Sketchfab_Scene">
+        <group name="Sketchfab_model" rotation={[-Math.PI / 2, 0, 0]}>
+          <group name="root">
+            <group name="GLTF_SceneRoÛotNode" rotation={[Math.PI / 2, 0, 0]}>
+              <group scale={0.01}>
+                <mesh
+                  geometry={nodes.pCylinder35_blinn4_0.geometry}
+                  material={materials.blinn4}
+                />
+                <mesh
+                  geometry={nodes.pCylinder35_blinn3_0.geometry}
+                  material={materials.blinn3}
+                />
+                <mesh
+                  geometry={nodes.pCylinder35_blinn13_0.geometry}
+                  material={materials.blinn13}
+                />
+                <mesh
+                  geometry={nodes.pCylinder35_blinn1_0.geometry}
+                  material={materials.blinn1}
+                />
+                <mesh
+                  geometry={nodes.pCylinder35_blinn2_0.geometry}
+                  material={materials.blinn2}
+                />
+                <mesh
+                  geometry={nodes.pCylinder35_blinn2_0_1.geometry}
+                  material={materials.blinn2}
+                />
+                <mesh
+                  geometry={nodes.pCylinder35_blinn12_0.geometry}
+                  material={materials.blinn12}
+                />
+                <mesh
+                  geometry={nodes.pCylinder35_blinn6_0.geometry}
+                  material={materials.blinn6}
+                />
+                <mesh
+                  geometry={nodes.pCylinder35_blinn8_0.geometry}
+                  material={materials.blinn8}
+                />
+                <mesh
+                  geometry={nodes.pCylinder35_blinn10_0.geometry}
+                  material={materials.blinn10}
+                />
+                <mesh
+                  geometry={nodes.pCylinder35_blinn7_0.geometry}
+                  material={materials.blinn7}
+                />
+                <mesh
+                  geometry={nodes.pCylinder35_blinn9_0.geometry}
+                  material={materials.blinn9}
+                />
+                <mesh
+                  geometry={nodes.pCylinder35_blinn11_0.geometry}
+                  material={materials.blinn11}
+                />
+              </group>
+            </group>
+          </group>
+        </group>
       </group>
-    </group>
+    </a.group>
   );
 }
 
-useGLTF.preload("/pizza_model.glb");
-
-
-rembrandt
-
-city
-Made by @NikkitaFTW & contributors inspired by the gltfjsx cli
-
+export default Pizza;
