@@ -5,7 +5,7 @@ import EditorCanvas from '../components/Editor/EditorCanvas';
 
 
 
-const Selectfield = () => {
+const Field = () => {
     const [selectedField,setSelectedField]=useState([]);
     const navigate = useNavigate();
 
@@ -68,4 +68,4 @@ const Selectfield = () => {
   );
 };
 
-export default Selectfield;
+export default Field;
