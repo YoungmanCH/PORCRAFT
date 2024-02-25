@@ -1,44 +1,36 @@
 /* eslint-disable react/prop-types */
-
 const ExportButton = ({ objects, serializeObjects }) => {
-  const handleExport = () => {
-    // 使用例
+  const handleExport = async () => {
     const serializedData = serializeObjects(objects);
 
-    // Blob Rest API
-    const blob = new Blob([serializedData], { type: "application/json" });
+    console.log('serializedData:', serializedData);
 
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = "scene.json";
-    link.click();
-    URL.revokeObjectURL(url);
+    const apiEndpoint = "https://y9x82tppo0.execute-api.ap-northeast-1.amazonaws.com/prod/export";
 
-    objects.forEach((obj) => {
-      if (obj.modelPath && obj.name) {
-        downloadModel(obj.modelPath, `${obj.name}.glb`);
+    try {
+      const response = await fetch(apiEndpoint, {
+        method: "POST",
+        body: serializedData, // 直接serializedDataを使用
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
       }
-    });
-  };
 
-  const downloadModel = async (url, filename) => {
-    const response = await fetch(url);
-    const data = await response.blob();
-    const blobUrl = URL.createObjectURL(data);
-    const link = document.createElement("a");
-    link.href = blobUrl;
-    link.download = filename;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    URL.revokeObjectURL(blobUrl);
+      console.log('response:', {response})
+
+      const responseData = await response.json();
+      console.log('responseData:', responseData); // 確認用
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
 
   return (
-    <button className="absolute top-0 left-28 btn z-10" onClick={handleExport}>
-      Export
-    </button>
+    <button className="absolute top-0 left-28 btn z-10" onClick={handleExport}>Export</button>
   );
 };
 
