@@ -46,10 +46,10 @@ body:has(.card[data-color="green"]:hover) {
     @apply bg-white border border-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 mt-2.5 font-normal shadow-card;
   }
 
-  .textarea {
+  /* .textarea {
     
     @apply border-radius:40px block p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-200 focus:ring-blue-500 focus:border-blue-500 mt-2.5 font-normal shadow-card;
-  }
+  } */
 
   .btn {
     
