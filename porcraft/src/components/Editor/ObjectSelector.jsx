@@ -14,10 +14,12 @@ import "../css/ObjSelector.css";
 import adjustDragonForObjSelectorSize from "../../features/AdjustSelectorSize/AdjustDragonForObjSelector";
 import adjustHouseForObjSelectorSize from "../../features/AdjustSelectorSize/AdjustHouseForObjSelectorSize";
 import adjustPersonForObjSelectorSize from "../../features/AdjustSelectorSize/AdjustPersonForObjSelectorSize";
+import adjustKingForObjSelectorSize from "../../features/AdjustSelectorSize/AdjustKingForObjSelectorSize";
 
 import Dragon from "../../models/Dragon";
 import House from "../../models/House";
 import Person from "../../models/Person";
+import King from "../../models/King";
 
 const ObjectSelector = ({ objects, addObject }) => {
   const [isObjSelectorOpen, setObjSelectorOpen] = useState(false);
@@ -25,6 +27,7 @@ const ObjectSelector = ({ objects, addObject }) => {
   const [dragonScale, dragonPosition] = adjustDragonForObjSelectorSize();
   const [personScale, personPosition] = adjustPersonForObjSelectorSize();
   const [houseScale, housePosition] = adjustHouseForObjSelectorSize();
+  const [kingScale, kingPosition] = adjustKingForObjSelectorSize();
 
   const handleAddObject = (name, modelPath) => {
     addObject(name, modelPath);
@@ -98,7 +101,7 @@ const ObjectSelector = ({ objects, addObject }) => {
         </div>
         <hr />
 
-        {/* <div>
+        <div>
           <div className="flex justify-between">
             <div>King</div>
             <button
@@ -121,7 +124,7 @@ const ObjectSelector = ({ objects, addObject }) => {
             <OrbitControls />
           </Canvas>
         </div>
-        <hr /> */}
+        <hr />
 
 
         <div>

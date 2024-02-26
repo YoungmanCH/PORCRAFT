@@ -17,7 +17,7 @@ const King = (props) => {
   const { nodes, materials } = useGLTF(kingScene);
 
   return (
-    <a.group ref={personRef} {...props}>
+    <a.group ref={kingRef} {...props}>
       <group name="Sketchfab_Scene">
         <group scale={0.01}>
           <mesh
