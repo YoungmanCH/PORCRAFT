@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 
 import { useState } from "react";
-
 import "../css/ObjSetting.css";
 import ObjectSettingProperty from "./ObjectSettingProperty";
 
@@ -16,17 +15,20 @@ const ObjectSetting = ({
 
   return (
     <section className="open-setting-btn">
-      <button className="btn" onClick={() => setObjSettingOpen(true)}>
-        Setting
-      </button>
+      {!isObjSelectorOpen && (
+        <button className="trans-btn mt-3 mr-3 w-5" onClick={() => setObjSettingOpen(true)}>
+          Setting
+        </button>
+      )}
       <div className={`objSetting ${isObjSelectorOpen ? "open" : ""}`}>
         {/* 右サイドバーのコンテンツ */}
-        <button className="btn" onClick={() => setObjSettingOpen(false)}>
-          Close
-        </button>
+        {isObjSelectorOpen && (
+          <button className="trans-btn mt-2 right-2 max-w-40 ml-40" onClick={() => setObjSettingOpen(false)}>
+            Close
+          </button>
+        )}
         <br />
         <br />
-        <div className="font-semibold">Settings</div>
         <hr />
         {objects.map((obj) => (
           <ObjectSettingProperty

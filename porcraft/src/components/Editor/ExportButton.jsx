@@ -34,7 +34,7 @@ const ExportButton = ({ objects, serializeObjects }) => {
   };
 
   return (
-    <button className="absolute top-0 left-28 btn z-10" onClick={handleExport}>
+    <button className="absolute bottom-3 right-3 trans-btn z-10" onClick={handleExport}>
       Export
     </button>
   );

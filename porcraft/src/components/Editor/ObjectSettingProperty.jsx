@@ -103,7 +103,7 @@ const ObjectSettingProperty = ({
         ✕
         </button>
       </div>
-      <div className="flex items-center space-x-4">
+      <div className="flex items-center space-x-4 bg-white rounded-xl px-3 mx-2 overflow-hidden">
         <div>
           Position
           <div className="flex flex-col space-y-1">

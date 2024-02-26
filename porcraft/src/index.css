@@ -57,7 +57,7 @@ body:has(.card[data-color="green"]:hover) {
   }
 
   .header {
-    @apply flex justify-between items-center sm:px-16 px-8 py-4 max-w-5xl mx-auto absolute top-0 bg-transparent z-10 right-0 left-0;
+    @apply flex justify-between items-center  py-4 mx-7  absolute top-0 bg-transparent z-10 right-0 left-0;
   }
 
   .footer {
@@ -195,3 +195,10 @@ body:has(.card[data-color="green"]:hover) {
   box-shadow: 0.6vmin 0.6vmin #fff, 1vmin 1vmin #d2e4ff, 1vmin 1vmin #d2e4ff,
     0.65vmin 1vmin #d2e4ff, 1vmin 0.65vmin #d2e4ff;
 }
+/* Editor */
+.trans-btn{
+  color:#BDEC8E;
+  background-color: rgba(0, 0, 0, 0.5);
+  @apply bg-gradient-to-r rounded-xl focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium  w-full sm:w-auto px-12 py-5 text-center;
+}
+
