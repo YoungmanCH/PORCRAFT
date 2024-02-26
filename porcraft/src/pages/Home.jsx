@@ -41,7 +41,7 @@ const Home = () => {
           Create your own portfolio with 3D objects!
         </p>
         <div className="flex">
-          <Link to="/selectfield" className="btn pading-all-20px">
+          <Link to="/field" className="btn pading-all-20px">
             Get started!
           </Link>
         </div>
