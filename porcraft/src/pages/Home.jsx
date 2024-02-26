@@ -49,7 +49,7 @@ const Home = () => {
         </p>
         <div className="flex">
           <Link to="/field" className="btn pading-all-20px text-3xl rounded-3xl">
-            Get started   →
+            Get started  !
           </Link>
         </div>
       </div>
