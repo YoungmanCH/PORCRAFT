@@ -48,7 +48,7 @@ const ObjectComponents = ({ name, position, rotation, scale }) => {
         <Suspense fallback={<Loader />}>
           <ambientLight intensity={0.5} />
           <pointLight position={[10, 10, 10]} />
-          <House position={position} rotation={rotation} scale={scale} />
+          <King position={position} rotation={rotation} scale={scale} />
         </Suspense>
       );
       break;
