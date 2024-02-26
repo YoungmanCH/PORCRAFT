@@ -7,6 +7,13 @@ import { OrbitControls } from "@react-three/drei";
 
 import Loader from "../Loader";
 
+import Island from "../../models/Island";
+import Chess from "../../models/Chess";
+import Pizza from "../../models/Park";
+import Park from "../../models/Park";
+import Yggdrasill from "../../models/Yggdrasill";
+
+
 import ObjectComponents from "../ObjectComponents";
 import FieldComponents from "./FieldComponents";
 
@@ -21,8 +28,7 @@ const EditorCanvas = ({ fieldName, fieldPath, objects, setScale }) => {
       <FieldComponents name={fieldName} path={fieldPath}/>
 
       <Suspense fallback={<Loader />}>
-        <ambientLight intensity={0.5} />
-        <pointLight position={[10, 10, 10]} />
+        
         {objects.map((obj) => (
           <ObjectComponents key={obj.id} setScale={setScale} {...obj} />
         ))}

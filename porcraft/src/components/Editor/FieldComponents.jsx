@@ -12,16 +12,26 @@ import Park from "../../models/Park";
 import Yggdrasill from "../../models/Yggdrasill";
 
 import adjustIslandForScreenSize from "../../features/AdjustScreenSize/AdjustIslandForScreen";
+import adjustChessForScreenSize from "../../features/AdjustScreenSize/AdjustChessForScreen";
+import adjustParkForScreenSize from "../../features/AdjustScreenSize/AdjustParkForScreen";
+import adjustPizzaForScreenSize from "../../features/AdjustScreenSize/AdjustPizzaForScreen";
+import adjustYggdrasillForScreenSize from "../../features/AdjustScreenSize/AdjustYggdrasillForScreen";
 
 const FieldComponents = ({ name }) => {
   const [islandScale, islandPosition, islandRotation] =
     adjustIslandForScreenSize();
+  const [chessScale, chessPosition, chessRotation] = adjustChessForScreenSize();
+  const [parkScale ,parkPosition,parkRotation]=adjustParkForScreenSize();
+  const [pizzaScale,pizzaPosition,pizzaRotation]=adjustPizzaForScreenSize();
+  const [yggdrasillScale,yggdrasillPosition,yggdrasillRotation]=adjustYggdrasillForScreenSize();
+
 
   let component = null;
 
   switch (name) {
     case "Tropical Island":
       component = (
+        
         <Suspense fallback={<Loader />}>
           <ambientLight intensity={0.5} />
           <pointLight position={[10, 10, 10]} />
@@ -38,7 +48,7 @@ const FieldComponents = ({ name }) => {
         <Suspense fallback={<Loader />}>
           <ambientLight intensity={0.5} />
           <pointLight position={[10, 10, 10]} />
-          <Chess position={position} rotation={rotation} scale={scale} />
+          <Chess position={chessPosition} rotation={chessRotation} scale={chessScale} />
         </Suspense>
       );
       break;
@@ -47,25 +57,25 @@ const FieldComponents = ({ name }) => {
         <Suspense fallback={<Loader />}>
           <ambientLight intensity={0.5} />
           <pointLight position={[10, 10, 10]} />
-          <Pizza position={position} rotation={rotation} scale={scale} />
+          <Pizza position={pizzaPosition} rotation={pizzaRotation} scale={pizzaScale} />
         </Suspense>
       );
       break;
     case "Park":
       component = (
         <Suspense fallback={<Loader />}>
-          <ambientLight intensity={0.5} />
+          <ambientLight intensity={6.5} />
           <pointLight position={[10, 10, 10]} />
-          <Park position={position} rotation={rotation} scale={scale} />
+          <Park position={parkPosition} rotation={parkRotation} scale={parkScale} />
         </Suspense>
       );
       break;
     case "Tree Island":
       component = (
         <Suspense fallback={<Loader />}>
-          <ambientLight intensity={0.5} />
-          <pointLight position={[10, 10, 10]} />
-          <Yggdrasill position={position} rotation={rotation} scale={scale} />
+          <ambientLight intensity={6.5} />
+          <pointLight position={[10, 50, 10]} />
+          <Yggdrasill position={yggdrasillPosition} rotation={yggdrasillRotation} scale={yggdrasillScale} />
         </Suspense>
       );
       break;
