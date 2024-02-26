@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <header className="header">
+    <header className="header ">
       {/* <NavLink
         to="/"
         className="w-24 h-12 rounded-lg bg-transparent  items-center

@@ -10,7 +10,11 @@
 }
 
 .objSelector.open {
-  left: 0; /* サイドバーを表示する */
+  left: 10px; 
+  top: 10px;/* サイドバーを表示する */
+  border-radius: 20px;
+  background-color: rgba(0, 0, 0, 0.5);
+  overflow-y: auto; /* 縦方向のオーバーフロー時にスクロールバーを表示 */
 }
 
 .object-selector-container {

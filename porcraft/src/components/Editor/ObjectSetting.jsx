@@ -16,17 +16,16 @@ const ObjectSetting = ({
 
   return (
     <section className="open-setting-btn">
-      <button className="btn" onClick={() => setObjSettingOpen(true)}>
+      <button className="trans-btn mt-3 mr-3 w-5" onClick={() => setObjSettingOpen(true)}>
         Setting
       </button>
       <div className={`objSetting ${isObjSelectorOpen ? "open" : ""}`}>
         {/* 右サイドバーのコンテンツ */}
-        <button className="btn" onClick={() => setObjSettingOpen(false)}>
+        <button className="trans-btn mt-2 mr-2 " onClick={() => setObjSettingOpen(false)}>
           Close
         </button>
         <br />
         <br />
-        <div className="font-semibold">Settings</div>
         <hr />
         {objects.map((obj) => (
           <ObjectSettingProperty
