@@ -39,6 +39,7 @@ const ObjectSetting = ({
             removeObject={removeObject}
             {...obj}
           />
+          
         ))}
       </div>
     </section>

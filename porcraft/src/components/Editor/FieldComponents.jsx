@@ -45,7 +45,7 @@ const FieldComponents = ({ name }) => {
     case "Chess":
       component = (
         <Suspense fallback={<Loader />}>
-          <ambientLight intensity={0.5} />
+          <ambientLight intensity={2.5} />
           <pointLight position={[10, 10, 10]} />
           <Chess
             position={chessPosition}
@@ -58,7 +58,7 @@ const FieldComponents = ({ name }) => {
     case "Pizza":
       component = (
         <Suspense fallback={<Loader />}>
-          <ambientLight intensity={0.5} />
+          <ambientLight intensity={2.8} />
           <pointLight position={[10, 10, 10]} />
           <Pizza
             position={pizzaPosition}
