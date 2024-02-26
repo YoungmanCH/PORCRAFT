@@ -26,11 +26,6 @@ const FieldComponents = ({ name }) => {
   const [yggdrasillScale,yggdrasillPosition,yggdrasillRotation]=adjustYggdrasillForScreenSize();
 
 
-  // const [chessScale, chessPosition] = adjustChessForFieldSize();
-  // const [pizzaScale, pizzaPosition] = adjustPizzaForFieldSize();
-  // const [parkScale, parkPosition] = adjustParkForFieldSize();
-  // const [YggdrasillScale, YggdrasillPosition] = adjustYggdrasillForFieldSize();
-
   let component = null;
 
   switch (name) {
