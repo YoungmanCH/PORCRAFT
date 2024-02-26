@@ -3,9 +3,9 @@ const adjustBirdorangeForObjSelectorSize = () => {
   let screenPosition = [0, -0.9, 0];
 
   if (window.innerWidth < 150) {
-    screenScale = [0.001, 0.001, 0.001];
+    screenScale = [0.2, 0.2, 0.2];
   } else {
-    screenScale = [0.001, 0.001, 0.001];
+    screenScale = [0.2, 0.2, 0.2];
   }
   return [screenScale, screenPosition];
 };

@@ -3,9 +3,9 @@ const adjustQueenForObjSelectorSize = () => {
   let screenPosition = [0, -0.9, 0];
 
   if (window.innerWidth < 150) {
-    screenScale = [0.001, 0.001, 0.001];
+    screenScale = [0.05, 0.05, 0.05];
   } else {
-    screenScale = [0.001, 0.001, 0.001];
+    screenScale = [0.05, 0.05, 0.05];
   }
   return [screenScale, screenPosition];
 };
