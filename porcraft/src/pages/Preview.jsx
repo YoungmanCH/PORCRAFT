@@ -1,4 +1,5 @@
 /* eslint-disable react/no-unknown-property */
+
 import { Canvas } from "@react-three/fiber";
 import { Suspense, useEffect, useState } from "react";
 // import Island from "../models/Island";
@@ -18,9 +19,6 @@ const fetchObjectsData = async (key) => {
   if (!fetchResponse.ok) {
     throw new Error("Network response was not ok");
   }
-
-  const responseText = await fetchResponse.text();
-  console.log('responseText:', responseText);
 
   const fetchedData = await fetchResponse.json();
   console.log("Fetched data:", fetchedData);
