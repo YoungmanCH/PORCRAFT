@@ -18,7 +18,7 @@ const Yggdrasill = (props) => {
 
 
   return (
-    <a.group ref={YggdrasillRef} {...props}>
+    <a.group ref={yggdrasillRef} {...props}>
       <group name="Sketchfab_Scene">
         <group name="Sketchfab_model" rotation={[-Math.PI / 2, 0, 0]}>
           <group name="root">
