@@ -41,6 +41,7 @@ const Field = () => {
 
   return (
     <section className="w-full h-screen overflow-hidden bg-white">
+      <p className="text-6xl font-serif mt-10 ml-14">Choose View Of The World</p>
       <div className="w-full h-20"></div>
       <div className="grid grid-cols-3 gap-4 place-content-stretch h-">
         {/* 1つ目のセクション */}
@@ -168,12 +169,13 @@ const Field = () => {
         {isLinkVisible && (
           <div className="flex">
             <Link
+            className="btn rounded-xl mt-10 text-3xl"
               to={{
-                pathname: "/editor",
+                pathname: "/editor ",
               }}
               state={{ fieldName: selectedField[0] }}
             >
-              Next Steps!
+              Go To The Next Step  !
             </Link>
           </div>
         )}

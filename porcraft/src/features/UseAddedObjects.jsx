@@ -2,6 +2,7 @@ import { useState } from "react";
 import adjustDragonForScreenSize from "./AdjustScreenSize/AdjustDragonForScreenSize";
 import adjustPersonForScreenSize from "./AdjustScreenSize/AdjustPersonForScreenSize";
 import adjustHouseForScreenSize from "./AdjustScreenSize/AdjustHouseForScreenSize";
+import adjustKingForScreenSize from "./AdjustScreenSize/AdjustKingForScreenSize";
 
 const useAddedObjects = () => {
   // objects: [{ id: String, type: String, position: Array }]
@@ -19,6 +20,7 @@ const useAddedObjects = () => {
   const [dragonScale] = adjustDragonForScreenSize();
   const [personScale] = adjustPersonForScreenSize();
   const [houseScale] = adjustHouseForScreenSize();
+  const [kingScale] =  adjustKingForScreenSize();
 
   const addObject = (name, modelPath) => {
     // 簡易的なID生成
@@ -28,6 +30,7 @@ const useAddedObjects = () => {
     if (name === "Flying dragon") scale = dragonScale;
     if (name === "Normal person") scale = personScale;
     if (name === "House") scale = houseScale;
+    if (name === "King") scale = kingScale;
 
     setObjects((currentObjects) => [
       ...currentObjects,
