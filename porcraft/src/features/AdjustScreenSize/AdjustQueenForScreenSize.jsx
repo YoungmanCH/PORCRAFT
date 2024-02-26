@@ -1,9 +1,9 @@
 const adjustQueenForScreenSize = () => {
   let screenScale = null;
   if (window.innerWidth < 768) {
-    screenScale = [0.001, 0.001, 0.001];
+    screenScale = [0.05, 0.05, 0.05];
   } else {
-    screenScale = [0.001, 0.001, 0.001];
+    screenScale = [0.05, 0.05, 0.05];
   }
   return [screenScale];
 };

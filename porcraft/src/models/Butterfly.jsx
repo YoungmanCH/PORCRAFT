@@ -19,6 +19,7 @@ const Butterfly = (props) => {
 
   return (
     <a.group ref={butterflyRef} {...props}>
+
       <group name="Sketchfab_Scene">
         <group name="Sketchfab_model" rotation={[-Math.PI / 2, 0, 0]}>
           <group name="root">
