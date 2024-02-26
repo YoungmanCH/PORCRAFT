@@ -3,9 +3,9 @@ const adjustBirdOrangeForObjSelectorSize = () => {
   let screenPosition = [0, -0.9, 0];
 
   if (window.innerWidth < 150) {
-    screenScale = [0.2, 0.2, 0.2];
+    screenScale = [2, 2, 2];
   } else {
-    screenScale = [0.2, 0.2, 0.2];
+    screenScale = [2, 2, 2];
   }
   return [screenScale, screenPosition];
 };

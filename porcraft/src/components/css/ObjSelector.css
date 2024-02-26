@@ -32,6 +32,7 @@
   width: 100%; /* キャンバスコンテナの幅を画面幅に合わせる */
   height: 100vh; /* キャンバスコンテナの高さを画面高さに合わせる */
   overflow: hidden; /* キャンバスがはみ出した場合に隠す */
+  border-radius: ;
 }
 
 .popup-btn {

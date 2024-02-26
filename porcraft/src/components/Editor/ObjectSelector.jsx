@@ -62,10 +62,10 @@ const ObjectSelector = ({ objects, addObject }) => {
         <hr />
 
         <div>
-          <div className="flex justify-between">
+          <div className="flex justify-between bg-white rounded-xl">
             <div>Flying dragon</div>
             <button
-              className="trans-btn"
+              className="trans-btn "
               onClick={() => {
                 handleAddObject("Flying dragon", "/assets/3d/dragon_flying.glb");
               }}
