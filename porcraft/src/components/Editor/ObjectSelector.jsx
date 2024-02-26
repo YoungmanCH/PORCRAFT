@@ -15,11 +15,17 @@ import adjustDragonForObjSelectorSize from "../../features/AdjustSelectorSize/Ad
 import adjustHouseForObjSelectorSize from "../../features/AdjustSelectorSize/AdjustHouseForObjSelectorSize";
 import adjustPersonForObjSelectorSize from "../../features/AdjustSelectorSize/AdjustPersonForObjSelectorSize";
 import adjustKingForObjSelectorSize from "../../features/AdjustSelectorSize/AdjustKingForObjSelectorSize";
+import adjustPlaneForObjSelectorSize from "../../features/AdjustSelectorSize/AdjustPlaneForObjSelectorSize";
+import adjustBirdorangeForObjSelectorSize from "../../features/AdjustSelectorSize/AdjustBirdorangeForObjSelectorSize";
+import adjustQueenForObjSelectorSize from "../../features/AdjustSelectorSize/AdjustQueenForObjSelectorSize";
 
 import Dragon from "../../models/Dragon";
 import House from "../../models/House";
 import Person from "../../models/Person";
 import King from "../../models/King";
+import Plane from "../../models/Plane";
+import Birdorange from "../../models/Birdorange";
+import Queen from "../../models/Queen";
 
 const ObjectSelector = ({ objects, addObject }) => {
   const [isObjSelectorOpen, setObjSelectorOpen] = useState(false);
@@ -28,6 +34,9 @@ const ObjectSelector = ({ objects, addObject }) => {
   const [personScale, personPosition] = adjustPersonForObjSelectorSize();
   const [houseScale, housePosition] = adjustHouseForObjSelectorSize();
   const [kingScale, kingPosition] = adjustKingForObjSelectorSize();
+  const [planeScale, planePosition] = adjustPlaneForObjSelectorSize();
+  const [birdorangeScale, birdorangePosition] = adjustBirdorangeForObjSelectorSize();
+  const [queenScale, queenPosition] = adjustQueenForObjSelectorSize();
 
   const handleAddObject = (name, modelPath) => {
     addObject(name, modelPath);
@@ -95,6 +104,81 @@ const ObjectSelector = ({ objects, addObject }) => {
               <hemisphereLight intensity={10} />
 
               <Person scale={personScale} position={personPosition} />
+            </Suspense>
+            <OrbitControls />
+          </Canvas>
+        </div>
+        <hr />
+
+        <div>
+          <div className="flex justify-between">
+            <div>Plane</div>
+            <button
+              className="trans-btn"
+              onClick={() => {
+                handleAddObject("Plane", "/assets/3d/plane_a340.glb");
+              }}
+            >
+              Use
+            </button>
+          </div>
+          <Canvas className="canvas-container">
+            <Suspense fallback={<Loader />}>
+              <directionalLight position={[1, 10, 1]} intensity={10} />
+              <ambientLight intensity={10} />
+              <hemisphereLight intensity={10} />
+
+              <Plane scale={planeScale} position={planePosition} />
+            </Suspense>
+            <OrbitControls />
+          </Canvas>
+        </div>
+        <hr />
+
+        <div>
+          <div className="flex justify-between">
+            <div>Queen</div>
+            <button
+              className="trans-btn"
+              onClick={() => {
+                handleAddObject("Queen", "/assets/3d/chess_piece_queen.glb");
+              }}
+            >
+              Use
+            </button>
+          </div>
+          <Canvas className="canvas-container">
+            <Suspense fallback={<Loader />}>
+              <directionalLight position={[1, 10, 1]} intensity={10} />
+              <ambientLight intensity={10} />
+              <hemisphereLight intensity={10} />
+
+              <Queen scale={queenScale} position={queenPosition} />
+            </Suspense>
+            <OrbitControls />
+          </Canvas>
+        </div>
+        <hr />
+
+        <div>
+          <div className="flex justify-between">
+            <div>Birdorange</div>
+            <button
+              className="trans-btn"
+              onClick={() => {
+                handleAddObject("Birdorange", "/assets/3d/bird_orange.glb");
+              }}
+            >
+              Use
+            </button>
+          </div>
+          <Canvas className="canvas-container">
+            <Suspense fallback={<Loader />}>
+              <directionalLight position={[1, 10, 1]} intensity={10} />
+              <ambientLight intensity={10} />
+              <hemisphereLight intensity={10} />
+
+              <Birdorange scale={birdorangeScale} position={birdorangePosition} />
             </Suspense>
             <OrbitControls />
           </Canvas>

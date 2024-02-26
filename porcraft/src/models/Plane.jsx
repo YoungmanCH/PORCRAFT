@@ -17,7 +17,7 @@ const Plane = (props) => {
   const { nodes, materials } = useGLTF(planeScene);
 
   return (
-    <a.group ref={birdorangeRef} {...props}>
+    <a.group ref={planeRef} {...props}>
       <group name="Sketchfab_Scene">
         
       <group rotation={[-Math.PI, 0, 0]}>
