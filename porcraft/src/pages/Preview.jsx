@@ -1,4 +1,5 @@
 /* eslint-disable react/no-unknown-property */
+
 import { Canvas } from "@react-three/fiber";
 import { Suspense, useEffect, useState } from "react";
 // import Island from "../models/Island";
@@ -23,7 +24,6 @@ const fetchObjectsData = async (key) => {
   console.log("Fetched data:", fetchedData);
 
   const bodyData = fetchedData;
-  // lambdaにはbodyData[0]は愚策。
   console.log("Parsed body data:", {data: Object.values(bodyData[0])});
   const number = Object.values(bodyData);
   return Object.values(bodyData).slice(0, number.length-1);

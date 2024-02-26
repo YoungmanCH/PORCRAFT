@@ -1,4 +1,4 @@
-import React ,{Suspense ,useState} from 'react';
+import {Suspense ,useState} from 'react';
 import { Link, Navigate } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 import EditorCanvas from '../components/Editor/EditorCanvas';
