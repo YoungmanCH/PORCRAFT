@@ -19,11 +19,13 @@ const fetchObjectsData = async (key) => {
     throw new Error("Network response was not ok");
   }
 
+  const responseText = await fetchResponse.text();
+  console.log('responseText:', responseText);
+
   const fetchedData = await fetchResponse.json();
   console.log("Fetched data:", fetchedData);
 
   const bodyData = fetchedData;
-  // lambdaにはbodyData[0]は愚策。
   console.log("Parsed body data:", {data: Object.values(bodyData[0])});
   const number = Object.values(bodyData);
   return Object.values(bodyData).slice(0, number.length-1);
