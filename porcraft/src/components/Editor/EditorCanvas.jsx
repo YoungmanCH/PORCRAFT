@@ -4,17 +4,30 @@
 import { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
+
 import Loader from "../Loader";
+
 import Island from "../../models/Island";
+import Chess from "../../models/Chess";
+import Pizza from "../../models/Park";
+import Park from "../../models/Park";
+import Yggdrasill from "../../models/Yggdrasill";
+
 import adjustIslandForScreenSize from "../../features/AdjustScreenSize/AdjustIslandForScreen";
 import adjustChessForScreenSize from "../../features/AdjustScreenSize/AdjustChessForScreen";
+import adjustParkForScreenSize from "../../features/AdjustScreenSize/AdjustParkForScreen";
+import adjustPizzaForScreenSize from "../../features/AdjustScreenSize/AdjustPizzaForScreen";
+import adjustYggdrasillForScreenSize from "../../features/AdjustScreenSize/AdjustYggdrasillForScreen";
+
 import ObjectComponents from "../ObjectComponents";
 
 const EditorCanvas = ({ objects, setScale }) => {
   const [islandScale, islandPosition, islandRotation] =
     adjustIslandForScreenSize();
   const [chessScale, chessPosition, chessRotation] = adjustChessForScreenSize();
-
+  const [parkScale ,parkPosition,parkRotation]=adjustParkForScreenSize();
+  const [pizzaScale,pizzaPosition,pizzaRotation]=adjustPizzaForScreenSize();
+  const [yggdrasillScale,yggdrasillPosition,yggdrasillRotation]=adjustYggdrasillForScreenSize();
   // 選択されたフィールドに基づいてコンポーネントをレンダリング
   return (
     <Canvas
@@ -30,6 +43,12 @@ const EditorCanvas = ({ objects, setScale }) => {
           position={islandPosition}
           rotation={islandRotation}
         />
+
+        {/* <Chess
+          scale={chessScale}
+          position={chessPosition}
+          rotation={chessRotation}
+        /> */}
 
         {objects.map((obj) => (
           <ObjectComponents key={obj.id} setScale={setScale} {...obj} />
