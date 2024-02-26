@@ -13,11 +13,11 @@ import "../css/ObjSelector.css";
 
 import adjustDragonForObjSelectorSize from "../../features/AdjustSelectorSize/AdjustDragonForObjSelector";
 import adjustHouseForObjSelectorSize from "../../features/AdjustSelectorSize/AdjustHouseForObjSelectorSize";
+import adjustPersonForObjSelectorSize from "../../features/AdjustSelectorSize/AdjustPersonForObjSelectorSize";
 
 import Dragon from "../../models/Dragon";
 import House from "../../models/House";
 import Person from "../../models/Person";
-import adjustPersonForObjSelectorSize from "../../features/AdjustSelectorSize/AdjustPersonForObjSelectorSize";
 
 const ObjectSelector = ({ objects, addObject }) => {
   const [isObjSelectorOpen, setObjSelectorOpen] = useState(false);
@@ -32,14 +32,18 @@ const ObjectSelector = ({ objects, addObject }) => {
 
   return (
     <section className="open-selector-btn">
-      <button className="trans-btn mt-3 ml-3" onClick={() => setObjSelectorOpen(true)}>
-        Selector
-      </button>
+      {!isObjSelectorOpen && (
+        <button className="trans-btn mt-3 ml-3" onClick={() => setObjSelectorOpen(true)}>
+          Selector
+        </button>
+      )}
       <div className={`objSelector ${isObjSelectorOpen ? "open" : ""}`}>
         {/* 左サイドバーのコンテンツ */}
-        <button className="trans-btn mt-2 ml-2" onClick={() => setObjSelectorOpen(false)}>
-          Close
-        </button>
+        {isObjSelectorOpen && (
+          <button className="trans-btn mt-2 ml-2" onClick={() => setObjSelectorOpen(false)}>
+            Close
+          </button>
+        )}
         <br />
         <br />
         <hr />
@@ -93,6 +97,32 @@ const ObjectSelector = ({ objects, addObject }) => {
           </Canvas>
         </div>
         <hr />
+
+        {/* <div>
+          <div className="flex justify-between">
+            <div>King</div>
+            <button
+              className="trans-btn"
+              onClick={() => {
+                handleAddObject("King", "/assets/3d/chess_king.glb");
+              }}
+            >
+              Use
+            </button>
+          </div>
+          <Canvas className="canvas-container">
+            <Suspense fallback={<Loader />}>
+              <directionalLight position={[1, 10, 1]} intensity={10} />
+              <ambientLight intensity={10} />
+              <hemisphereLight intensity={10} />
+
+              <King scale={kingScale} position={kingPosition} />
+            </Suspense>
+            <OrbitControls />
+          </Canvas>
+        </div>
+        <hr /> */}
+
 
         <div>
           <div className="flex justify-between">
