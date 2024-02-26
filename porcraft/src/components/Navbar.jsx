@@ -13,14 +13,14 @@ const Navbar = () => {
       <nav className="flex text-lg gap-7 font-medium ml-0 w-full">
         
          
-        <NavLink
+        {/* <NavLink
           to="/Help"
           className={({ isActive }) =>
             isActive ? "text-green-600" : "text-black text-right ml-0 w-full"
           }
         >
           Help →
-        </NavLink>
+        </NavLink> */}
       </nav>
     </header>
   );

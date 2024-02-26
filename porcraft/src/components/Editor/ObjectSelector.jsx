@@ -61,8 +61,8 @@ const ObjectSelector = ({ objects, addObject }) => {
         <hr />
 
         <div>
-          <div className="flex justify-between bg-white rounded-xl">
-            <div>Flying dragon</div>
+          <div className="flex justify-between bg-white rounded-xl ">
+            <p>Flying dragon</p>
             <button
               className="trans-btn "
               onClick={() => {
@@ -86,7 +86,7 @@ const ObjectSelector = ({ objects, addObject }) => {
         <hr />
 
         <div>
-          <div className="flex justify-between">
+          <div className="flex justify-between bg-white rounded-xl">
             <div>Normal person</div>
             <button
               className="trans-btn"
@@ -111,7 +111,7 @@ const ObjectSelector = ({ objects, addObject }) => {
         <hr />
 
         <div>
-          <div className="flex justify-between">
+          <div className="flex justify-between  bg-white rounded-xl">
             <div>Plane</div>
             <button
               className="trans-btn"
@@ -136,7 +136,7 @@ const ObjectSelector = ({ objects, addObject }) => {
         <hr />
 
         <div>
-          <div className="flex justify-between">
+          <div className="flex justify-between  bg-white rounded-xl">
             <div>Queen</div>
             <button
               className="trans-btn"
@@ -161,7 +161,7 @@ const ObjectSelector = ({ objects, addObject }) => {
         <hr />
 
         <div>
-          <div className="flex justify-between">
+          <div className="flex justify-between  bg-white rounded-xl">
             <div>Birdorange</div>
             <button
               className="trans-btn"
@@ -186,7 +186,7 @@ const ObjectSelector = ({ objects, addObject }) => {
         <hr />
 
         <div>
-          <div className="flex justify-between">
+          <div className="flex justify-between  bg-white rounded-xl">
             <div>King</div>
             <button
               className="trans-btn"
@@ -212,7 +212,7 @@ const ObjectSelector = ({ objects, addObject }) => {
 
 
         <div>
-          <div className="flex justify-between">
+          <div className="flex justify-between  bg-white rounded-xl">
             <div>House</div>
             <button
               className="trans-btn"
