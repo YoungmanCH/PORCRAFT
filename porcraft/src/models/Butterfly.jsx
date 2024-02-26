@@ -18,7 +18,8 @@ const Butterfly = (props) => {
   const { nodes, materials } = useGLTF(butterflyScene);
 
   return (
-    <a.group ref={birdorangeRef} {...props}>
+    <a.group ref={butterflyRef} {...props}>
+
       <group name="Sketchfab_Scene">
         <group name="Sketchfab_model" rotation={[-Math.PI / 2, 0, 0]}>
           <group name="root">
