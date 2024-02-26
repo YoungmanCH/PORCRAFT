@@ -7,6 +7,10 @@ import Loader from "./Loader";
 import Dragon from "../models/Dragon";
 import Person from "../models/Person";
 import House from "../models/House";
+import King from "../models/King";
+import Plane from "../models/Plane";
+import Birdorange from "../models/Birdorange";
+import Queen from "../models/Queen";
 
 const ObjectComponents = ({ name, position, rotation, scale }) => {
   let component = null;
@@ -45,6 +49,33 @@ const ObjectComponents = ({ name, position, rotation, scale }) => {
           <ambientLight intensity={0.5} />
           <pointLight position={[10, 10, 10]} />
           <House position={position} rotation={rotation} scale={scale} />
+        </Suspense>
+      );
+      break;
+      case "Plane":
+      component = (
+        <Suspense fallback={<Loader />}>
+          <ambientLight intensity={0.5} />
+          <pointLight position={[10, 10, 10]} />
+          <Plane position={position} rotation={rotation} scale={scale} />
+        </Suspense>
+      );
+      break;
+      case "Birdorange":
+      component = (
+        <Suspense fallback={<Loader />}>
+          <ambientLight intensity={0.5} />
+          <pointLight position={[10, 10, 10]} />
+          <Birdorange position={position} rotation={rotation} scale={scale} />
+        </Suspense>
+      );
+      break;
+      case "Queen":
+      component = (
+        <Suspense fallback={<Loader />}>
+          <ambientLight intensity={0.5} />
+          <pointLight position={[10, 10, 10]} />
+          <Queen position={position} rotation={rotation} scale={scale} />
         </Suspense>
       );
       break;

@@ -17,7 +17,7 @@ const Queen = (props) => {
   const { nodes, materials } = useGLTF(queenScene);
 
   return (
-    <a.group ref={personRef} {...props}>
+    <a.group ref={queenRef} {...props}>
       <group name="Sketchfab_Scene">
         <mesh
           geometry={nodes.queen_copy19_lambert4_0.geometry}
