@@ -7,11 +7,17 @@ import { OrbitControls } from "@react-three/drei";
 import Loader from "../Loader";
 import Island from "../../models/Island";
 import adjustIslandForScreenSize from "../../features/AdjustScreenSize/AdjustIslandForScreen";
+import adjustChessForScreenSize from "../../features/AdjustScreenSize/AdjustChessForScreen";
 import ObjectComponents from "../ObjectComponents";
 
-const EditorCanvas = ({ objects, setScale }) => {
+const EditorCanvas = ({ objects, setScale, }) => {
   const [islandScale, islandPosition, islandRotation] =
     adjustIslandForScreenSize();
+  const [chessScale,chessPosition,chessRotation]= adjustChessForScreenSize();
+
+  // 選択されたフィールドに基づいてコンポーネントをレンダリング
+  
+  
 
   return (
     <Canvas
@@ -22,12 +28,13 @@ const EditorCanvas = ({ objects, setScale }) => {
         <ambientLight intensity={0.5} />
         <pointLight position={[10, 10, 10]} />
 
-        <Island
-          scale={islandScale}
-          position={islandPosition}
-          rotation={islandRotation}
-        />
-        {objects.map((obj) => (
+                    <Island
+                        scale={islandScale}
+                        position={islandPosition}
+                        rotation={islandRotation}
+                    />
+                
+         {objects.map((obj) => (
           <ObjectComponents key={obj.id} setScale={setScale} {...obj} />
         ))}
       </Suspense>
