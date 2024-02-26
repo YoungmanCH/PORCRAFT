@@ -1,12 +1,12 @@
+/* eslint-disable react/no-unknown-property */
 
-import React, { useRef } from "react";
+import { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 import { a } from "@react-spring/three";
 
-const  Chess =(props)=> {
-    const chessRef=useRef();
-    const chessScene="/assets/3d/chess.glb";
-    
+const Chess = (props) => {
+  const chessRef = useRef();
+  const chessScene = "/assets/3d/chess.glb";
   const { nodes, materials } = useGLTF(chessScene);
 
   return (

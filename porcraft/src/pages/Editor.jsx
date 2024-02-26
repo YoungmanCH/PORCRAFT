@@ -1,3 +1,4 @@
+import { useLocation } from "react-router-dom";
 import EditorCanvas from "../components/Editor/EditorCanvas";
 import ExportButton from "../components/Editor/ExportButton";
 import ObjectSelector from "../components/Editor/ObjectSelector";
@@ -16,6 +17,9 @@ const Editor = () => {
     serializeObjects,
   ] = useAddedObjects();
 
+  const location = useLocation();
+  const { fieldName } = location.state || {}; 
+
   return (
     <section className="w-full h-screen flex overflow-hidden">
       {/* オブジェクト選択エリア */}
@@ -26,7 +30,7 @@ const Editor = () => {
 
       {/* 3Dエディタエリア */}
       <div className="flex-grow h-full">
-        <EditorCanvas objects={objects} setScale={setScale} />
+        <EditorCanvas fieldName={fieldName} objects={objects} setScale={setScale} />
       </div>
 
       {/* オブジェクト設定エリア */}
