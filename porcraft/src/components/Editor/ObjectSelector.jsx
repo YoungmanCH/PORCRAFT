@@ -32,25 +32,23 @@ const ObjectSelector = ({ objects, addObject }) => {
 
   return (
     <section className="open-selector-btn">
-      <button className="btn" onClick={() => setObjSelectorOpen(true)}>
+      <button className="trans-btn mt-3 ml-3" onClick={() => setObjSelectorOpen(true)}>
         Selector
       </button>
       <div className={`objSelector ${isObjSelectorOpen ? "open" : ""}`}>
         {/* 左サイドバーのコンテンツ */}
-        <button className="btn" onClick={() => setObjSelectorOpen(false)}>
+        <button className="trans-btn mt-2 ml-2" onClick={() => setObjSelectorOpen(false)}>
           Close
         </button>
-
         <br />
         <br />
-        <div className="font-semibold">Objects</div>
         <hr />
 
         <div>
           <div className="flex justify-between">
             <div>Flying dragon</div>
             <button
-              className="btn"
+              className="trans-btn"
               onClick={() => {
                 handleAddObject("Flying dragon", "/assets/3d/dragon_flying.glb");
               }}
@@ -75,7 +73,7 @@ const ObjectSelector = ({ objects, addObject }) => {
           <div className="flex justify-between">
             <div>Normal person</div>
             <button
-              className="btn"
+              className="trans-btn"
               onClick={() => {
                 handleAddObject("Normal person", "/assets/3d/person.glb");
               }}
@@ -100,7 +98,7 @@ const ObjectSelector = ({ objects, addObject }) => {
           <div className="flex justify-between">
             <div>House</div>
             <button
-              className="btn"
+              className="trans-btn"
               onClick={() => {
                 handleAddObject("House", "/assets/3d/house.glb");
               }}
