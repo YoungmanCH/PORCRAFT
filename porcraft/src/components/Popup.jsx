@@ -33,11 +33,11 @@ const Popup = ({ isVisible, setIsVisible }) => {
           Edit/View
         </button>
         {isEditing ? (
-
-          <input value={title} className="text-5xl font-serif tracking-wider text-center" onChange={(e) => setTitle(e.target.value)} type='text' />
-
+          <div className='pt-10'>
+          <input value={title} className="text-4xl  font-serif tracking-wider text-center" onChange={(e) => setTitle(e.target.value)} type='text' />
+          </div>
         ) : (
-          <h2 style={{ marginTop: 10 }} className="text-5xl font-serif tracking-wider">Title</h2>
+          <h2  className="mt-10 text-4xl font-serif justify-center tracking-wider">{title}</h2>
 
         )
         }
@@ -49,10 +49,10 @@ const Popup = ({ isVisible, setIsVisible }) => {
           <textarea
             value={content}
             onChange={(e) => setContent(e.target.value)}
-            className=' flex flex-1 p-10 mb-20 text-center'
+            className=' flex flex-1 w-11/12 text-xl h-fit p-10 mb-20 text-center'
           />
         ) : (
-          <div className='flex flex-1 overflow px-20 mb-20 text-center'>
+          <div className='flex flex-1 overflow justify-center align-center p-10 mb-20 w-11/12 text-xl'>
             {content.split('\n').map((line, index) => (
               <React.Fragment key={index}>
                 {line}
