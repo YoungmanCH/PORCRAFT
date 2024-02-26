@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import React,{useState} from "react";
+import { useState } from "react";
 
 import EditorCanvas from "../components/Editor/EditorCanvas";
 import ExportButton from "../components/Editor/ExportButton";
@@ -19,9 +19,10 @@ const Editor = () => {
     removeObject,
     serializeObjects,
   ] = useAddedObjects();
-  const [isPopupVisible,setIsPopupVisible]=useState(false);
+
+  const [isPopupVisible, setIsPopupVisible] = useState(false);
   const location = useLocation();
-  const { fieldName } = location.state || {}; 
+  const { fieldName } = location.state || {};
 
   return (
     <section className="w-full h-screen flex overflow-hidden">
@@ -31,21 +32,23 @@ const Editor = () => {
       {/* Exportボタン */}
       <ExportButton objects={objects} serializeObjects={serializeObjects} />
 
+      {/* ポップアップ表示ボタン */}
       <div className="btn">
-        {/* ポップアップを開くボタン */}
-        <button onClick={() => setIsPopupVisible(true)}>ポップアップを開く</button>
-
-      {/* ポップアップの表示 */}
-        {isPopupVisible && <Popup setIsVisible={setIsPopupVisible}/>}
+        <button onClick={() => setIsPopupVisible(true)}>
+          ポップアップを開く
+        </button>
       </div>
+
+      {/* ポップアップコンポーネント */}
+      <Popup isVisible={isPopupVisible} setIsVisible={setIsPopupVisible} />
 
       {/* 3Dエディタエリア */}
       <div className="flex-grow h-full">
-        <EditorCanvas fieldName={fieldName} objects={objects} setScale={setScale} />
-
-        <Popup/>
-    
-
+        <EditorCanvas
+          fieldName={fieldName}
+          objects={objects}
+          setScale={setScale}
+        />
       </div>
 
       {/* オブジェクト設定エリア */}
