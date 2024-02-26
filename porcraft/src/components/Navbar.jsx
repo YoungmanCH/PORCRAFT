@@ -3,37 +3,23 @@ import { NavLink } from "react-router-dom";
 const Navbar = () => {
   return (
     <header className="header">
-      <NavLink
+      {/* <NavLink
         to="/"
-        className="w-24 h-12 rounded-lg bg-white items-center
-      justify-center flex font-fold shadow-md"
+        className="w-24 h-12 rounded-lg bg-transparent  items-center
+      justify-center flex font-fold "
       >
-        <p className="green-gradient_text">Porcraft</p>
-      </NavLink>
-      <nav className="flex text-lg gap-7 font-medium">
+        <p className=" text-xl">←Home</p>
+      </NavLink> */}
+      <nav className="flex text-lg gap-7 font-medium ml-0 w-full">
+        
+         
         <NavLink
-          to="/about"
+          to="/Help"
           className={({ isActive }) =>
-            isActive ? "text-green-600" : "text-black"
+            isActive ? "text-green-600" : "text-black text-right ml-0 w-full"
           }
         >
-          About
-        </NavLink>
-        <NavLink
-          to="/modelsLibrary"
-          className={({ isActive }) =>
-            isActive ? "text-green-600" : "text-black"
-          }
-        >
-          Models
-        </NavLink>
-        <NavLink
-          to="/help"
-          className={({ isActive }) =>
-            isActive ? "text-green-600" : "text-black"
-          }
-        >
-          Help
+          Help →
         </NavLink>
       </nav>
     </header>

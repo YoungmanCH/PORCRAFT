@@ -40,10 +40,6 @@ const Home = () => {
       <div className="start ml-20">
         <h1 className="text-7xl font-serif tracking-wider">PORCRAFT</h1>
         <p className="start-text ml-10 font-thin font-sans">
-          あなたの軌跡が動き出す<br></br>
-          3Dポートフォリオ作成サイト
-        </p>
-        <p className="start-text ml-10 font-thin font-sans">
           Create your own portfolio<br></br>
            with 3D objects!
         </p>
@@ -55,21 +51,6 @@ const Home = () => {
       </div>
     </div>
   </div>
-
-  {/* 新しい画面 */}
-  {/* <div
-    style={{
-      width: "100%",
-      height: "500px",
-      backgroundColor: "#ffffff",
-    }}
-  >
-    <div className="flex items-center justify-center h-full">
-      <p className="start-text">
-        explain
-      </p>
-    </div>
-  </div> */}
 </section>
 
   );
