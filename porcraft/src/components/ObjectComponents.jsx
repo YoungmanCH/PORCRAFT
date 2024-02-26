@@ -9,7 +9,7 @@ import Person from "../models/Person";
 import House from "../models/House";
 import King from "../models/King";
 import Plane from "../models/Plane";
-import Birdorange from "../models/Birdorange";
+import BirdOrange from "../models/BirdOrange";
 import Queen from "../models/Queen";
 
 const ObjectComponents = ({ name, position, rotation, scale }) => {
@@ -61,12 +61,12 @@ const ObjectComponents = ({ name, position, rotation, scale }) => {
         </Suspense>
       );
       break;
-      case "Birdorange":
+      case "BirdOrange":
       component = (
         <Suspense fallback={<Loader />}>
           <ambientLight intensity={0.5} />
           <pointLight position={[10, 10, 10]} />
-          <Birdorange position={position} rotation={rotation} scale={scale} />
+          <BirdOrange position={position} rotation={rotation} scale={scale} />
         </Suspense>
       );
       break;

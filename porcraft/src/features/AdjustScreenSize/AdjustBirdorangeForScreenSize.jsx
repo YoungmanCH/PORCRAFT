@@ -1,4 +1,4 @@
-const adjustBirdorangeForScreenSize = () => {
+const adjustBirdOrangeForScreenSize = () => {
   let screenScale = null;
   if (window.innerWidth < 768) {
     screenScale = [0.2, 0.2, 0.2];
@@ -8,4 +8,4 @@ const adjustBirdorangeForScreenSize = () => {
   return [screenScale];
 };
 
-export default adjustBirdorangeForScreenSize;
+export default adjustBirdOrangeForScreenSize;

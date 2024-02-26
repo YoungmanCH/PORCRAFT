@@ -12,13 +12,13 @@ import { useGLTF } from "@react-three/drei";
 import { useFrame, useThree } from '@react-three/fiber';
 import { a } from '@react-spring/three';
 
-const Birdorange = (props) => {
-  const birdorangeRef = useRef();
-  const birdorangeScene = '/assets/3d/bird_orange.glb';
-  const { nodes, materials } = useGLTF(birdorangeScene);
+const BirdOrange = (props) => {
+  const birdOrangeRef = useRef();
+  const birdOrangeScene = '/assets/3d/bird_orange.glb';
+  const { nodes, materials } = useGLTF(birdOrangeScene);
 
   return (
-    <a.group ref={birdorangeRef} {...props}>
+    <a.group ref={birdOrangeRef} {...props}>
       <group name="Sketchfab_Scene">
         <group
           name="Sketchfab_model"
@@ -62,7 +62,7 @@ const Birdorange = (props) => {
   );
 }
 
-export default Birdorange;
+export default BirdOrange;
 
 
 

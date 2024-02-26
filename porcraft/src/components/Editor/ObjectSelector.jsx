@@ -16,7 +16,8 @@ import adjustHouseForObjSelectorSize from "../../features/AdjustSelectorSize/Adj
 import adjustPersonForObjSelectorSize from "../../features/AdjustSelectorSize/AdjustPersonForObjSelectorSize";
 import adjustKingForObjSelectorSize from "../../features/AdjustSelectorSize/AdjustKingForObjSelectorSize";
 import adjustPlaneForObjSelectorSize from "../../features/AdjustSelectorSize/AdjustPlaneForObjSelectorSize";
-import adjustBirdorangeForObjSelectorSize from "../../features/AdjustSelectorSize/AdjustBirdorangeForObjSelectorSize";
+
+import adjustBirdOrangeForObjSelectorSize from "../../features/AdjustSelectorSize/AdjustBirdOrangeForObjSelectorSize";
 import adjustQueenForObjSelectorSize from "../../features/AdjustSelectorSize/AdjustQueenForObjSelectorSize";
 
 import Dragon from "../../models/Dragon";
@@ -24,7 +25,7 @@ import House from "../../models/House";
 import Person from "../../models/Person";
 import King from "../../models/King";
 import Plane from "../../models/Plane";
-import Birdorange from "../../models/Birdorange";
+import BirdOrange from "../../models/BirdOrange";
 import Queen from "../../models/Queen";
 
 const ObjectSelector = ({ objects, addObject }) => {
@@ -35,7 +36,7 @@ const ObjectSelector = ({ objects, addObject }) => {
   const [houseScale, housePosition] = adjustHouseForObjSelectorSize();
   const [kingScale, kingPosition] = adjustKingForObjSelectorSize();
   const [planeScale, planePosition] = adjustPlaneForObjSelectorSize();
-  const [birdorangeScale, birdorangePosition] = adjustBirdorangeForObjSelectorSize();
+  const [birdOrangeScale, birdOrangePosition] = adjustBirdOrangeForObjSelectorSize();
   const [queenScale, queenPosition] = adjustQueenForObjSelectorSize();
 
   const handleAddObject = (name, modelPath) => {
@@ -161,12 +162,12 @@ const ObjectSelector = ({ objects, addObject }) => {
         <hr />
 
         <div>
-          <div className="flex justify-between  bg-white rounded-xl">
-            <div>Birdorange</div>
+          <div className="flex justify-between">
+            <div>BirdOrange</div>
             <button
               className="trans-btn"
               onClick={() => {
-                handleAddObject("Birdorange", "/assets/3d/bird_orange.glb");
+                handleAddObject("BirdOrange", "/assets/3d/bird_orange.glb");
               }}
             >
               Use
@@ -178,7 +179,7 @@ const ObjectSelector = ({ objects, addObject }) => {
               <ambientLight intensity={10} />
               <hemisphereLight intensity={10} />
 
-              <Birdorange scale={birdorangeScale} position={birdorangePosition} />
+              <BirdOrange scale={birdOrangeScale} position={birdOrangePosition} />
             </Suspense>
             <OrbitControls />
           </Canvas>
