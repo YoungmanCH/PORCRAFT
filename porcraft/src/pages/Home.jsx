@@ -35,32 +35,20 @@ const Home = () => {
       transition: "background-position 1s ease-in-out",
     }}
   >
-    <div className="flex items-center justify-center h-full">
-      <div className="start">
-        <p className="start-text">
-          Create your own portfolio with 3D objects!
+    <div className="flex items-center justify-center h-full ">
+      
+      <div className="start ml-20">
+        <h1 className="text-7xl font-serif tracking-wider">PORCRAFT</h1>
+        <p className="start-text ml-10 font-thin font-sans">
+          Create your own portfolio<br></br>
+           with 3D objects!
         </p>
         <div className="flex">
-          <Link to="/field" className="btn pading-all-20px">
-            Get started!
+          <Link to="/field" className="btn pading-all-20px text-3xl rounded-3xl">
+            Get started  !
           </Link>
         </div>
       </div>
-    </div>
-  </div>
-
-  {/* 新しい画面 */}
-  <div
-    style={{
-      width: "100%",
-      height: "500px",
-      backgroundColor: "#ffffff",
-    }}
-  >
-    <div className="flex items-center justify-center h-full">
-      <p className="start-text">
-        explain
-      </p>
     </div>
   </div>
 </section>
