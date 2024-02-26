@@ -33,3 +33,10 @@
   height: 100vh; /* キャンバスコンテナの高さを画面高さに合わせる */
   overflow: hidden; /* キャンバスがはみ出した場合に隠す */
 }
+
+.popup-btn {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 10;
+}

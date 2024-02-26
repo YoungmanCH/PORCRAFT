@@ -33,7 +33,7 @@ const Editor = () => {
       <ExportButton objects={objects} serializeObjects={serializeObjects} />
 
       {/* ポップアップ表示ボタン */}
-      <div className="open-selector-btn ">
+      <div className="popup-btn">
         <button className="trans-btn mt-24 ml-3" onClick={() => setIsPopupVisible(true)}>
           ポップアップを開く
         </button>
