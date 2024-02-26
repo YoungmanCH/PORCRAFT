@@ -8,11 +8,15 @@ import Loader from "../components/Loader";
 import { useSearchParams } from "react-router-dom";
 
 const fetchObjectsData = async (key) => {
-  const getEndpoint = `https://y9x82tppo0.execute-api.ap-northeast-1.amazonaws.com/prod/get?key=${key}`;
+  const getEndpoint = `https://y9x82tppo0.execute-api.ap-northeast-1.amazonaws.com/prod/get?key=json`;
+  // const getEndpoint = `https://y9x82tppo0.execute-api.ap-northeast-1.amazonaws.com/prod/get?key=${key}`;
 
   // 保存されたデータを取得
   const fetchResponse = await fetch(getEndpoint, {
     method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
   });
   console.log('fetchResponse:',  fetchResponse.status);
 
@@ -47,12 +51,6 @@ const Preview = () => {
         <Suspense fallback={<Loader />}>
           <ambientLight intensity={0.5} />
           <pointLight position={[10, 10, 10]} />
-
-          {/* <Island
-          scale={islandScale}
-          position={islandPosition}
-          rotation={islandRotation}
-        /> */}
 
           {/* 後でnull check */}
           {objData.map((obj) => (
