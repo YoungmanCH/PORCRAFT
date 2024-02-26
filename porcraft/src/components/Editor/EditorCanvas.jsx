@@ -10,15 +10,12 @@ import adjustIslandForScreenSize from "../../features/AdjustScreenSize/AdjustIsl
 import adjustChessForScreenSize from "../../features/AdjustScreenSize/AdjustChessForScreen";
 import ObjectComponents from "../ObjectComponents";
 
-const EditorCanvas = ({ objects, setScale, }) => {
+const EditorCanvas = ({ objects, setScale }) => {
   const [islandScale, islandPosition, islandRotation] =
     adjustIslandForScreenSize();
-  const [chessScale,chessPosition,chessRotation]= adjustChessForScreenSize();
+  const [chessScale, chessPosition, chessRotation] = adjustChessForScreenSize();
 
   // 選択されたフィールドに基づいてコンポーネントをレンダリング
-  
-  
-
   return (
     <Canvas
       className="w-full h-screen bg-transparent"
@@ -28,13 +25,13 @@ const EditorCanvas = ({ objects, setScale, }) => {
         <ambientLight intensity={0.5} />
         <pointLight position={[10, 10, 10]} />
 
-                    <Island
-                        scale={islandScale}
-                        position={islandPosition}
-                        rotation={islandRotation}
-                    />
-                
-         {objects.map((obj) => (
+        <Island
+          scale={islandScale}
+          position={islandPosition}
+          rotation={islandRotation}
+        />
+
+        {objects.map((obj) => (
           <ObjectComponents key={obj.id} setScale={setScale} {...obj} />
         ))}
       </Suspense>
