@@ -52,7 +52,7 @@ const Popup = ({ isVisible, setIsVisible }) => {
             className=' flex flex-1 w-11/12 text-xl h-fit p-10 mb-20 text-center'
           />
         ) : (
-          <div className='flex flex-1 overflow justify-center align-center p-10 mb-20 w-11/12 text-xl'>
+          <div className='flex flex-1 overflow-auto text-center justify-center align-center mb-10 w-11/12 text-xl'>
             {content.split('\n').map((line, index) => (
               <React.Fragment key={index}>
                 {line}
