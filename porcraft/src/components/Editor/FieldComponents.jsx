@@ -1,4 +1,5 @@
-/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 /* eslint-disable react/no-unknown-property */
 
 import { Suspense } from "react";
@@ -11,22 +12,13 @@ import Pizza from "../../models/Pizza";
 import Park from "../../models/Park";
 import Yggdrasill from "../../models/Yggdrasill";
 
-import adjustIslandForScreenSize from "../../features/AdjustScreenSize/AdjustIslandForScreen";
-import adjustChessForScreenSize from "../../features/AdjustScreenSize/AdjustChessForScreen";
-import adjustParkForScreenSize from "../../features/AdjustScreenSize/AdjustParkForScreen";
-import adjustPizzaForScreenSize from "../../features/AdjustScreenSize/AdjustPizzaForScreen";
-import adjustYggdrasillForScreenSize from "../../features/AdjustScreenSize/AdjustYggdrasillForScreen";
-
-const FieldComponents = ({ name }) => {
-  const [islandScale, islandPosition, islandRotation] =
-    adjustIslandForScreenSize();
-  const [chessScale, chessPosition, chessRotation] = adjustChessForScreenSize();
-  const [parkScale, parkPosition, parkRotation] = adjustParkForScreenSize();
-  const [pizzaScale, pizzaPosition, pizzaRotation] = adjustPizzaForScreenSize();
-  const [yggdrasillScale, yggdrasillPosition, yggdrasillRotation] =
-    adjustYggdrasillForScreenSize();
+const FieldComponents = ({ field }) => {
+  if (!field) {
+    return null;
+  }
 
   let component = null;
+  const { name, position, rotation, scale, modelPath } = field;
 
   switch (name) {
     case "Tropical Island":
@@ -34,11 +26,7 @@ const FieldComponents = ({ name }) => {
         <Suspense fallback={<Loader />}>
           <ambientLight intensity={0.5} />
           <pointLight position={[10, 10, 10]} />
-          <Island
-            scale={islandScale}
-            position={islandPosition}
-            rotation={islandRotation}
-          />
+          <Island position={position} rotation={rotation} scale={scale} />
         </Suspense>
       );
       break;
@@ -47,11 +35,7 @@ const FieldComponents = ({ name }) => {
         <Suspense fallback={<Loader />}>
           <ambientLight intensity={2.8} />
           <pointLight position={[10, 10, 10]} />
-          <Chess
-            position={chessPosition}
-            rotation={chessRotation}
-            scale={chessScale}
-          />
+          <Chess position={position} rotation={rotation} scale={scale} />
         </Suspense>
       );
       break;
@@ -60,11 +44,7 @@ const FieldComponents = ({ name }) => {
         <Suspense fallback={<Loader />}>
           <ambientLight intensity={2.8} />
           <pointLight position={[10, 10, 10]} />
-          <Pizza
-            position={pizzaPosition}
-            rotation={pizzaRotation}
-            scale={pizzaScale}
-          />
+          <Pizza position={position} rotation={rotation} scale={scale} />
         </Suspense>
       );
       break;
@@ -73,11 +53,7 @@ const FieldComponents = ({ name }) => {
         <Suspense fallback={<Loader />}>
           <ambientLight intensity={6.5} />
           <pointLight position={[10, 10, 10]} />
-          <Park
-            position={parkPosition}
-            rotation={parkRotation}
-            scale={parkScale}
-          />
+          <Park position={position} rotation={rotation} scale={scale} />
         </Suspense>
       );
       break;
@@ -85,12 +61,8 @@ const FieldComponents = ({ name }) => {
       component = (
         <Suspense fallback={<Loader />}>
           <ambientLight intensity={6.5} />
-          <pointLight position={[10, 50, 10]} />
-          <Yggdrasill
-            position={yggdrasillPosition}
-            rotation={yggdrasillRotation}
-            scale={yggdrasillScale}
-          />
+          <pointLight position={[10, 10, 10]} />
+          <Yggdrasill position={position} rotation={rotation} scale={scale} />
         </Suspense>
       );
       break;

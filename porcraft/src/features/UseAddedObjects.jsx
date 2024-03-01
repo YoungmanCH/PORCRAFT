@@ -1,6 +1,5 @@
 import { useState } from "react";
 
-
 import adjustBirdOrangeForScreenSize from "./AdjustScreenSize/AdjustBirdOrangeForScreenSize";
 import adjustDragonForScreenSize from "./AdjustScreenSize/AdjustDragonForScreenSize";
 import adjustPersonForScreenSize from "./AdjustScreenSize/AdjustPersonForScreenSize";
@@ -29,9 +28,10 @@ const useAddedObjects = () => {
   const [planeScale] =  adjustPlaneForScreenSize();
   const [queenScale] =  adjustQueenForScreenSize();
   const [birdOrangeScale] =  adjustBirdOrangeForScreenSize();
+  
   const addObject = (name, modelPath) => {
     // 簡易的なID生成
-    const id = Math.random().toString(36).substr(2, 9);
+    const id = Math.random().toString(36).substring(2, 9);
 
     // オブジェクトの種別毎にデフォルトのスケールを設定
     if (name === "Flying dragon") scale = dragonScale;

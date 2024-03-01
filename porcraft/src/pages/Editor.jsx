@@ -1,5 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import { useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import EditorCanvas from "../components/Editor/EditorCanvas";
 import ExportButton from "../components/Editor/ExportButton";
@@ -8,8 +10,13 @@ import ObjectSetting from "../components/Editor/ObjectSetting";
 import Popup from "../components/Popup";
 
 import useAddedObjects from "../features/UseAddedObjects";
+import UseField from "../features/UseField";
 
 const Editor = () => {
+  const [isPopupVisible, setIsPopupVisible] = useState(false);
+  const location = useLocation();
+  const { fieldName, fieldPath } = location.state || {};
+
   const [
     objects,
     addObject,
@@ -19,10 +26,12 @@ const Editor = () => {
     removeObject,
     serializeObjects,
   ] = useAddedObjects();
+  
+  const [field, selectField, serializeField] = UseField();
 
-  const [isPopupVisible, setIsPopupVisible] = useState(false);
-  const location = useLocation();
-  const { fieldName } = location.state || {};
+  useEffect(() => {
+    selectField(fieldName, fieldPath);
+  }, []);
 
   return (
     <section className="w-full h-screen flex overflow-hidden">
@@ -30,11 +39,19 @@ const Editor = () => {
       <ObjectSelector objects={objects} addObject={addObject} />
 
       {/* Exportボタン */}
-      <ExportButton objects={objects} serializeObjects={serializeObjects} />
+      <ExportButton
+        objects={objects}
+        field={field}
+        serializeObjects={serializeObjects}
+        serializeField={serializeField}
+      />
 
       {/* ポップアップ表示ボタン */}
       <div className="popup-btn">
-        <button className="trans-btn mt-24 ml-3" onClick={() => setIsPopupVisible(true)}>
+        <button
+          className="trans-btn mt-24 ml-3"
+          onClick={() => setIsPopupVisible(true)}
+        >
           ポップアップを開く
         </button>
       </div>
@@ -45,7 +62,7 @@ const Editor = () => {
       {/* 3Dエディタエリア */}
       <div className="flex-grow h-full">
         <EditorCanvas
-          fieldName={fieldName}
+          field={field}
           objects={objects}
           setScale={setScale}
         />

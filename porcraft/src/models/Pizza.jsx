@@ -15,7 +15,7 @@ import { a } from '@react-spring/three';
 
 const Pizza = (props) => {
   const pizzaRef = useRef();
-  const pizzaScene = 'assets/3d/pizza_model.glb';
+  const pizzaScene = 'assets/3d/pizza.glb';
   const { nodes, materials } = useGLTF(pizzaScene);
 
   return (

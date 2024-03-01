@@ -2,10 +2,12 @@
 
 import { Canvas } from "@react-three/fiber";
 import { Suspense, useEffect, useState } from "react";
-// import Island from "../models/Island";
-import ObjectComponents from "../components/ObjectComponents";
-import Loader from "../components/Loader";
 import { useSearchParams } from "react-router-dom";
+import { OrbitControls } from "@react-three/drei";
+
+import FieldComponents from "../components/Editor/FieldComponents";
+import Loader from "../components/Loader";
+import ObjectComponents from "../components/ObjectComponents";
 
 const fetchObjectsData = async (key) => {
   const getEndpoint = `https://y9x82tppo0.execute-api.ap-northeast-1.amazonaws.com/prod/get?key=json`;
@@ -18,29 +20,29 @@ const fetchObjectsData = async (key) => {
       "Content-Type": "application/json",
     },
   });
-  console.log('fetchResponse:',  fetchResponse.status);
 
   if (!fetchResponse.ok) {
     throw new Error("Network response was not ok");
   }
 
   const fetchedData = await fetchResponse.json();
-  console.log("Fetched data:", fetchedData);
 
-  const bodyData = fetchedData;
-  console.log("Parsed body data:", {data: Object.values(bodyData[0])});
-  const number = Object.values(bodyData);
-  return Object.values(bodyData).slice(0, number.length-1);
+  // JSON文字列をオブジェクトに変換
+  const objects = fetchedData.objects ? JSON.parse(fetchedData.objects) : [];
+  const field = fetchedData.field ? JSON.parse(fetchedData.field) : null;
+
+  return { objects, field };
 };
 
 const Preview = () => {
-  const [objData, setObjectData] = useState([]);
+  const [objData, setObjectData] = useState({ objects: [], field: null });
   const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
-    const key = searchParams.get('key');
+    const key = searchParams.get("key");
     fetchObjectsData(key).then(setObjectData);
-  }, [searchParams, setSearchParams, setObjectData]);
+  }, [objData, searchParams, setSearchParams, setObjectData]);
+
 
   return (
     <section className="w-full h-screen flex overflow-hidden">
@@ -48,15 +50,17 @@ const Preview = () => {
         className="w-full h-screen bg-transparent"
         camera={{ near: 0.1, far: 1000 }}
       >
+        <FieldComponents field={objData.field} />
+
         <Suspense fallback={<Loader />}>
           <ambientLight intensity={0.5} />
           <pointLight position={[10, 10, 10]} />
-
-          {/* 後でnull check */}
-          {objData.map((obj) => (
-          <ObjectComponents key={obj.id} setScale={obj.setScale} {...obj} />
-        ))}
+          
+          {objData.objects.map((obj) => (
+            <ObjectComponents key={obj.id} setScale={obj.setScale} {...obj} />
+          ))}
         </Suspense>
+        <OrbitControls />
       </Canvas>
     </section>
   );

@@ -15,7 +15,7 @@ import { a } from '@react-spring/three';
 
 const Park = (props) =>{
   const parkRef = useRef();
-  const parkScene = 'assets/3d/city_park_at_sunset.glb';
+  const parkScene = 'assets/3d/park.glb';
   const { nodes, materials } = useGLTF(parkScene);
 
   return (
