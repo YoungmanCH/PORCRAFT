@@ -1,10 +1,14 @@
 /* eslint-disable react/prop-types */
 
-const ExportButton = ({ objects, serializeObjects }) => {
+const ExportButton = ({ objects, field, serializeObjects, serializeField }) => {
   const handleExport = async () => {
-    const serializedData = serializeObjects(objects);
+    const serializedObjects = serializeObjects(objects);
+    const serializedField = serializeField(field);
 
-    const jsonData = JSON.stringify(serializedData);
+    const jsonData = JSON.stringify({
+      objects: serializedObjects,
+      field: serializedField,
+    });
 
     // データをデータベースに保存するためのAPIエンドポイント
     const exportApiEndpoint =
@@ -18,7 +22,7 @@ const ExportButton = ({ objects, serializeObjects }) => {
           "Content-Type": "application/json",
         },
       });
-
+      
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
