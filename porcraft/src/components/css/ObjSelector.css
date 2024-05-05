@@ -2,7 +2,7 @@
   position: fixed; /* 位置を固定 */
   top: 0; /* 画面上部からスタート */
   left: -100%; /* デフォルトで画面外に隠れる */
-  width: 350px;
+  width: 250px;
   height: 100%;
   background: #fff;
   transition: left 0.3s; /* 左からのスライドをスムーズに */
@@ -10,10 +10,9 @@
 }
 
 .objSelector.open {
-  left: 10px; 
-  top: 10px;/* サイドバーを表示する */
-  border-radius: 20px;
-  background-color: rgba(0, 0, 0, 0.5);
+  left: 0px; 
+  top: 0px;/* サイドバーを表示する */
+  background-color: rgba(50, 50, 50, 1);
   overflow-y: auto; /* 縦方向のオーバーフロー時にスクロールバーを表示 */
 }
 
@@ -32,7 +31,6 @@
   width: 100%; /* キャンバスコンテナの幅を画面幅に合わせる */
   height: 100vh; /* キャンバスコンテナの高さを画面高さに合わせる */
   overflow: hidden; /* キャンバスがはみ出した場合に隠す */
-  border-radius: ;
 }
 
 .popup-btn {

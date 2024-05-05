@@ -55,7 +55,7 @@ const Editor = () => {
           ポップアップを開く
         </button>
       </div>
-
+      
       {/* ポップアップコンポーネント */}
       <Popup isVisible={isPopupVisible} setIsVisible={setIsPopupVisible} />
 

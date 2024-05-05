@@ -1,9 +1,9 @@
 const adjustKingForScreenSize = () => {
   let screenScale = null;
   if (window.innerWidth < 768) {
-    screenScale = [30, 30, 30];
+    screenScale = [3, 3, 3];
   } else {
-    screenScale = [30, 30, 30];
+    screenScale = [3, 3, 3];
   }
   return [screenScale];
 };

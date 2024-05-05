@@ -17,12 +17,16 @@ const EditorCanvas = ({ field, objects, setScale }) => {
       className="w-full h-screen bg-transparent"
       camera={{ near: 0.1, far: 1000 }}
     >
-      {/* フィールドデータ */}
+      {/* フィールドデータ */} 
       <FieldComponents field={field} />
 
       <Suspense fallback={<Loader />}>
         {objects.map((obj) => (
-          <ObjectComponents key={obj.id} setScale={setScale} {...obj} />
+          <ObjectComponents
+            key={obj.id}
+            setScale={setScale}
+            {...obj}
+          />
         ))}
       </Suspense>
       <OrbitControls />
