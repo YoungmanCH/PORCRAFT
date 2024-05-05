@@ -3,6 +3,7 @@
 import { Suspense } from "react";
 
 import Loader from "./Loader";
+
 import Dragon from "../models/Dragon";
 import Person from "../models/Person";
 import House from "../models/House";
@@ -12,6 +13,10 @@ import BirdOrange from "../models/BirdOrange";
 import Queen from "../models/Queen";
 
 const ObjectComponents = ({ name, position, rotation, scale }) => {
+  const handleClick = () => {
+    console.log(`${name} was clicked!`);
+  };
+
   let component = null;
 
   switch (name) {
@@ -20,7 +25,12 @@ const ObjectComponents = ({ name, position, rotation, scale }) => {
         <Suspense fallback={<Loader />}>
           <ambientLight intensity={0.5} />
           <pointLight position={[10, 10, 10]} />
-          <Dragon position={position} rotation={rotation} scale={scale} />
+          <Dragon
+            position={position}
+            rotation={rotation}
+            scale={scale}
+            onClick={handleClick}
+          />
         </Suspense>
       );
       break;
@@ -29,7 +39,12 @@ const ObjectComponents = ({ name, position, rotation, scale }) => {
         <Suspense fallback={<Loader />}>
           <ambientLight intensity={0.5} />
           <pointLight position={[10, 10, 10]} />
-          <Person position={position} rotation={rotation} scale={scale} />
+          <Person
+            position={position}
+            rotation={rotation}
+            scale={scale}
+            onClick={handleClick}
+          />
         </Suspense>
       );
       break;
@@ -38,7 +53,12 @@ const ObjectComponents = ({ name, position, rotation, scale }) => {
         <Suspense fallback={<Loader />}>
           <ambientLight intensity={0.5} />
           <pointLight position={[10, 10, 10]} />
-          <House position={position} rotation={rotation} scale={scale} />
+          <House
+            position={position}
+            rotation={rotation}
+            scale={scale}
+            onClick={handleClick}
+          />
         </Suspense>
       );
       break;
@@ -47,34 +67,54 @@ const ObjectComponents = ({ name, position, rotation, scale }) => {
         <Suspense fallback={<Loader />}>
           <ambientLight intensity={0.5} />
           <pointLight position={[10, 10, 10]} />
-          <King position={position} rotation={rotation} scale={scale} />
+          <King
+            position={position}
+            rotation={rotation}
+            scale={scale}
+            onClick={handleClick}
+          />
         </Suspense>
       );
       break;
-      case "Plane":
+    case "Plane":
       component = (
         <Suspense fallback={<Loader />}>
           <ambientLight intensity={0.5} />
           <pointLight position={[10, 10, 10]} />
-          <Plane position={position} rotation={rotation} scale={scale} />
+          <Plane
+            position={position}
+            rotation={rotation}
+            scale={scale}
+            onClick={handleClick}
+          />
         </Suspense>
       );
       break;
-      case "BirdOrange":
+    case "BirdOrange":
       component = (
         <Suspense fallback={<Loader />}>
           <ambientLight intensity={0.5} />
           <pointLight position={[10, 10, 10]} />
-          <BirdOrange position={position} rotation={rotation} scale={scale} />
+          <BirdOrange
+            position={position}
+            rotation={rotation}
+            scale={scale}
+            onClick={handleClick}
+          />
         </Suspense>
       );
       break;
-      case "Queen":
+    case "Queen":
       component = (
         <Suspense fallback={<Loader />}>
           <ambientLight intensity={0.5} />
           <pointLight position={[10, 10, 10]} />
-          <Queen position={position} rotation={rotation} scale={scale} />
+          <Queen
+            position={position}
+            rotation={rotation}
+            scale={scale}
+            onClick={handleClick}
+          />
         </Suspense>
       );
       break;
