@@ -9,6 +9,8 @@ const ObjectSetting = ({
   setPosition,
   setRotation,
   setScale,
+  setPopupTitle,
+  setPopupContent,
   removeObject,
 }) => {
   const [isObjSelectorOpen, setObjSettingOpen] = useState(false);
@@ -16,14 +18,14 @@ const ObjectSetting = ({
   return (
     <section className="open-setting-btn">
       {!isObjSelectorOpen && (
-        <button className="trans-btn mt-3 mr-3 w-5" onClick={() => setObjSettingOpen(true)}>
-          Setting
+        <button className="text-zinc-400 bg-neutral-800 rounded-md px-4 py-2 text-center mt-1 mr-1" onClick={() => setObjSettingOpen(true)}>
+          Inspector
         </button>
       )}
       <div className={`objSetting ${isObjSelectorOpen ? "open" : ""}`}>
         {/* 右サイドバーのコンテンツ */}
         {isObjSelectorOpen && (
-          <button className="trans-btn mt-2 right-2 max-w-40 ml-40" onClick={() => setObjSettingOpen(false)}>
+          <button className="text-zinc-400 bg-neutral-800 rounded-md px-1 text-center mt-2 ml-2" onClick={() => setObjSettingOpen(false)}>
             Close
           </button>
         )}
@@ -36,6 +38,8 @@ const ObjectSetting = ({
             setPosition={setPosition}
             setRotation={setRotation}
             setScale={setScale}
+            setPopupTitle={setPopupTitle}
+            setPopupContent={setPopupContent}
             removeObject={removeObject}
             {...obj}
           />

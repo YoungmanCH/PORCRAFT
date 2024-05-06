@@ -133,7 +133,7 @@ const ObjectSelector = ({ objects, addObject }) => {
             <button
               className="text-zinc-400 mr-2"
               onClick={() =>
-                handleAddObject("Plane", "/assets/3d/plane_a340.glb")
+                handleAddObject("Normal person", "/assets/3d/person.glb")
               }
             >
               Apply

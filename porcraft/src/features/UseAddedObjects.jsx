@@ -21,6 +21,12 @@ const useAddedObjects = () => {
   // オブジェクトにデフォルトのスケールを設定
   let scale = [0.05, 0.05, 0.05];
 
+  // オブジェクトにデフォルトのポップアップのタイトルを設定
+  const popupTitle = 'title';
+
+  // オブジェクトにデフォルトのポップアップのコンテンツを設定
+  const popupContent = 'content';
+
   const [dragonScale] = adjustDragonForScreenSize();
   const [personScale] = adjustPersonForScreenSize();
   const [houseScale] = adjustHouseForScreenSize();
@@ -44,7 +50,7 @@ const useAddedObjects = () => {
 
     setObjects((currentObjects) => [
       ...currentObjects,
-      { id, name, position, rotation, scale, modelPath },
+      { id, name, position, rotation, scale, modelPath, popupTitle, popupContent },
     ]);
   };
 
@@ -68,6 +74,21 @@ const useAddedObjects = () => {
     setObjects((currentObjects) =>
       currentObjects.map((obj) =>
         obj.id === id ? { ...obj, scale: newScale } : obj
+      )
+    );
+  };
+
+  const setPopupTitle = (id, newTitle) => {
+    setObjects((currentObjects) =>
+      currentObjects.map((obj) =>
+        obj.id === id ? { ...obj, popupTitle: newTitle } : obj
+      )
+    );
+  };
+  const setPopupContent = (id, newContent) => {
+    setObjects((currentObjects) =>
+      currentObjects.map((obj) =>
+        obj.id === id ? { ...obj, popupContent: newContent } : obj
       )
     );
   };
@@ -99,6 +120,8 @@ const useAddedObjects = () => {
     setPosition,
     setRotation,
     setScale,
+    setPopupTitle,
+    setPopupContent,
     removeObject,
     serializeObjects,
   ];

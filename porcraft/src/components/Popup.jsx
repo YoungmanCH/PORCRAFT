@@ -1,10 +1,8 @@
-import React, { useState } from "react";
+/* eslint-disable react/prop-types */
 
-const Popup = ({ isVisible, setIsVisible }) => {
-  const [isEditing, setIsEditing] = useState(false);
-  const [title, setTitle] = useState("Title");
-  const [content, setContent] = useState("contents");
+import React from "react";
 
+const Popup = ({ isVisible, setIsVisible, title, content }) => {
   if (!isVisible) {
     return null;
   }
@@ -13,64 +11,37 @@ const Popup = ({ isVisible, setIsVisible }) => {
     <div
       style={{
         position: "fixed", // 画面に対して固定位置
-        top: "50%", // 上から50%の位置
-        left: "50%", // 左から50%の位置
+        top: "50%",
+        left: "50%",
         transform: "translate(-50%, -50%)", // 中央に配置
         width: "60vw", // 幅をビューポートの75%に
         height: "60vh", // 高さをビューポートの75%に
-        backgroundColor: "white", // 背景色
-        zIndex: 1000, // 他の要素より前面に表示
-        display: "flex", // Flexboxを使用して中身を整列
+        backgroundColor: "white",
+        zIndex: 1000,
+        display: "flex",
         flexDirection: "column", // 中央に寄せる
-        alignItems: "center", // 中央に寄せる
-        borderRadius: "20px", // 角を丸くする
-        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)", // 影をつける
+        borderRadius: "20px",
+        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
       }}
     >
-      <div className="flex flex-nowrap mb-20">
-        <button
-          className="absolute top-5 left-5"
-          onClick={() => setIsEditing(!isEditing)}
-        >
-          Edit/View
-        </button>
-        {isEditing ? (
-          <div className="pt-10">
-            <input
-              value={title}
-              className="text-4xl  font-serif tracking-wider text-center"
-              onChange={(e) => setTitle(e.target.value)}
-              type="text"
-            />
-          </div>
-        ) : (
-          <h2 className="mt-10 text-4xl font-serif justify-center tracking-wider">
-            {title}
-          </h2>
-        )}
-      </div>
-      {isEditing ? (
-        <textarea
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-          className=" flex flex-1 w-11/12 text-xl h-fit p-10 mb-20 text-center"
-        />
-      ) : (
-        <div className="flex flex-1 overflow-auto text-center justify-center align-center mb-10 w-11/12 text-xl">
-          {content.split("\n").map((line, index) => (
-            <React.Fragment key={index}>
-              {line}
-              <br />
-            </React.Fragment>
-          ))}
-        </div>
-      )}
       <button
-        style={{ marginBottom: "20px" }}
+        className="text-black self-end pt-5 pr-5"
         onClick={() => setIsVisible(false)}
-      >
-        close
+        >
+        ✕
       </button>
+      <div className="flex justify-center mt-10">
+        <h2 className="text-4xl font-serif tracking-wider">{title}</h2>
+      </div>
+      <div className="flex justify-center overflow-auto text-xl pt-20">
+        {content.split("\n").map((line, index) => (
+          <React.Fragment key={index}>
+            {line}
+            <br />
+          </React.Fragment>
+        ))}
+      </div>
+
     </div>
   );
 };
