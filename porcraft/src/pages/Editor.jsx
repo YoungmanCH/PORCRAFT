@@ -1,19 +1,17 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
 import { useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 import EditorCanvas from "../components/Editor/EditorCanvas";
 import ExportButton from "../components/Editor/ExportButton";
 import ObjectSelector from "../components/Editor/ObjectSelector";
 import ObjectSetting from "../components/Editor/ObjectSetting";
-import Popup from "../components/Popup";
 
 import useAddedObjects from "../features/UseAddedObjects";
 import UseField from "../features/UseField";
 
 const Editor = () => {
-  const [isPopupVisible, setIsPopupVisible] = useState(false);
   const location = useLocation();
   const { fieldName, fieldPath } = location.state || {};
 
@@ -45,19 +43,6 @@ const Editor = () => {
         serializeObjects={serializeObjects}
         serializeField={serializeField}
       />
-
-      {/* ポップアップ表示ボタン */}
-      <div className="popup-btn">
-        <button
-          className="trans-btn mt-24 ml-3"
-          onClick={() => setIsPopupVisible(true)}
-        >
-          ポップアップを開く
-        </button>
-      </div>
-      
-      {/* ポップアップコンポーネント */}
-      <Popup isVisible={isPopupVisible} setIsVisible={setIsPopupVisible} />
 
       {/* 3Dエディタエリア */}
       <div className="flex-grow h-full">

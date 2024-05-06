@@ -12,8 +12,9 @@ import Plane from "../models/Plane";
 import BirdOrange from "../models/BirdOrange";
 import Queen from "../models/Queen";
 
-const ObjectComponents = ({ name, position, rotation, scale }) => {
+const ObjectComponents = ({ name, position, rotation, scale, onClick }) => {
   const handleClick = () => {
+    onClick();
     console.log(`${name} was clicked!`);
   };
 
