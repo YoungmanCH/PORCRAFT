@@ -13,12 +13,13 @@ import Popup from "../Popup";
 
 const EditorCanvas = ({ field, objects }) => {
   const [isPopupVisible, setIsPopupVisible] = useState(false);
-  const [selectedObject, setSelectedObject] = useState(null);
+  const [popupTitle, setPopupTitle] = useState("");
+  const [popupContent, setPopupContent] = useState("");
 
   const handleObjectClick = (object) => {
-    setSelectedObject(object);
+    setPopupTitle(object.popupTitle);
+    setPopupContent(object.popupContent);
     setIsPopupVisible((prev) => !prev);
-    console.log(`isPopupVisible is ${isPopupVisible}`);
   };
 
   // 選択されたフィールドに基づいてコンポーネントをレンダリング
@@ -41,10 +42,15 @@ const EditorCanvas = ({ field, objects }) => {
         ))}
         <OrbitControls />
       </Canvas>
-      
+
       {/* ポップアップコンポーネント */}
       {isPopupVisible && (
-        <Popup isVisible={isPopupVisible} setIsVisible={setIsPopupVisible} />
+        <Popup
+          isVisible={isPopupVisible}
+          setIsVisible={setIsPopupVisible}
+          title={popupTitle}
+          content={popupContent}
+        />
       )}
       {/* {isPopupVisible && <Popup object={selectedObject} onClose={() => setIsPopupVisible} />} */}
     </>

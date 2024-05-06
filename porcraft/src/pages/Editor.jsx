@@ -21,6 +21,8 @@ const Editor = () => {
     setPosition,
     setRotation,
     setScale,
+    setPopupTitle,
+    setPopupContent,
     removeObject,
     serializeObjects,
   ] = useAddedObjects();
@@ -59,6 +61,8 @@ const Editor = () => {
         setPosition={setPosition}
         setRotation={setRotation}
         setScale={setScale}
+        setPopupTitle={setPopupTitle}
+        setPopupContent={setPopupContent}
         removeObject={removeObject}
       />
     </section>

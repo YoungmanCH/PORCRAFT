@@ -9,6 +9,8 @@ const ObjectSetting = ({
   setPosition,
   setRotation,
   setScale,
+  setPopupTitle,
+  setPopupContent,
   removeObject,
 }) => {
   const [isObjSelectorOpen, setObjSettingOpen] = useState(false);
@@ -36,6 +38,8 @@ const ObjectSetting = ({
             setPosition={setPosition}
             setRotation={setRotation}
             setScale={setScale}
+            setPopupTitle={setPopupTitle}
+            setPopupContent={setPopupContent}
             removeObject={removeObject}
             {...obj}
           />

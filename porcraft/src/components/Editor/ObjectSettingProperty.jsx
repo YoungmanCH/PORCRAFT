@@ -9,11 +9,13 @@ const ObjectSettingProperty = ({
   position,
   rotation,
   scale,
-  title,
-  content,
+  popupTitle,
+  popupContent,
   setPosition,
   setRotation,
   setScale,
+  setPopupTitle,
+  setPopupContent,
   removeObject,
 }) => {
   const [currentPosition, setCurrentPosition] = useState({
@@ -32,8 +34,8 @@ const ObjectSettingProperty = ({
     z: scale[2],
   });
 
-  const [currentTitle, setTitle] = useState(title);
-  const [currentContent, setContent] = useState(content);
+  const [currentTitle, setCurrentTitle] = useState(popupTitle);
+  const [currentContent, setCurrentContent] = useState(popupContent);
 
   const [visibility, setVisibility] = useState({
     transform: false,
@@ -107,7 +109,21 @@ const ObjectSettingProperty = ({
     ) {
       setScale(id, [currentScale.x, currentScale.y, currentScale.z]);
     }
-  }, [currentPosition, currentRotation, currentScale]);
+
+    if (popupTitle !== currentTitle) {
+      setPopupTitle(id, currentTitle);
+    }
+
+    if (popupContent != currentContent) {
+      setPopupContent(id, currentContent);
+    }
+  }, [
+    currentPosition,
+    currentRotation,
+    currentScale,
+    currentTitle,
+    currentContent,
+  ]);
 
   return (
     <div>
@@ -290,7 +306,7 @@ const ObjectSettingProperty = ({
                 type="text"
                 className="w-full bg-neutral-800 text-zinc-400"
                 value={currentTitle}
-                onChange={(e) => setTitle(e.target.value)}
+                onChange={(e) => setCurrentTitle(e.target.value)}
               />
             </div>
           </div>
@@ -303,7 +319,7 @@ const ObjectSettingProperty = ({
                 className="bg-neutral-800 text-zinc-400 w-full"
                 rows="4"
                 value={currentContent}
-                onChange={(e) => setContent(e.target.value)}
+                onChange={(e) => setCurrentContent(e.target.value)}
               />
             </div>
           </div>
