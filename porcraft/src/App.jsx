@@ -7,7 +7,7 @@ import {
 
 import Navbar from "./components/Navbar";
 
-import { About, Editor, Field, Home, ModelsLibrary, Preview } from "./pages";
+import { About, Editor, Field, Home, ModelsLibrary, Preview, SignUp } from "./pages";
 
 // LocationProvider コンポーネントを作成して、location を子コンポーネントで利用可能にします。
 const LocationProvider = ({ children }) => {
@@ -26,6 +26,7 @@ const App = () => {
             {location.pathname !== "/editor" && <Navbar />}
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/signUp" element={<SignUp />} />
               <Route path="/about" element={<About />} />
               <Route path="/editor" element={<Editor />} />
               <Route path="/field" element={<Field />} />

@@ -44,7 +44,7 @@ const Home = () => {
            with 3D objects!
         </p>
         <div className="flex">
-          <Link to="/field" className="btn pading-all-20px text-3xl rounded-3xl">
+          <Link to="/signUp" className="btn pading-all-20px text-3xl rounded-3xl">
             Get started  !
           </Link>
         </div>
