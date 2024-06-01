@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-porcraft-dev-11ffb-authRole",
+      "UnauthRoleArn": "arn:aws:iam::992382613654:role/amplify-porcraft-dev-11ffb-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::992382613654:role/amplify-porcraft-dev-11ffb-authRole",
+      "Region": "ap-northeast-1",
+      "DeploymentBucketName": "amplify-porcraft-dev-11ffb-deployment",
+      "UnauthRoleName": "amplify-porcraft-dev-11ffb-unauthRole",
+      "StackName": "amplify-porcraft-dev-11ffb",
+      "StackId": "arn:aws:cloudformation:ap-northeast-1:992382613654:stack/amplify-porcraft-dev-11ffb/b98411d0-0c97-11ef-ab5d-0a882c05c2cd",
+      "AmplifyAppId": "d4sv8u0sap3cd"
+    },
+    "categories": {
+      "auth": {
+        "porcrafta6b5d34f": {}
+      }
+    }
+  }
+}

@@ -1,6 +1,39 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
+// import { Auth } from "aws-amplify";
+
 const SignUp = () => {
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSetUsername = (e) => {
+    setUsername(e.target.value);
+  };
+
+  const handleSetEmail = (e) => {
+    setEmail(e.target.value);
+  };
+  const handleSetPassword = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const handleSignUp = async () => {
+    try {
+      const { user } = await Auth.signUp({
+        username,
+        password,
+        attributes: {
+          email,
+        },
+      });
+      console.log(user);
+    } catch (error) {
+      console.error("Error signing up:", error);
+    }
+  };
+
   return (
     <section>
       <div
@@ -42,6 +75,7 @@ const SignUp = () => {
                   type="text"
                   placeholder="your name"
                   className="bg-blue-950 text-zinc-300 mt-1 w-3/4 p-2 rounded-md"
+                  onChange={handleSetUsername}
                 />
               </div>
               <div className="text-left">
@@ -53,6 +87,7 @@ const SignUp = () => {
                   type="email"
                   placeholder="you@address.com"
                   className="bg-blue-950 text-zinc-300 mt-1 w-3/4 p-2 rounded-md"
+                  onChange={handleSetEmail}
                 />
               </div>
               <div className="text-left">
@@ -67,6 +102,7 @@ const SignUp = () => {
                   type="password"
                   placeholder="password"
                   className="bg-blue-950 text-zinc-300 mt-1 w-3/4 p-2 rounded-md"
+                  onChange={handleSetPassword}
                 />
               </div>
               <div className="text-left mt-4">
@@ -77,6 +113,7 @@ const SignUp = () => {
                   style={{
                     background: "linear-gradient(to right, #3f87a6, blue)",
                   }}
+                  onClick={handleSignUp}
                 />
               </div>
               <div className="flex">

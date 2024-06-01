@@ -1,62 +1,95 @@
-# PORCRAFT
+<h1 align="center">Porcraft✨</h1>
+<h3 align="center">公式サイト：　<a href="https://porcraft.com/">porcraft.com</a></h3>
+<p align="center">
+    <img src="porcraft/public/vite.svg">　
+    <img src="porcraft/public/react-icon.png" width="30">
+<p align="center">
+  <img src="porcraft/public/assets/images/planet-earth-background.jpg" width="500" />
+</p>
+</p>
 
-公式サイト：　https://porcraft.com/
+## Overview
+
+Porcraft is designed to allow users to add 3D objects and move, resize, and customize them within a scene. Users can also export their finished 3D models for use in other software or to share on the web.
+
+## 概要
+
+Porcraft は、ユーザーが 3D オブジェクトを追加し、シーン内を移動、サイズ変更、カスタマイズできるように設計されています。また、完成した 3D モデルをエクスポートし、他のソフトウェアで使用したり、ウェブ上で共有することができます。
+
+## Infrastructure
+
+<p align="center">
+    <img src="porcraft/public/porcraft_architecture.png" width="90%" />
+</p>
+
+## Features
+
+- ✨ 新規登録/ログイン機能(途中)
+- ✨ 3Dモデルレンダリング
+- ✨ 3Dモデルエクスポート
+- ✨ 作成したサイトにて公開（途中）
+- ✨ 3Dモデルインポート（途中）
+
+## Contributors
+
+<table>
+  <tbody>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/YoungmanCH"><img src="https://avatars.githubusercontent.com/u/61394223?v=4" width="100px;"/><br />
+      <sub><b>✨Tsubasa Youngman</b></sub></a><br />
+        Engineer/PM
+      </td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/MORIMOTO520212"><img src="https://avatars.githubusercontent.com/u/28892090?v=4" width="100px;"/><br />
+      <sub><b>Yuma Morimoto</b></sub></a><br />
+        Advisor
+      </td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/char5742"><img src="https://avatars.githubusercontent.com/u/50830649?v=4" width="100px;"/><br />
+      <sub><b>Mr.Fujino</b></sub></a><br />
+        Advisor
+      </td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/ichiro16go"><img src="https://avatars.githubusercontent.com/u/65273424?v=4" width="100px;"/><br />
+      <sub><b>Ichiro</b></sub></a><br />
+        Engineer
+      </td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/shotaro1412"><img src="https://avatars.githubusercontent.com/u/143255446?v=4" width="100px;"/><br />
+      <sub><b>Shotaro</b></sub></a><br />
+        Engineer
+      </td>
+    </tr>
+
+  </tbody>
+</table>
+
+## License
+
+Reusing the all design, code of the application without permission is prohibited.
 
 
+<br>
 
-### **Step 1: プロジェクトのセットアップ**　（完了）
+## ライセンス
 
-React と Three.js を使用するプロジェクトをセットアップ。Vite や Create React App などのツールを使用して初期設定を行う。
+アプリ上の Design, Code を許可なく転用することを禁止します。
 
-<br />
+<br>
 
-### **Step 2: 3Dシーン、オブジェクトの追加**　（完了）
+## Usage
+リポジトリをクローンし、依存関係をインストールします。
 
-ユーザーが選択できる3Dシーン、オブジェクトをアプリ側に用意する。これらの3DオブジェクトはThree.jsでサポートされているジオメトリを使用して描画する。
+```
+git clone https://github.com/YoungmanCH/PORCRAFT.git
+cd porcraft
+npm install
+```
 
-<br />
 
-### **Step 3: 3Dシーンの作成** （完了）
+開発サーバーの起動
+以下のコマンドで開発サーバーを起動します。
 
-**`@react-three/fiber`** を使用して3Dシーンを作成し、ユーザーがオブジェクトを追加できるようにします。形状をクリックして選択し、位置やサイズを変更できる機能を実装します。
+`npm run dev`
+ブラウザで http://localhost:5173 にアクセスして、アプリを確認します。
 
-<br />
+ビルド
+プロジェクトをビルドするには、以下のコマンドを使用します。
 
-### **Step 4: 3Dオブジェクトの操作機能** （完了）
-
-ユーザーがオブジェクトをセットしてシーン内を移動したり、サイズを変更したりできるようにします。これには、**`@react-three/drei`** パッケージの **`TransformControls`** コンポーネントなどが役立ちます。
-
-<br />
-
-### **Step 5: モデルの保存とエクスポート** （着手中）
-
-作成した3Dモデルを保存する機能を提供し、Three.js のエクスポート機能を使用してGLTFやOBJ形式でエクスポートできるようにします。これにより、ユーザーは自分の作成したモデルを外部のソフトウェアで使用したり、ウェブ上で共有したりできるようになります。
-
-<br />
-
-### **Step 6: ポップアップの設定機能** （完了）
-
-オブジェクトにポップアップを設定できるようにする。また、ポップアップの設定画面を用意する。
-配置したオブジェクトに近づくと、設定したポップアップが表示される仕組みを実装する。
-
-<br />
-
-### **Step 7: アプリの概要を説明するページを更新** （完了）
-
-Porcraftとは一体何のアプリなのかを説明するページを更新する。
-
-<br />
-
-### **Step 8: サインアップ、ログイン機能の実装** （着手中）
-
-ユーザー側が其々アカウントを保持し、各アカウント毎に独自のポートフォリオの作成、リリースを可能とする事を実装する。
-
-<br />
-
-### **Step 9: UIとインタラクションの改善** （未着手）
-
-ユーザーフレンドリーなインターフェースを提供し、形状の追加、編集、削除などの操作が直感的に行えるようにします。また、エディタの機能を拡張するために、色の変更や複数形状のグループ化など、追加の機能を実装することを検討してください。
-
-<br />
-
-この簡易3Dモデルエディタの実装は、基本的なコンセプトから始めて徐々に機能を追加し、改良していくアプローチが適しています。ハッカソンのような短期間の開発イベントでは、最初に最小限の機能セットでプロトタイプを作成し、時間が許す限り徐々に機能を追加していく戦略が効果的です。
+`npm run build`
