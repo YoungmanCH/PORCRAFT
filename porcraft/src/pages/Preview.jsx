@@ -8,6 +8,7 @@ import { OrbitControls } from "@react-three/drei";
 import FieldComponents from "../components/Editor/FieldComponents";
 import Loader from "../components/Loader";
 import ObjectComponents from "../components/ObjectComponents";
+import Popup from "../components/Popup";
 
 const fetchObjectsData = async (key) => {
   const getEndpoint = `https://y9x82tppo0.execute-api.ap-northeast-1.amazonaws.com/prod/get?key=json`;
@@ -37,12 +38,21 @@ const fetchObjectsData = async (key) => {
 const Preview = () => {
   const [objData, setObjectData] = useState({ objects: [], field: null });
   const [searchParams, setSearchParams] = useSearchParams();
+  const [isPopupVisible, setIsPopupVisible] = useState(false);
+  const [popupTitle, setPopupTitle] = useState("");
+  const [popupContent, setPopupContent] = useState("");
 
   useEffect(() => {
     const key = searchParams.get("key");
     fetchObjectsData(key).then(setObjectData);
   }, [objData, searchParams, setSearchParams, setObjectData]);
 
+  const handleObjectClick = (object) => {
+    setPopupTitle(object.popupTitle);
+    setPopupContent(object.popupContent);
+    setIsPopupVisible((prev) => !prev);
+    console.log('popupTitle:', object.popupTitle, 'popupContent:', popupContent)
+  };
 
   return (
     <section className="w-full h-screen flex overflow-hidden">
@@ -55,13 +65,28 @@ const Preview = () => {
         <Suspense fallback={<Loader />}>
           <ambientLight intensity={0.5} />
           <pointLight position={[10, 10, 10]} />
-          
+
           {objData.objects.map((obj) => (
-            <ObjectComponents key={obj.id} setScale={obj.setScale} {...obj} />
+            <ObjectComponents
+              key={obj.id}
+              setScale={obj.setScale}
+              onClick={() => handleObjectClick(obj)}
+              {...obj}
+            />
           ))}
         </Suspense>
         <OrbitControls />
       </Canvas>
+
+      {/* ポップアップコンポーネント */}
+      {isPopupVisible && (
+        <Popup
+          isVisible={isPopupVisible}
+          setIsVisible={setIsPopupVisible}
+          title={popupTitle}
+          content={popupContent}
+        />
+      )}
     </section>
   );
 };

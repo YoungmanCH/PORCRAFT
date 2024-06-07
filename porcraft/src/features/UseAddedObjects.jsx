@@ -22,19 +22,19 @@ const UseAddedObjects = () => {
   let scale = [0.05, 0.05, 0.05];
 
   // オブジェクトにデフォルトのポップアップのタイトルを設定
-  const popupTitle = 'title';
+  const popupTitle = "title";
 
   // オブジェクトにデフォルトのポップアップのコンテンツを設定
-  const popupContent = 'content';
+  const popupContent = "content";
 
   const [dragonScale] = adjustDragonForScreenSize();
   const [personScale] = adjustPersonForScreenSize();
   const [houseScale] = adjustHouseForScreenSize();
-  const [kingScale] =  adjustKingForScreenSize();
-  const [planeScale] =  adjustPlaneForScreenSize();
-  const [queenScale] =  adjustQueenForScreenSize();
-  const [birdOrangeScale] =  adjustBirdOrangeForScreenSize();
-  
+  const [kingScale] = adjustKingForScreenSize();
+  const [planeScale] = adjustPlaneForScreenSize();
+  const [queenScale] = adjustQueenForScreenSize();
+  const [birdOrangeScale] = adjustBirdOrangeForScreenSize();
+
   const addObject = (name, modelPath) => {
     // 簡易的なID生成
     const id = Math.random().toString(36).substring(2, 9);
@@ -50,7 +50,16 @@ const UseAddedObjects = () => {
 
     setObjects((currentObjects) => [
       ...currentObjects,
-      { id, name, position, rotation, scale, modelPath, popupTitle, popupContent },
+      {
+        id,
+        name,
+        position,
+        rotation,
+        scale,
+        modelPath,
+        popupTitle,
+        popupContent,
+      },
     ]);
   };
 
@@ -104,10 +113,12 @@ const UseAddedObjects = () => {
     const sceneObjects = objects.map((obj) => {
       return {
         id: obj.id,
-        name: obj.name, // 例: 'Island', 'ObjectComponent'
+        name: obj.name, // 例: 'ObjectComponent'
         position: [obj.position[0], obj.position[1], obj.position[2]],
         rotation: [obj.rotation[0], obj.rotation[1], obj.rotation[2]],
         scale: [obj.scale[0], obj.scale[1], obj.scale[2]],
+        popupTitle: obj.popupTitle,
+        popupContent: obj.popupContent,
       };
     });
 

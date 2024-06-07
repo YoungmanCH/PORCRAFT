@@ -26,7 +26,6 @@ const UseDatabase = ({ objects, field, serializeObjects, serializeField }) => {
       }
 
       console.log("response:", { response });
-
       const responseData = await response.json();
       console.log("responseData:", responseData);
     } catch (error) {
