@@ -1,0 +1,17 @@
+{
+  "trigger": true,
+  "modules": [
+    "email-filter-allowlist",
+    "email-filter-denylist"
+  ],
+  "parentResource": "porcrafta6b5d34f",
+  "functionName": "porcrafta6b5d34fPreSignup",
+  "resourceName": "porcrafta6b5d34fPreSignup",
+  "parentStack": "auth",
+  "triggerEnvs": "[]",
+  "triggerDir": "/snapshot/amplify-cli/build/node_modules/@aws-amplify/amplify-category-auth/provider-utils/awscloudformation/triggers/PreSignup",
+  "triggerTemplate": "PreSignup.json.ejs",
+  "triggerEventPath": "PreSignup.event.json",
+  "roleName": "porcrafta6b5d34fPreSignup",
+  "skipEdit": true
+}

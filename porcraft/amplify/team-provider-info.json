@@ -14,6 +14,26 @@
     "categories": {
       "auth": {
         "porcrafta6b5d34f": {}
+      },
+      "function": {
+        "porcrafta6b5d34fCreateAuthChallenge": {},
+        "porcrafta6b5d34fCustomMessage": {
+          "REDIRECTURL": "",
+          "EMAILSUBJECT": "",
+          "EMAILMESSAGE": ""
+        },
+        "porcrafta6b5d34fDefineAuthChallenge": {},
+        "porcrafta6b5d34fPostConfirmation": {
+          "GROUP": ""
+        },
+        "porcrafta6b5d34fPreSignup": {
+          "DOMAINALLOWLIST": "",
+          "DOMAINDENYLIST": ""
+        },
+        "porcrafta6b5d34fVerifyAuthChallengeResponse": {
+          "RECAPTCHASECRET": ""
+        },
+        "porcrafta6b5d34fPreTokenGeneration": {}
       }
     }
   }

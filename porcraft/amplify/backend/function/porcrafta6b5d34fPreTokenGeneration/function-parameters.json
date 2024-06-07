@@ -1,0 +1,16 @@
+{
+  "trigger": true,
+  "modules": [
+    "alter-claims"
+  ],
+  "parentResource": "porcrafta6b5d34f",
+  "functionName": "porcrafta6b5d34fPreTokenGeneration",
+  "resourceName": "porcrafta6b5d34fPreTokenGeneration",
+  "parentStack": "auth",
+  "triggerEnvs": "[]",
+  "triggerDir": "/snapshot/amplify-cli/build/node_modules/@aws-amplify/amplify-category-auth/provider-utils/awscloudformation/triggers/PreTokenGeneration",
+  "triggerTemplate": "PreTokenGeneration.json.ejs",
+  "triggerEventPath": "PreTokenGeneration.event.json",
+  "roleName": "porcrafta6b5d34fPreTokenGeneration",
+  "skipEdit": true
+}
