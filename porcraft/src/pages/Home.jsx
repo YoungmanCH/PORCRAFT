@@ -18,23 +18,23 @@ const Home = () => {
   const [handleToGetCurrentUser] = UseAuth();
 
   useEffect(() => {
-    return () => clearInterval(_interval);
+    const interval = setInterval(() => {
+      setCurrentImage((prevImage) => (prevImage + 1) % images.length);
+    }, 2000);
+
+    return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
     _handleToGetCurrentUser();
   }, []);
 
-  const _interval = setInterval(() => {
-    setCurrentImage((prevImage) => (prevImage + 1) % images.length);
-  }, 2000);
-
   const _handleToGetCurrentUser = async () => {
     const user = await handleToGetCurrentUser();
     setUser(user);
   };
 
-  const _handleNavigate = () => {
+  const handleNavigate = () => {
     if (currentUser == null) {
       navigate("/signUp");
     } else {
@@ -64,7 +64,7 @@ const Home = () => {
             </p>
             <div className="flex">
               <div
-                onClick={_handleNavigate}
+                onClick={handleNavigate}
                 className="btn pading-all-20px text-3xl rounded-3xl"
               >
                 Get started !
