@@ -8,7 +8,7 @@ import ExportButton from "../components/Editor/ExportButton";
 import ObjectSelector from "../components/Editor/ObjectSelector";
 import ObjectSetting from "../components/Editor/ObjectSetting";
 
-import useAddedObjects from "../features/UseAddedObjects";
+import UseAddedObjects from "../features/UseAddedObjects";
 import UseField from "../features/UseField";
 
 const Editor = () => {
@@ -25,7 +25,7 @@ const Editor = () => {
     setPopupContent,
     removeObject,
     serializeObjects,
-  ] = useAddedObjects();
+  ] = UseAddedObjects();
   
   const [field, selectField, serializeField] = UseField();
 

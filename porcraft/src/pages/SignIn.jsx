@@ -1,6 +1,39 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { signIn } from "@aws-amplify/auth";
 
 const SignIn = () => {
+  // username is email.
+  const [username, setEmail] = useState("");
+
+  const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
+  const navigate = useNavigate();
+
+  const handleSetEmail = (e) => {
+    setEmail(e.target.value);
+  };
+  const handleSetPassword = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const handleSignIn = async (e) => {
+    e.preventDefault();
+    try {
+      await signIn({
+        username,
+        password,
+      });
+      _handleNavigate();
+    } catch (error) {
+      setMessage(`Error signing up:, ${error.message}`);
+    }
+  };
+
+  const _handleNavigate = () => {
+    navigate("/field");
+  };
+
   return (
     <section>
       <div
@@ -32,7 +65,8 @@ const SignIn = () => {
             <p className="font-sans text-zinc-100 text-4xl text-left mb-6">
               Welcome to a new adventure!
             </p>
-            <form className="space-y-6">
+            {message && <p className="text-zinc-300">{message}</p>}
+            <form className="space-y-6" onSubmit={handleSignIn}>
               <div className="text-left">
                 <label htmlFor="email" className="block text-zinc-300 text-lg">
                   Email
@@ -42,6 +76,7 @@ const SignIn = () => {
                   type="email"
                   placeholder="you@address.com"
                   className="bg-purple-950 text-zinc-300 mt-1 w-3/4 p-2 rounded-md"
+                  onChange={handleSetEmail}
                 />
               </div>
               <div className="text-left">
@@ -56,6 +91,7 @@ const SignIn = () => {
                   type="password"
                   placeholder="password"
                   className="bg-purple-950 text-zinc-300 mt-1 w-3/4 p-2 rounded-md"
+                  onChange={handleSetPassword}
                 />
               </div>
               <div className="text-left mt-4">

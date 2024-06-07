@@ -8,7 +8,7 @@ import adjustKingForScreenSize from "./AdjustScreenSize/AdjustKingForScreenSize"
 import adjustPlaneForScreenSize from "./AdjustScreenSize/AdjustPlaneForScreenSize";
 import adjustQueenForScreenSize from "./AdjustScreenSize/AdjustQueenForScreenSize";
 
-const useAddedObjects = () => {
+const UseAddedObjects = () => {
   // objects: [{ id: String, type: String, position: Array }]
   const [objects, setObjects] = useState([]);
 
@@ -127,4 +127,4 @@ const useAddedObjects = () => {
   ];
 };
 
-export default useAddedObjects;
+export default UseAddedObjects;

@@ -1,37 +1,58 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-
-// import { Auth } from "aws-amplify";
+import { Link, useNavigate } from "react-router-dom";
+import { signUp } from "@aws-amplify/auth";
 
 const SignUp = () => {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  // username is email.
+  const [username, setEmail] = useState("");
 
-  const handleSetUsername = (e) => {
-    setUsername(e.target.value);
-  };
+  // name is user's name.
+  const [name, setName] = useState("");
+
+  const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
+  const navigate = useNavigate();
 
   const handleSetEmail = (e) => {
     setEmail(e.target.value);
+  };
+
+  const handleSetName = (e) => {
+    setName(e.target.value);
   };
   const handleSetPassword = (e) => {
     setPassword(e.target.value);
   };
 
-  const handleSignUp = async () => {
+  const handleSignUp = async (e) => {
+    e.preventDefault();
     try {
-      const { user } = await Auth.signUp({
-        username,
-        password,
-        attributes: {
-          email,
-        },
-      });
-      console.log(user);
+      await _signUp();
+      _handleNavigate();
     } catch (error) {
-      console.error("Error signing up:", error);
+      if (error.code === "UsernameExistsException") {
+        setMessage(
+          "Email already exists. Please choose a different email."
+        );
+      } else {
+        setMessage(`Error signing up: ${error.message}`);
+      }
     }
+  };
+
+  const _signUp = async () => {
+    await signUp({
+      username,
+      password,
+      options: {
+        name,
+      },
+    });
+    _handleNavigate();
+  };
+
+  const _handleNavigate = () => {
+    navigate("/confirmSignUp");
   };
 
   return (
@@ -65,7 +86,8 @@ const SignUp = () => {
             <p className="font-sans text-zinc-100 text-4xl text-left mb-6">
               Create an account
             </p>
-            <form className="space-y-6">
+            {message && <p className="text-zinc-300">{message}</p>}
+            <form className="space-y-6" onSubmit={handleSignUp}>
               <div className="text-left">
                 <label htmlFor="name" className="block text-zinc-300 text-lg">
                   Name
@@ -75,7 +97,7 @@ const SignUp = () => {
                   type="text"
                   placeholder="your name"
                   className="bg-blue-950 text-zinc-300 mt-1 w-3/4 p-2 rounded-md"
-                  onChange={handleSetUsername}
+                  onChange={handleSetName}
                 />
               </div>
               <div className="text-left">
@@ -113,7 +135,6 @@ const SignUp = () => {
                   style={{
                     background: "linear-gradient(to right, #3f87a6, blue)",
                   }}
-                  onClick={handleSignUp}
                 />
               </div>
               <div className="flex">
