@@ -1,10 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import UseAuth from "../services/Auth/UseAuth";
+import UseAuth from "../services/auth/UseAuth";
 
 const Home = () => {
   const [currentImage, setCurrentImage] = useState(0);
+  const [currentUser, setUser] = useState();
+  const navigate = useNavigate();
+  const [handleToGetCurrentUser] = UseAuth();
+
   const images = [
     "./src/images/land1.png",
     "./src/images/colorful.jpg",
@@ -13,9 +17,6 @@ const Home = () => {
   const calculateBGPosition = (index) => {
     return `${index + 100}% 50%`;
   };
-  const [currentUser, setUser] = useState();
-  const navigate = useNavigate();
-  const [handleToGetCurrentUser] = UseAuth();
 
   useEffect(() => {
     const interval = setInterval(() => {
