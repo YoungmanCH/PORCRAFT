@@ -58,7 +58,6 @@ const UseField = () => {
         position: field.position,
         rotation: field.rotation,
         scale: field.scale,
-        modelPath: field.modelPath,
       };
 
       return JSON.stringify(serializedField, null, 2);

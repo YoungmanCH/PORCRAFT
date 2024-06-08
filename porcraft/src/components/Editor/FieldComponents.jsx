@@ -18,7 +18,7 @@ const FieldComponents = ({ field }) => {
   }
 
   let component = null;
-  const { name, position, rotation, scale, modelPath } = field;
+  const { name, position, rotation, scale } = field;
 
   switch (name) {
     case "Tropical Island":
