@@ -16,6 +16,11 @@ Porcraft is designed to allow users to add 3D objects and move, resize, and cust
 
 Porcraft は、ユーザーが 3D オブジェクトを追加し、シーン内を移動、サイズ変更、カスタマイズできるように設計されています。また、完成した 3D モデルをエクスポートし、他のソフトウェアで使用したり、ウェブ上で共有することができます。
 
+## Architecture
+<p align="center">
+    <img src="porcraft/public/porcraft_er_entity.png" width="90%" />
+</p>
+
 ## Infrastructure
 
 <p align="center">

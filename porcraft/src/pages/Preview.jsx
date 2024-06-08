@@ -10,6 +10,7 @@ import Loader from "../components/Loader";
 import ObjectComponents from "../components/ObjectComponents";
 import Popup from "../components/Popup";
 
+// eslint-disable-next-line no-unused-vars
 const fetchObjectsData = async (key) => {
   const getEndpoint = `https://y9x82tppo0.execute-api.ap-northeast-1.amazonaws.com/prod/get?key=json`;
   // const getEndpoint = `https://y9x82tppo0.execute-api.ap-northeast-1.amazonaws.com/prod/get?key=${key}`;

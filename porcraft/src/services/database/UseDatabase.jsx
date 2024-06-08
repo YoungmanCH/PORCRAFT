@@ -1,18 +1,24 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useState, useEffect } from "react";
+import UseAuth from "../auth/UseAuth";
+
 const UseDatabase = ({ objects, field, serializeObjects, serializeField }) => {
+  const [currentUser, setUser] = useState();
+  const [handleToGetCurrentUser] = UseAuth();
+
+  useEffect(() => {
+    _handleToGetCurrentUser();
+  }, []);
+
   const exportDatabase = async () => {
-    const serializedObjects = serializeObjects(objects);
-    const serializedField = serializeField(field);
-
-    const jsonData = JSON.stringify({
-      objects: serializedObjects,
-      field: serializedField,
-    });
-
-    // データをデータベースに保存するためのAPIエンドポイント
-    const exportApiEndpoint =
-      "https://y9x82tppo0.execute-api.ap-northeast-1.amazonaws.com/prod/export";
-
     try {
+      await _handleToGetCurrentUser();
+      if (currentUser == null) {
+        console.log("State: User is not sign in.");
+        return;
+      }
+      const jsonData = _stringfyToJson();
+      const exportApiEndpoint = import.meta.env.VITE_APP_EXPORT_API_ENDPOINT;
       const response = await fetch(exportApiEndpoint, {
         method: "POST",
         body: jsonData,
@@ -23,14 +29,42 @@ const UseDatabase = ({ objects, field, serializeObjects, serializeField }) => {
 
       if (!response.ok) {
         throw new Error("Network response was not ok");
+      } else {
+        console.log("response:", { response });
       }
 
-      console.log("response:", { response });
-      const responseData = await response.json();
-      console.log("responseData:", responseData);
+      await _fetchResponse(exportApiEndpoint, jsonData);
     } catch (error) {
       console.error("Error:", error);
     }
+  };
+
+  const _handleToGetCurrentUser = async () => {
+    const user = await handleToGetCurrentUser();
+    setUser(user);
+  };
+
+  const _stringfyToJson = () => {
+    const serializedObjects = serializeObjects(objects);
+    const serializedField = serializeField(field);
+
+    return JSON.stringify({
+      objects: serializedObjects,
+      field: serializedField,
+    });
+  };
+
+  const _fetchResponse = async (exportApiEndpoint, jsonData) => {
+    const responseData = await fetch(exportApiEndpoint, {
+      method: "POST",
+      body: jsonData,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    console.log("responseData:", responseData);
+
+    return responseData;
   };
 
   return exportDatabase;

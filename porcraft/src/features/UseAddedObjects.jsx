@@ -53,10 +53,10 @@ const UseAddedObjects = () => {
       {
         id,
         name,
+        modelPath,
         position,
         rotation,
         scale,
-        modelPath,
         popupTitle,
         popupContent,
       },
@@ -113,7 +113,7 @@ const UseAddedObjects = () => {
     const sceneObjects = objects.map((obj) => {
       return {
         id: obj.id,
-        name: obj.name, // 例: 'ObjectComponent'
+        name: obj.name,
         position: [obj.position[0], obj.position[1], obj.position[2]],
         rotation: [obj.rotation[0], obj.rotation[1], obj.rotation[2]],
         scale: [obj.scale[0], obj.scale[1], obj.scale[2]],
