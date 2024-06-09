@@ -13,6 +13,8 @@ import adjustPizzaForFieldSize from "../features/AdjustFieldSize/AdjustPizzaForF
 import adjustParkForFieldSize from "../features/AdjustFieldSize/AdjustParkForField";
 import adjustYggdrasillForFieldSize from "../features/AdjustFieldSize/AdjustYggdrasill";
 
+import UseDatabase from "../services/database/UseDatabase";
+
 import Island from "../models/Island";
 import Chess from "../models/Chess";
 import Pizza from "../models/Pizza";
@@ -29,6 +31,8 @@ const Field = () => {
   const [parkScale, parkPosition] = adjustParkForFieldSize();
   const [YggdrasillScale, YggdrasillPosition] = adjustYggdrasillForFieldSize();
 
+  const { createUserDatabase } = UseDatabase({});
+
   const CheckboxClick = (fieldName, modelPath) => {
     if (selectedField.includes(fieldName)) {
       setSelectedField(selectedField.filter((field) => field !== fieldName));
@@ -36,6 +40,10 @@ const Field = () => {
       setSelectedField([...selectedField, fieldName]);
       setFieldPath(modelPath);
     }
+  };
+
+  const _handleCreateUserDatabase = async () => {
+    await createUserDatabase();
   };
 
   const isLinkVisible = selectedField.length === 1;
@@ -185,8 +193,9 @@ const Field = () => {
                 fieldName: selectedField[0],
                 fieldPath: fieldPath,
               }}
+              onClick={_handleCreateUserDatabase}
             >
-              Go To The Next Step !
+              Create new world !
             </Link>
           </div>
         )}
