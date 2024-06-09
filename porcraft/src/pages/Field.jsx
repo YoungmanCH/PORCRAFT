@@ -1,7 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/no-unknown-property */
 
-import { Suspense, useState } from "react";
-import { Link } from "react-router-dom";
+import { Suspense, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 
@@ -12,6 +13,8 @@ import adjustChessForFieldSize from "../features/AdjustFieldSize/AdjustChessForF
 import adjustPizzaForFieldSize from "../features/AdjustFieldSize/AdjustPizzaForField";
 import adjustParkForFieldSize from "../features/AdjustFieldSize/AdjustParkForField";
 import adjustYggdrasillForFieldSize from "../features/AdjustFieldSize/AdjustYggdrasill";
+
+import UseField from "../features/UseField";
 
 import UseDatabase from "../services/database/UseDatabase";
 
@@ -24,6 +27,7 @@ import Yggdrasill from "../models/Yggdrasill";
 const Field = () => {
   const [selectedField, setSelectedField] = useState([]);
   const [fieldPath, setFieldPath] = useState("");
+  const navigate = useNavigate();
 
   const [islandScale, islandPosition] = adjustIslandForFieldSize();
   const [chessScale, chessPosition] = adjustChessForFieldSize();
@@ -31,22 +35,47 @@ const Field = () => {
   const [parkScale, parkPosition] = adjustParkForFieldSize();
   const [YggdrasillScale, YggdrasillPosition] = adjustYggdrasillForFieldSize();
 
-  const { createUserDatabase } = UseDatabase({});
+  const isLinkVisible = selectedField.length === 1;
 
-  const CheckboxClick = (fieldName, modelPath) => {
-    if (selectedField.includes(fieldName)) {
-      setSelectedField(selectedField.filter((field) => field !== fieldName));
+  const [field, selectField, serializeField] = UseField();
+
+  const { createWorldDatabase, fetchWorldDatabase } = UseDatabase({
+    field,
+    serializeField,
+  });
+
+  const CheckboxClick = (selectedFieldName, modelPath) => {
+    if (selectedField.includes(selectedFieldName)) {
+      setSelectedField(
+        selectedField.filter((fieldName) => fieldName !== selectedFieldName)
+      );
     } else {
-      setSelectedField([...selectedField, fieldName]);
+      setSelectedField([...selectedField, selectedFieldName]);
       setFieldPath(modelPath);
     }
   };
 
-  const _handleCreateUserDatabase = async () => {
-    await createUserDatabase();
+  useEffect(() => {
+    if (selectedField && fieldPath) {
+      selectField(selectedField[0], fieldPath);
+    }
+  }, [selectedField, fieldPath]);
+
+  const _handleCreateWorldDatabase = async () => {
+    const id = await createWorldDatabase(field);
+    await fetchWorldDatabase(id);
+    _handleNavigate(id);
   };
 
-  const isLinkVisible = selectedField.length === 1;
+  const _handleNavigate = (id) => {
+    navigate("/editor", {
+      state: {
+        id: id,
+        fieldName: selectedField[0],
+        fieldPath: fieldPath,
+      },
+    });
+  };
 
   return (
     <section className="w-full h-screen overflow-hidden bg-white">
@@ -184,19 +213,12 @@ const Field = () => {
       <div className="flex flex-col items-center">
         {isLinkVisible && (
           <div className="flex">
-            <Link
+            <button
               className="btn rounded-xl mt-10 text-3xl"
-              to={{
-                pathname: "/editor ",
-              }}
-              state={{
-                fieldName: selectedField[0],
-                fieldPath: fieldPath,
-              }}
-              onClick={_handleCreateUserDatabase}
+              onClick={_handleCreateWorldDatabase}
             >
               Create new world !
-            </Link>
+            </button>
           </div>
         )}
 

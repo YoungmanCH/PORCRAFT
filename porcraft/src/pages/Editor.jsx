@@ -13,7 +13,7 @@ import UseField from "../features/UseField";
 
 const Editor = () => {
   const location = useLocation();
-  const { fieldName, fieldPath } = location.state || {};
+  const { id, fieldName, fieldPath } = location.state || {};
 
   const [
     objects,
@@ -40,6 +40,7 @@ const Editor = () => {
 
       {/* Exportボタン */}
       <ExportButton
+        id={id}
         objects={objects}
         field={field}
         serializeObjects={serializeObjects}

@@ -53,11 +53,11 @@ const UseField = () => {
     console.log('selectedField:', selectedField);
     if (selectedField) {
       const serializedField = {
-        id: field.id,
-        name: field.name,
-        position: field.position,
-        rotation: field.rotation,
-        scale: field.scale,
+        id: selectedField.id,
+        name: selectedField.name,
+        position: selectedField.position,
+        rotation: selectedField.rotation,
+        scale: selectedField.scale,
       };
 
       return JSON.stringify(serializedField, null, 2);
