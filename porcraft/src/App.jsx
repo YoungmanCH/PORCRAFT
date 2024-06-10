@@ -12,7 +12,7 @@ import {
   Editor,
   Field,
   Home,
-  ModelsLibrary,
+  WorldLibrary,
   Preview,
   SignUp,
   SignIn,
@@ -42,8 +42,8 @@ const App = () => {
               <Route path="/about" element={<About />} />
               <Route path="/editor" element={<Editor />} />
               <Route path="/field" element={<Field />} />
-              <Route path="/preview" element={<Preview />} />
-              <Route path="/modelsLibrary" element={<ModelsLibrary />} />
+              <Route path="/preview/:id" element={<Preview />} />
+              <Route path="/worldLibrary" element={<WorldLibrary />} />
             </Routes>
           </main>
         )}

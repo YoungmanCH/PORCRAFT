@@ -52,7 +52,6 @@ const EditorCanvas = ({ field, objects }) => {
           content={popupContent}
         />
       )}
-      {/* {isPopupVisible && <Popup object={selectedObject} onClose={() => setIsPopupVisible} />} */}
     </>
   );
 };

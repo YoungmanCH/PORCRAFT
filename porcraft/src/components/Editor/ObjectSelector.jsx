@@ -11,21 +11,23 @@ import Loader from "../Loader";
 
 import "../css/ObjSelector.css";
 
-import adjustDragonForObjSelectorSize from "../../features/AdjustSelectorSize/AdjustDragonForObjSelector";
+import adjustDragonForObjSelectorSize from "../../features/AdjustSelectorSize/AdjustDragonForObjSelectorSize";
 import adjustHouseForObjSelectorSize from "../../features/AdjustSelectorSize/AdjustHouseForObjSelectorSize";
 import adjustPersonForObjSelectorSize from "../../features/AdjustSelectorSize/AdjustPersonForObjSelectorSize";
 import adjustKingForObjSelectorSize from "../../features/AdjustSelectorSize/AdjustKingForObjSelectorSize";
 import adjustPlaneForObjSelectorSize from "../../features/AdjustSelectorSize/AdjustPlaneForObjSelectorSize";
 import adjustBirdOrangeForObjSelectorSize from "../../features/AdjustSelectorSize/AdjustBirdOrangeForObjSelectorSize";
 import adjustQueenForObjSelectorSize from "../../features/AdjustSelectorSize/AdjustQueenForObjSelectorSize";
+import adjustSpaceStationForObjSelectorSize from "../../features/AdjustSelectorSize/AdjustSpaceStationForObjSelectorSize";
 
-import Dragon from "../../models/Dragon";
-import House from "../../models/House";
-import Person from "../../models/Person";
-import King from "../../models/King";
-import Plane from "../../models/Plane";
-import BirdOrange from "../../models/BirdOrange";
-import Queen from "../../models/Queen";
+import Dragon from "../../objects/Dragon";
+import House from "../../objects/House";
+import Person from "../../objects/Person";
+import King from "../../objects/King";
+import Plane from "../../objects/Plane";
+import OrangeBird from "../../objects/OrangeBird";
+import Queen from "../../objects/Queen";
+import SpaceStation from "../../objects/SpaceStation";
 
 const ObjectSelector = ({ objects, addObject }) => {
   const [isObjSelectorOpen, setObjSelectorOpen] = useState(false);
@@ -35,8 +37,9 @@ const ObjectSelector = ({ objects, addObject }) => {
     house: false,
     king: false,
     plane: false,
-    birdOrange: false,
+    orangeBird: false,
     queen: false,
+    spaceStation: false,
   });
 
   const [dragonScale, dragonPosition] = adjustDragonForObjSelectorSize();
@@ -47,6 +50,8 @@ const ObjectSelector = ({ objects, addObject }) => {
   const [birdOrangeScale, birdOrangePosition] =
     adjustBirdOrangeForObjSelectorSize();
   const [queenScale, queenPosition] = adjustQueenForObjSelectorSize();
+  const [spaceStationScale, spaceStationPosition] =
+    adjustSpaceStationForObjSelectorSize();
 
   const handleAddObject = (name, modelPath) => {
     addObject(name, modelPath);
@@ -59,6 +64,9 @@ const ObjectSelector = ({ objects, addObject }) => {
     }));
   };
 
+  // visibility's name == toggle's name.
+  // class's name == addObject's name
+
   return (
     <section className="open-selector-btn">
       {!isObjSelectorOpen && (
@@ -69,7 +77,11 @@ const ObjectSelector = ({ objects, addObject }) => {
           Selector
         </button>
       )}
-      <div className={`objSelector bg-neutral-800 ${isObjSelectorOpen ? "open" : ""}`}>
+      <div
+        className={`objSelector bg-neutral-800 ${
+          isObjSelectorOpen ? "open" : ""
+        }`}
+      >
         {isObjSelectorOpen && (
           <button
             className="text-zinc-400 bg-neutral-800 rounded-md px-1 text-center mt-2 ml-2"
@@ -227,30 +239,30 @@ const ObjectSelector = ({ objects, addObject }) => {
               <button
                 id="arrowButton"
                 className={`arrow-button ${
-                  visibility.birdOrange ? "arrow-down" : "arrow-right"
+                  visibility.OrangeBird ? "arrow-down" : "arrow-right"
                 }`}
-                onClick={() => handleVisibilityToggle("birdOrange")}
+                onClick={() => handleVisibilityToggle("OrangeBird")}
               ></button>
-              <p className="text-zinc-400 ml-2">BirdOrange</p>
+              <p className="text-zinc-400 ml-2">Orange bird</p>
             </div>
             <div className="flex-grow"></div>
             <button
               className="text-zinc-400 mr-2"
               onClick={() => {
-                handleAddObject("BirdOrange", "/assets/3d/bird_orange.glb");
+                handleAddObject("Orange bird", "/assets/3d/bird_orange.glb");
               }}
             >
               Apply
             </button>
           </div>
-          {visibility.birdOrange && (
+          {visibility.OrangeBird && (
             <Canvas className="canvas-container">
               <Suspense fallback={<Loader />}>
                 <directionalLight position={[1, 10, 1]} intensity={10} />
                 <ambientLight intensity={10} />
                 <hemisphereLight intensity={10} />
 
-                <BirdOrange
+                <OrangeBird
                   scale={birdOrangeScale}
                   position={birdOrangePosition}
                 />
@@ -323,6 +335,47 @@ const ObjectSelector = ({ objects, addObject }) => {
                 <hemisphereLight intensity={10} />
 
                 <House scale={houseScale} position={housePosition} />
+              </Suspense>
+              <OrbitControls />
+            </Canvas>
+          )}
+        </div>
+        <div>
+          <div className="flex justify-between items-center bg-neutral-800">
+            <div className="flex items-center ml-2">
+              <button
+                id="arrowButton"
+                className={`arrow-button ${
+                  visibility.spaceStation ? "arrow-down" : "arrow-right"
+                }`}
+                onClick={() => handleVisibilityToggle("spaceStation")}
+              ></button>
+              <p className="text-zinc-400 ml-2">Space station</p>
+            </div>
+            <div className="flex-grow"></div>
+            <button
+              className="text-zinc-400 mr-2"
+              onClick={() => {
+                handleAddObject(
+                  "Space station",
+                  "/assets/3d/space_station.glb"
+                );
+              }}
+            >
+              Apply
+            </button>
+          </div>
+          {visibility.spaceStation && (
+            <Canvas className="canvas-container">
+              <Suspense fallback={<Loader />}>
+                <directionalLight position={[1, 10, 1]} intensity={10} />
+                <ambientLight intensity={10} />
+                <hemisphereLight intensity={10} />
+
+                <SpaceStation
+                  scale={spaceStationScale}
+                  position={spaceStationPosition}
+                />
               </Suspense>
               <OrbitControls />
             </Canvas>

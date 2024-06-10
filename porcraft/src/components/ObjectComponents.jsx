@@ -4,13 +4,14 @@ import { Suspense } from "react";
 
 import Loader from "./Loader";
 
-import Dragon from "../models/Dragon";
-import Person from "../models/Person";
-import House from "../models/House";
-import King from "../models/King";
-import Plane from "../models/Plane";
-import BirdOrange from "../models/BirdOrange";
-import Queen from "../models/Queen";
+import Dragon from "../objects/Dragon";
+import Person from "../objects/Person";
+import House from "../objects/House";
+import King from "../objects/King";
+import Plane from "../objects/Plane";
+import OrangeBird from "../objects/OrangeBird";
+import Queen from "../objects/Queen";
+import SpaceStation from "../objects/SpaceStation";
 
 const ObjectComponents = ({ name, position, rotation, scale, onClick }) => {
   const handleClick = () => {
@@ -91,12 +92,12 @@ const ObjectComponents = ({ name, position, rotation, scale, onClick }) => {
         </Suspense>
       );
       break;
-    case "BirdOrange":
+    case "Orange bird":
       component = (
         <Suspense fallback={<Loader />}>
           <ambientLight intensity={0.5} />
           <pointLight position={[10, 10, 10]} />
-          <BirdOrange
+          <OrangeBird
             position={position}
             rotation={rotation}
             scale={scale}
@@ -111,6 +112,20 @@ const ObjectComponents = ({ name, position, rotation, scale, onClick }) => {
           <ambientLight intensity={0.5} />
           <pointLight position={[10, 10, 10]} />
           <Queen
+            position={position}
+            rotation={rotation}
+            scale={scale}
+            onClick={handleClick}
+          />
+        </Suspense>
+      );
+      break;
+    case "Space station":
+      component = (
+        <Suspense fallback={<Loader />}>
+          <ambientLight intensity={0.5} />
+          <pointLight position={[10, 10, 10]} />
+          <SpaceStation
             position={position}
             rotation={rotation}
             scale={scale}

@@ -1,7 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/no-unknown-property */
 
-import { Suspense, useState } from "react";
-import { Link } from "react-router-dom";
+import { Suspense, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 
@@ -13,15 +14,21 @@ import adjustPizzaForFieldSize from "../features/AdjustFieldSize/AdjustPizzaForF
 import adjustParkForFieldSize from "../features/AdjustFieldSize/AdjustParkForField";
 import adjustYggdrasillForFieldSize from "../features/AdjustFieldSize/AdjustYggdrasill";
 
-import Island from "../models/Island";
-import Chess from "../models/Chess";
-import Pizza from "../models/Pizza";
-import Park from "../models/Park";
-import Yggdrasill from "../models/Yggdrasill";
+import UseField from "../features/UseField";
+
+import UseDatabase from "../services/database/UseDatabase";
+
+import Island from "../objects/Island";
+import Chess from "../objects/Chess";
+import Pizza from "../objects/Pizza";
+import Park from "../objects/Park";
+import Yggdrasill from "../objects/Yggdrasill";
 
 const Field = () => {
   const [selectedField, setSelectedField] = useState([]);
   const [fieldPath, setFieldPath] = useState("");
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const [islandScale, islandPosition] = adjustIslandForFieldSize();
   const [chessScale, chessPosition] = adjustChessForFieldSize();
@@ -29,27 +36,60 @@ const Field = () => {
   const [parkScale, parkPosition] = adjustParkForFieldSize();
   const [YggdrasillScale, YggdrasillPosition] = adjustYggdrasillForFieldSize();
 
-  const CheckboxClick = (fieldName, modelPath) => {
-    if (selectedField.includes(fieldName)) {
-      setSelectedField(selectedField.filter((field) => field !== fieldName));
+  const isLinkVisible = selectedField.length === 1;
+
+  const [field, selectField, serializeField] = UseField();
+
+  const { createWorldDatabase, fetchWorldDatabase } = UseDatabase({
+    field,
+    serializeField,
+  });
+
+  const CheckboxClick = (selectedFieldName, modelPath) => {
+    if (selectedField.includes(selectedFieldName)) {
+      setSelectedField(
+        selectedField.filter((fieldName) => fieldName !== selectedFieldName)
+      );
     } else {
-      setSelectedField([...selectedField, fieldName]);
+      setSelectedField([...selectedField, selectedFieldName]);
       setFieldPath(modelPath);
     }
   };
 
-  const isLinkVisible = selectedField.length === 1;
+  useEffect(() => {
+    if (selectedField && fieldPath) {
+      selectField(selectedField[0], fieldPath);
+    }
+  }, [selectedField, fieldPath]);
+
+  const _handleCreateWorldDatabase = async () => {
+    setLoading(true);
+    const id = await createWorldDatabase(field);
+    await fetchWorldDatabase(id);
+    _handleNavigate(id);
+    setLoading(false);
+  };
+
+  const _handleNavigate = (id) => {
+    navigate("/editor", {
+      state: {
+        id: id,
+        fieldName: selectedField[0],
+        fieldPath: fieldPath,
+      },
+    });
+  };
 
   return (
-    <section className="w-full h-screen overflow-hidden bg-white">
-      <p className="text-6xl font-serif mt-10 ml-14">
+    <section className="w-full h-screen overflow-hidden bg-gradient-to-r from-violet-950 via-indigo-900 to-blue-950 text-white">
+      <p className="text-6xl font-serif mt-6 ml-14 text-center">
         Choose View Of The World
       </p>
-      <div className="w-full h-20"></div>
-      <div className="grid grid-cols-3 gap-4 place-content-stretch h-">
+      <div className="w-full h-8"></div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-6">
         {/* 1つ目のセクション */}
-        <div className="flex flex-col items-center justify-center mx-2 my-4">
-          <div className="flex">
+        <div className="flex flex-col items-center justify-center mx-2 my-4 bg-slate-900 rounded-xl p-4 shadow-lg">
+          <div className="flex items-center">
             <input
               type="checkbox"
               className="m-2"
@@ -68,7 +108,6 @@ const Field = () => {
               <directionalLight position={[-1, 1, 1]} intensity={2} />
               <ambientLight intensity={3} />
               <hemisphereLight intensity={5} />
-
               <Island scale={islandScale} position={islandPosition} />
             </Suspense>
             <OrbitControls />
@@ -76,8 +115,8 @@ const Field = () => {
         </div>
 
         {/* 2つ目のセクション */}
-        <div className="flex flex-col items-center justify-center mx-2 my-4">
-          <div className="flex">
+        <div className="flex flex-col items-center justify-center mx-2 my-4 bg-slate-900 rounded-xl p-4 shadow-lg">
+          <div className="flex items-center">
             <input
               type="checkbox"
               className="m-2"
@@ -91,7 +130,6 @@ const Field = () => {
               <directionalLight position={[-1, 1, 1]} intensity={2} />
               <ambientLight intensity={3} />
               <hemisphereLight intensity={5} />
-
               <Chess scale={chessScale} position={chessPosition} />
             </Suspense>
             <OrbitControls />
@@ -99,8 +137,8 @@ const Field = () => {
         </div>
 
         {/* 3つ目のセクション */}
-        <div className="flex flex-col items-center justify-center mx-2 my-4">
-          <div className="flex">
+        <div className="flex flex-col items-center justify-center mx-2 my-4 bg-slate-900 rounded-xl p-4 shadow-lg">
+          <div className="flex items-center">
             <input
               type="checkbox"
               className="m-2"
@@ -114,7 +152,6 @@ const Field = () => {
               <directionalLight position={[-1, 1, 1]} intensity={2} />
               <ambientLight intensity={3} />
               <hemisphereLight intensity={5} />
-
               <Pizza scale={pizzaScale} position={pizzaPosition} />
             </Suspense>
             <OrbitControls />
@@ -122,8 +159,8 @@ const Field = () => {
         </div>
 
         {/* 4つ目のセクション */}
-        <div className="flex flex-col items-center justify-center mx-2 my-4">
-          <div className="flex">
+        <div className="flex flex-col items-center justify-center mx-2 my-4 bg-slate-900 rounded-xl p-4 shadow-lg">
+          <div className="flex items-center">
             <input
               type="checkbox"
               className="m-2"
@@ -137,7 +174,6 @@ const Field = () => {
               <directionalLight position={[-1, 1, 1]} intensity={2} />
               <ambientLight intensity={3} />
               <hemisphereLight intensity={5} />
-
               <Park scale={parkScale} position={parkPosition} />
             </Suspense>
             <OrbitControls />
@@ -145,8 +181,8 @@ const Field = () => {
         </div>
 
         {/* 5つ目のセクション */}
-        <div className="flex flex-col items-center justify-center mx-2 my-4">
-          <div className="flex">
+        <div className="flex flex-col items-center justify-center mx-2 my-4 bg-slate-900 rounded-xl p-4 shadow-lg">
+          <div className="flex items-center">
             <input
               type="checkbox"
               className="m-2"
@@ -162,7 +198,6 @@ const Field = () => {
               <directionalLight position={[-1, 1, 1]} intensity={2} />
               <ambientLight intensity={3} />
               <hemisphereLight intensity={5} />
-
               <Yggdrasill
                 scale={YggdrasillScale}
                 position={YggdrasillPosition}
@@ -172,26 +207,24 @@ const Field = () => {
           </Canvas>
         </div>
       </div>
-      <hr />
       <div className="flex flex-col items-center">
         {isLinkVisible && (
           <div className="flex">
-            <Link
-              className="btn rounded-xl mt-10 text-3xl"
-              to={{
-                pathname: "/editor ",
+            <button
+              className={`btn bg-blue-600 hover:bg-blue-700 text-white rounded-xl mt-10 text-3xl px-6 py-2 ${
+                loading ? "cursor-not-allowed opacity-50" : ""
+              }`}
+              style={{
+                background:
+                  "linear-gradient(to right, #1d4ed8, #0284c7, #14b8a6)",
               }}
-              state={{
-                fieldName: selectedField[0],
-                fieldPath: fieldPath,
-              }}
+              onClick={_handleCreateWorldDatabase}
+              disabled={loading}
             >
-              Go To The Next Step !
-            </Link>
+              {loading ? "Creating..." : "Create new world!"}
+            </button>
           </div>
         )}
-
-        <hr />
       </div>
     </section>
   );

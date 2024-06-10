@@ -7,6 +7,7 @@ import adjustHouseForScreenSize from "./AdjustScreenSize/AdjustHouseForScreenSiz
 import adjustKingForScreenSize from "./AdjustScreenSize/AdjustKingForScreenSize";
 import adjustPlaneForScreenSize from "./AdjustScreenSize/AdjustPlaneForScreenSize";
 import adjustQueenForScreenSize from "./AdjustScreenSize/AdjustQueenForScreenSize";
+import adjustSpaceStationForScreenSize from "./AdjustScreenSize/AdjustSpaceStationForScreenSize";
 
 const UseAddedObjects = () => {
   // objects: [{ id: String, type: String, position: Array }]
@@ -32,8 +33,9 @@ const UseAddedObjects = () => {
   const [houseScale] = adjustHouseForScreenSize();
   const [kingScale] = adjustKingForScreenSize();
   const [planeScale] = adjustPlaneForScreenSize();
+  const [orangeBirdeScale] = adjustBirdOrangeForScreenSize();
   const [queenScale] = adjustQueenForScreenSize();
-  const [birdOrangeScale] = adjustBirdOrangeForScreenSize();
+  const [spaceStationScale] = adjustSpaceStationForScreenSize();
 
   const addObject = (name, modelPath) => {
     // 簡易的なID生成
@@ -45,8 +47,9 @@ const UseAddedObjects = () => {
     if (name === "House") scale = houseScale;
     if (name === "King") scale = kingScale;
     if (name === "Plane") scale = planeScale;
-    if (name === "BirdOrange") scale = birdOrangeScale;
+    if (name === "Orange bird") scale = orangeBirdeScale;
     if (name === "Queen") scale = queenScale;
+    if (name === "Space station") scale = spaceStationScale;
 
     setObjects((currentObjects) => [
       ...currentObjects,

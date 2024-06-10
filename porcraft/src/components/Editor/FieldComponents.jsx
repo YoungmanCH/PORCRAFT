@@ -6,11 +6,11 @@ import { Suspense } from "react";
 
 import Loader from "../Loader";
 
-import Island from "../../models/Island";
-import Chess from "../../models/Chess";
-import Pizza from "../../models/Pizza";
-import Park from "../../models/Park";
-import Yggdrasill from "../../models/Yggdrasill";
+import Island from "../../objects/Island";
+import Chess from "../../objects/Chess";
+import Pizza from "../../objects/Pizza";
+import Park from "../../objects/Park";
+import Yggdrasill from "../../objects/Yggdrasill";
 
 const FieldComponents = ({ field }) => {
   if (!field) {

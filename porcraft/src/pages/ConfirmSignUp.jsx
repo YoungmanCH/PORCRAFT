@@ -2,11 +2,14 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { confirmSignUp } from "@aws-amplify/auth";
 
+import UseDatabase from "../services/database/UseDatabase";
+
 const ConfirmSignUp = () => {
   // username is email.
   const [username, setEmail] = useState("");
   const [confirmationCode, setCode] = useState("");
   const [message, setMessage] = useState("");
+  const { createUserDatabase } = UseDatabase({});
   const navigate = useNavigate();
 
   const handleSetEmail = (e) => {
@@ -21,6 +24,7 @@ const ConfirmSignUp = () => {
     e.preventDefault();
     try {
       await confirmSignUp({ username, confirmationCode });
+      await _handleCreateUserDatabase();
       _handleNavigate();
     } catch (error) {
       setMessage(`Error confirming sign up: ${error.message}`);
@@ -29,6 +33,10 @@ const ConfirmSignUp = () => {
 
   const _handleNavigate = () => {
     navigate("/signIn");
+  };
+
+  const _handleCreateUserDatabase = async () => {
+    await createUserDatabase();
   };
 
   return (

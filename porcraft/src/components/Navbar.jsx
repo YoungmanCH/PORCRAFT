@@ -10,18 +10,7 @@ const Navbar = () => {
       >
         <p className=" text-xl text-zinc-100">Porcraft</p>
       </NavLink>
-      <nav className="flex text-lg gap-7 font-medium ml-0 w-full">
-        
-         
-        {/* <NavLink
-          to="/Help"
-          className={({ isActive }) =>
-            isActive ? "text-green-600" : "text-black text-right ml-0 w-full"
-          }
-        >
-          Help →
-        </NavLink> */}
-      </nav>
+      <nav className="flex text-lg gap-7 font-medium ml-0 w-full"></nav>
     </header>
   );
 };
