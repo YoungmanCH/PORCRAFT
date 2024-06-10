@@ -21,7 +21,7 @@ const Home = () => {
     if (currentUser == null) {
       navigate("/signUp");
     } else {
-      navigate("/field");
+      navigate("/mode");
     }
   };
 

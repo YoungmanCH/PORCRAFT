@@ -62,9 +62,7 @@ const UseDatabase = ({ objects, field, serializeObjects, serializeField }) => {
       }
 
       const jsonData = await response.json();
-      console.log("jsonData:", jsonData);
       const data = jsonData ? JSON.parse(jsonData.body) : null;
-      console.log("data:", data);
       return data;
     } catch (error) {
       console.error("Error:", error);
@@ -80,9 +78,11 @@ const UseDatabase = ({ objects, field, serializeObjects, serializeField }) => {
       }
       const apiEndpoint = import.meta.env.VITE_APP_CREATE_WORLD_API_ENDPOINT;
       const userDatabase = await fetchUserDatabase();
-      const id = uuidv4();
+      const userId = userDatabase.id.S;
+      const worldId = uuidv4();
       const jsonData = _stringfyToJsonForCreateWorld(
-        id,
+        userId,
+        worldId,
         userDatabase,
         selectedField
       );
@@ -92,18 +92,40 @@ const UseDatabase = ({ objects, field, serializeObjects, serializeField }) => {
       if (!response.ok) {
         throw new Error("Network response was not ok");
       } else {
-        console.log("Successfully, response:", { response });
-        return id;
+        return [userId, worldId];
       }
     } catch (error) {
       console.error("Error:", error);
     }
   };
 
-  const fetchWorldDatabase = async (id) => {
+  const fetchWorldDatabase = async (userId, worldId) => {
     try {
       const apiEndpoint = import.meta.env.VITE_APP_GET_WORLD_API_ENDPOINT;
-      const queryParams = _getWorldQueryParams(id);
+      const queryParams = _getWorldQueryParams(userId, worldId);
+      const url = `${apiEndpoint}?${queryParams}`;
+      const response = await fetch(url, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const jsonData = await response.json();
+      return jsonData ? JSON.parse(jsonData.body) : null;
+    } catch (error) {
+      console.log("Error:", error);
+    }
+  };
+  const fetchAllWorldDatabaseWithUserId = async (userId) => {
+    try {
+      const apiEndpoint = import.meta.env
+        .VITE_APP_GET_ALL_WORLD_WITH_USER_ID_API_ENDPOINT;
+      const queryParams = _getWorldQueryParamsWithUserId(userId);
       const url = `${apiEndpoint}?${queryParams}`;
       const response = await fetch(url, {
         method: "GET",
@@ -123,14 +145,14 @@ const UseDatabase = ({ objects, field, serializeObjects, serializeField }) => {
     }
   };
 
-  const updateWorldDatabase = async (id) => {
+  const updateWorldDatabase = async (userId, worldId) => {
     try {
       await _handleToGetCurrentUser();
       if (currentUser == null) {
         console.log("State: User is not sign in.");
         return;
       }
-      const jsonData = await _stringfyToJsonForUpdateWorld(id);
+      const jsonData = await _stringfyToJsonForUpdateWorld(userId, worldId);
       const apiEndpoint = import.meta.env.VITE_APP_UPDATE_WORLD_API_ENDPOINT;
       const response = await _fetchResponse(apiEndpoint, jsonData);
 
@@ -161,37 +183,45 @@ const UseDatabase = ({ objects, field, serializeObjects, serializeField }) => {
     return new URLSearchParams({ userId: currentUser.userId }).toString();
   };
 
-  const _getWorldQueryParams = (id) => {
-    return new URLSearchParams({ id: id }).toString();
+  const _getWorldQueryParams = (userId, worldId) => {
+    return new URLSearchParams({ userId: userId, worldId: worldId }).toString();
   };
 
-  const _stringfyToJsonForCreateWorld = (id, userDatabase, selectedField) => {
+  const _getWorldQueryParamsWithUserId = (userId) => {
+    return new URLSearchParams({ userId: userId }).toString();
+  };
+
+  const _stringfyToJsonForCreateWorld = (
+    userId,
+    worldId,
+    userDatabase,
+    selectedField
+  ) => {
     const serializedObjects = objects ? serializeObjects(objects) : [];
     const serializedField = serializeField(selectedField);
-    const userId = userDatabase.id.S;
-    // TODO set correct project name.
-    const projectName = "project_name";
+    // TODO set correct world name.
+    const worldName = "world_name";
 
     return JSON.stringify({
-      id: id,
-      projectName: projectName,
       userId: userId,
+      worldId: worldId,
+      worldName: worldName,
       objects: serializedObjects,
       field: serializedField,
     });
   };
 
-  const _stringfyToJsonForUpdateWorld = async (id) => {
-    const beforeWorld = await fetchWorldDatabase(id);
+  const _stringfyToJsonForUpdateWorld = async (userId, worldId) => {
+    const beforeWorld = await fetchWorldDatabase(userId, worldId);
     const serializedObjects = serializeObjects(objects);
     const serializedField = serializeField(field);
-    // TODO set correct project name.
-    const projectName = "project_name";
+    // TODO set correct world name.
+    const worldName = "world_name";
 
     return JSON.stringify({
-      id: id,
       userId: beforeWorld.userId.S,
-      projectName: projectName,
+      worldId: beforeWorld.worldId.S,
+      worldName: worldName,
       objects: serializedObjects,
       field: serializedField,
       createdAt: beforeWorld.createdAt.S,
@@ -206,7 +236,6 @@ const UseDatabase = ({ objects, field, serializeObjects, serializeField }) => {
         "Content-Type": "application/json",
       },
     });
-    console.log("responseData:", responseData);
 
     return responseData;
   };
@@ -215,6 +244,7 @@ const UseDatabase = ({ objects, field, serializeObjects, serializeField }) => {
     createUserDatabase,
     fetchUserDatabase,
     fetchWorldDatabase,
+    fetchAllWorldDatabaseWithUserId,
     createWorldDatabase,
     updateWorldDatabase,
   };

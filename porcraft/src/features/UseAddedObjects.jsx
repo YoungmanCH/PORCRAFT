@@ -1,6 +1,5 @@
 import { useState } from "react";
 
-import adjustBirdOrangeForScreenSize from "./AdjustScreenSize/AdjustBirdOrangeForScreenSize";
 import adjustDragonForScreenSize from "./AdjustScreenSize/AdjustDragonForScreenSize";
 import adjustPersonForScreenSize from "./AdjustScreenSize/AdjustPersonForScreenSize";
 import adjustHouseForScreenSize from "./AdjustScreenSize/AdjustHouseForScreenSize";
@@ -33,7 +32,6 @@ const UseAddedObjects = () => {
   const [houseScale] = adjustHouseForScreenSize();
   const [kingScale] = adjustKingForScreenSize();
   const [planeScale] = adjustPlaneForScreenSize();
-  const [orangeBirdeScale] = adjustBirdOrangeForScreenSize();
   const [queenScale] = adjustQueenForScreenSize();
   const [spaceStationScale] = adjustSpaceStationForScreenSize();
 
@@ -47,7 +45,6 @@ const UseAddedObjects = () => {
     if (name === "House") scale = houseScale;
     if (name === "King") scale = kingScale;
     if (name === "Plane") scale = planeScale;
-    if (name === "Orange bird") scale = orangeBirdeScale;
     if (name === "Queen") scale = queenScale;
     if (name === "Space station") scale = spaceStationScale;
 
@@ -111,8 +108,11 @@ const UseAddedObjects = () => {
     );
   };
 
+  const initializeObjects = (initialObjects) => {
+    setObjects(initialObjects);
+  };
+
   const serializeObjects = (objects) => {
-    console.log("serializeObjects:", { objects });
     const sceneObjects = objects.map((obj) => {
       return {
         id: obj.id,
@@ -137,6 +137,7 @@ const UseAddedObjects = () => {
     setPopupTitle,
     setPopupContent,
     removeObject,
+    initializeObjects,
     serializeObjects,
   ];
 };

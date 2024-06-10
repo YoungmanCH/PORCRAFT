@@ -16,7 +16,6 @@ import adjustHouseForObjSelectorSize from "../../features/AdjustSelectorSize/Adj
 import adjustPersonForObjSelectorSize from "../../features/AdjustSelectorSize/AdjustPersonForObjSelectorSize";
 import adjustKingForObjSelectorSize from "../../features/AdjustSelectorSize/AdjustKingForObjSelectorSize";
 import adjustPlaneForObjSelectorSize from "../../features/AdjustSelectorSize/AdjustPlaneForObjSelectorSize";
-import adjustBirdOrangeForObjSelectorSize from "../../features/AdjustSelectorSize/AdjustBirdOrangeForObjSelectorSize";
 import adjustQueenForObjSelectorSize from "../../features/AdjustSelectorSize/AdjustQueenForObjSelectorSize";
 import adjustSpaceStationForObjSelectorSize from "../../features/AdjustSelectorSize/AdjustSpaceStationForObjSelectorSize";
 
@@ -25,7 +24,6 @@ import House from "../../objects/House";
 import Person from "../../objects/Person";
 import King from "../../objects/King";
 import Plane from "../../objects/Plane";
-import OrangeBird from "../../objects/OrangeBird";
 import Queen from "../../objects/Queen";
 import SpaceStation from "../../objects/SpaceStation";
 
@@ -37,7 +35,6 @@ const ObjectSelector = ({ objects, addObject }) => {
     house: false,
     king: false,
     plane: false,
-    orangeBird: false,
     queen: false,
     spaceStation: false,
   });
@@ -47,8 +44,6 @@ const ObjectSelector = ({ objects, addObject }) => {
   const [houseScale, housePosition] = adjustHouseForObjSelectorSize();
   const [kingScale, kingPosition] = adjustKingForObjSelectorSize();
   const [planeScale, planePosition] = adjustPlaneForObjSelectorSize();
-  const [birdOrangeScale, birdOrangePosition] =
-    adjustBirdOrangeForObjSelectorSize();
   const [queenScale, queenPosition] = adjustQueenForObjSelectorSize();
   const [spaceStationScale, spaceStationPosition] =
     adjustSpaceStationForObjSelectorSize();
@@ -96,14 +91,16 @@ const ObjectSelector = ({ objects, addObject }) => {
 
         <div>
           <div className="flex justify-between bg-neutral-800">
-            <div className="flex items-center ml-2">
-              <button
+            <div
+              className="flex items-center ml-2"
+              onClick={() => handleVisibilityToggle("dragon")}
+            >
+              <div
                 id="arrowButton"
                 className={`arrow-button ${
                   visibility.dragon ? "arrow-down" : "arrow-right"
                 }`}
-                onClick={() => handleVisibilityToggle("dragon")}
-              ></button>
+              ></div>
               <p className="text-zinc-400 ml-2">Flying dragon</p>
             </div>
             <div className="flex-grow"></div>
@@ -131,14 +128,16 @@ const ObjectSelector = ({ objects, addObject }) => {
 
         <div>
           <div className="flex justify-between bg-neutral-800">
-            <div className="flex items-center ml-2">
-              <button
+            <div
+              className="flex items-center ml-2"
+              onClick={() => handleVisibilityToggle("normal_person")}
+            >
+              <div
                 id="arrowButton"
                 className={`arrow-button ${
                   visibility.normal_person ? "arrow-down" : "arrow-right"
                 }`}
-                onClick={() => handleVisibilityToggle("normal_person")}
-              ></button>
+              ></div>
               <p className="text-zinc-400 ml-2">Normal person</p>
             </div>
             <div className="flex-grow"></div>
@@ -166,14 +165,16 @@ const ObjectSelector = ({ objects, addObject }) => {
 
         <div>
           <div className="flex justify-between bg-neutral-800">
-            <div className="flex items-center ml-2">
-              <button
+            <div
+              className="flex items-center ml-2"
+              onClick={() => handleVisibilityToggle("plane")}
+            >
+              <div
                 id="arrowButton"
                 className={`arrow-button ${
                   visibility.plane ? "arrow-down" : "arrow-right"
                 }`}
-                onClick={() => handleVisibilityToggle("plane")}
-              ></button>
+              ></div>
               <p className="text-zinc-400 ml-2">Plane</p>
             </div>
             <div className="flex-grow"></div>
@@ -201,14 +202,16 @@ const ObjectSelector = ({ objects, addObject }) => {
 
         <div>
           <div className="flex justify-between bg-neutral-800">
-            <div className="flex items-center ml-2">
-              <button
+            <div
+              className="flex items-center ml-2"
+              onClick={() => handleVisibilityToggle("queen")}
+            >
+              <div
                 id="arrowButton"
                 className={`arrow-button ${
                   visibility.queen ? "arrow-down" : "arrow-right"
                 }`}
-                onClick={() => handleVisibilityToggle("queen")}
-              ></button>
+              ></div>
               <p className="text-zinc-400 ml-2">Queen</p>
             </div>
             <div className="flex-grow"></div>
@@ -233,54 +236,19 @@ const ObjectSelector = ({ objects, addObject }) => {
             </Canvas>
           )}
         </div>
-        <div>
-          <div className="flex justify-between items-center bg-neutral-800">
-            <div className="flex items-center ml-2">
-              <button
-                id="arrowButton"
-                className={`arrow-button ${
-                  visibility.OrangeBird ? "arrow-down" : "arrow-right"
-                }`}
-                onClick={() => handleVisibilityToggle("OrangeBird")}
-              ></button>
-              <p className="text-zinc-400 ml-2">Orange bird</p>
-            </div>
-            <div className="flex-grow"></div>
-            <button
-              className="text-zinc-400 mr-2"
-              onClick={() => {
-                handleAddObject("Orange bird", "/assets/3d/bird_orange.glb");
-              }}
-            >
-              Apply
-            </button>
-          </div>
-          {visibility.OrangeBird && (
-            <Canvas className="canvas-container">
-              <Suspense fallback={<Loader />}>
-                <directionalLight position={[1, 10, 1]} intensity={10} />
-                <ambientLight intensity={10} />
-                <hemisphereLight intensity={10} />
-
-                <OrangeBird
-                  scale={birdOrangeScale}
-                  position={birdOrangePosition}
-                />
-              </Suspense>
-              <OrbitControls />
-            </Canvas>
-          )}
-        </div>
+        
         <div>
           <div className="flex justify-between bg-neutral-800">
-            <div className="flex items-center ml-2">
-              <button
+            <div
+              className="flex items-center ml-2"
+              onClick={() => handleVisibilityToggle("king")}
+            >
+              <div
                 id="arrowButton"
                 className={`arrow-button ${
                   visibility.king ? "arrow-down" : "arrow-right"
                 }`}
-                onClick={() => handleVisibilityToggle("king")}
-              ></button>
+              ></div>
               <p className="text-zinc-400 ml-2">King</p>
             </div>
             <div className="flex-grow"></div>
@@ -307,14 +275,16 @@ const ObjectSelector = ({ objects, addObject }) => {
         </div>
         <div>
           <div className="flex justify-between items-center bg-neutral-800">
-            <div className="flex items-center ml-2">
-              <button
+            <div
+              className="flex items-center ml-2"
+              onClick={() => handleVisibilityToggle("house")}
+            >
+              <div
                 id="arrowButton"
                 className={`arrow-button ${
                   visibility.house ? "arrow-down" : "arrow-right"
                 }`}
-                onClick={() => handleVisibilityToggle("house")}
-              ></button>
+              ></div>
               <p className="text-zinc-400 ml-2">House</p>
             </div>
             <div className="flex-grow"></div>
@@ -342,14 +312,16 @@ const ObjectSelector = ({ objects, addObject }) => {
         </div>
         <div>
           <div className="flex justify-between items-center bg-neutral-800">
-            <div className="flex items-center ml-2">
-              <button
+            <div
+              className="flex items-center ml-2"
+              onClick={() => handleVisibilityToggle("spaceStation")}
+            >
+              <div
                 id="arrowButton"
                 className={`arrow-button ${
                   visibility.spaceStation ? "arrow-down" : "arrow-right"
                 }`}
-                onClick={() => handleVisibilityToggle("spaceStation")}
-              ></button>
+              ></div>
               <p className="text-zinc-400 ml-2">Space station</p>
             </div>
             <div className="flex-grow"></div>
