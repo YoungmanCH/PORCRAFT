@@ -10,12 +10,11 @@ Title: City Park at Sunset
 
 import { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
-import { useFrame, useThree } from '@react-three/fiber';
 import { a } from '@react-spring/three';
 
 const Park = (props) =>{
   const parkRef = useRef();
-  const parkScene = 'assets/3d/park.glb';
+  const parkScene = '/assets/3d/park.glb';
   const { nodes, materials } = useGLTF(parkScene);
 
   return (

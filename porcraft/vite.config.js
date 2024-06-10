@@ -8,6 +8,7 @@ export default defineConfig({
   build: { minify: false },
   server: {
     host: true,
+    cors: true,
   },
   optimizeDeps: {
     include: ["aws-amplify"],

@@ -10,12 +10,11 @@ Title: Small tree
 
 import { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
-import { useFrame, useThree } from '@react-three/fiber';
 import { a } from '@react-spring/three';
 
 const Yggdrasill = (props) => {
   const yggdrasillRef = useRef();
-  const yggdrasillScene = "assets/3d/small_tree.glb";
+  const yggdrasillScene = "/assets/3d/small_tree.glb";
   const { nodes, materials } = useGLTF(yggdrasillScene);
 
 

@@ -1,58 +1,59 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/no-unknown-property */
 
 import { Canvas } from "@react-three/fiber";
 import { Suspense, useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { OrbitControls } from "@react-three/drei";
 
 import FieldComponents from "../components/Editor/FieldComponents";
 import Loader from "../components/Loader";
 import ObjectComponents from "../components/ObjectComponents";
 import Popup from "../components/Popup";
-
-// eslint-disable-next-line no-unused-vars
-const fetchObjectsData = async (key) => {
-  const getEndpoint = `https://y9x82tppo0.execute-api.ap-northeast-1.amazonaws.com/prod/get?key=json`;
-  // const getEndpoint = `https://y9x82tppo0.execute-api.ap-northeast-1.amazonaws.com/prod/get?key=${key}`;
-
-  // 保存されたデータを取得
-  const fetchResponse = await fetch(getEndpoint, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-
-  if (!fetchResponse.ok) {
-    throw new Error("Network response was not ok");
-  }
-
-  const fetchedData = await fetchResponse.json();
-
-  // JSON文字列をオブジェクトに変換
-  const objects = fetchedData.objects ? JSON.parse(fetchedData.objects) : [];
-  const field = fetchedData.field ? JSON.parse(fetchedData.field) : null;
-
-  return { objects, field };
-};
+import UseDatabase from "../services/database/UseDatabase";
 
 const Preview = () => {
   const [objData, setObjectData] = useState({ objects: [], field: null });
-  const [searchParams, setSearchParams] = useSearchParams();
   const [isPopupVisible, setIsPopupVisible] = useState(false);
   const [popupTitle, setPopupTitle] = useState("");
   const [popupContent, setPopupContent] = useState("");
+  const { id } = useParams();
+
+  const { fetchWorldDatabase } = UseDatabase({
+    objects: objData.objects,
+    field: objData.field,
+  });
 
   useEffect(() => {
-    const key = searchParams.get("key");
-    fetchObjectsData(key).then(setObjectData);
-  }, [objData, searchParams, setSearchParams, setObjectData]);
+    const _handleFetchWorldDatabase = async () => {
+      try {
+        const data = await fetchWorldDatabase(id);
+        if (data) {
+          setObjectData({
+            objects: data.objects ? JSON.parse(data.objects.S) : [],
+            field: data.field ? JSON.parse(data.field.S) : null,
+          });
+        }
+      } catch (error) {
+        console.error("Error fetching world data:", error);
+      }
+    };
+
+    if (id) {
+      _handleFetchWorldDatabase();
+    }
+  }, [id]);
 
   const handleObjectClick = (object) => {
     setPopupTitle(object.popupTitle);
     setPopupContent(object.popupContent);
     setIsPopupVisible((prev) => !prev);
-    console.log('popupTitle:', object.popupTitle, 'popupContent:', popupContent)
+    console.log(
+      "popupTitle:",
+      object.popupTitle,
+      "popupContent:",
+      popupContent
+    );
   };
 
   return (

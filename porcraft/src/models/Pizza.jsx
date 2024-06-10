@@ -10,12 +10,11 @@ Title: Pizza Model
 
 import { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
-import { useFrame, useThree } from '@react-three/fiber';
 import { a } from '@react-spring/three';
 
 const Pizza = (props) => {
   const pizzaRef = useRef();
-  const pizzaScene = 'assets/3d/pizza.glb';
+  const pizzaScene = '/assets/3d/pizza.glb';
   const { nodes, materials } = useGLTF(pizzaScene);
 
   return (

@@ -15,7 +15,7 @@ import { a } from '@react-spring/three';
 
 const Island = (props) => {
   const islandRef = useRef();
-  const islandScene = 'assets/3d/tropical_island.glb';
+  const islandScene = '/assets/3d/tropical_island.glb';
   const { nodes, materials } = useGLTF(islandScene);
   
   return (

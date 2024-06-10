@@ -18,7 +18,7 @@ Porcraft は、ユーザーが 3D オブジェクトを追加し、シーン内�
 
 ## Architecture
 <p align="center">
-    <img src="porcraft/public/porcraft_er_entity.png" width="90%" />
+    <img src="porcraft/public/porcraft_er.png" width="90%" />
 </p>
 
 ## Infrastructure
@@ -29,11 +29,11 @@ Porcraft は、ユーザーが 3D オブジェクトを追加し、シーン内�
 
 ## Features
 
-- ✨ 新規登録/ログイン機能(途中)
+- ✨ 新規登録/ログイン機能
 - ✨ 3Dモデルレンダリング
 - ✨ 3Dモデルエクスポート
-- ✨ 作成したサイトにて公開（途中）
-- ✨ 3Dモデルインポート（途中）
+- ✨ 作成したサイトにて公開
+- ✨ 3Dモデルインポート(開発中)
 
 ## Contributors
 
@@ -92,9 +92,6 @@ npm install
 以下のコマンドで開発サーバーを起動します。
 
 `npm run dev`
-ブラウザで http://localhost:5173 にアクセスして、アプリを確認します。
-
-ビルド
-プロジェクトをビルドするには、以下のコマンドを使用します。
-
-`npm run build`
+<br>
+<br>
+実行後、ブラウザで http://localhost:5173 にアクセスし、アプリを確認します。

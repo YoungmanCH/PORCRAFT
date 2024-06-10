@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+
 import { useState, useEffect } from "react";
 import UseAuth from "../auth/UseAuth";
 import { v4 as uuidv4 } from "uuid";
@@ -101,11 +102,6 @@ const UseDatabase = ({ objects, field, serializeObjects, serializeField }) => {
 
   const fetchWorldDatabase = async (id) => {
     try {
-      await _handleToGetCurrentUser();
-      if (currentUser == null) {
-        console.log("State: User is not sign in.");
-        return;
-      }
       const apiEndpoint = import.meta.env.VITE_APP_GET_WORLD_API_ENDPOINT;
       const queryParams = _getWorldQueryParams(id);
       const url = `${apiEndpoint}?${queryParams}`;
@@ -121,33 +117,10 @@ const UseDatabase = ({ objects, field, serializeObjects, serializeField }) => {
       }
 
       const jsonData = await response.json();
-      console.log("jsonData:", jsonData);
-      const data = jsonData ? JSON.parse(jsonData.body) : null;
-      console.log("data:", data);
-      return data;
+      return jsonData ? JSON.parse(jsonData.body) : null;
     } catch (error) {
       console.log("Error:", error);
     }
-  };
-
-  const exportDatabase = async () => {
-    // try {
-    //   await _handleToGetCurrentUser();
-    //   if (currentUser == null) {
-    //     console.log("State: User is not sign in.");
-    //     return;
-    //   }
-    //   const jsonData = _stringfyToJsonForUpdateWorld();
-    //   const apiEndpoint = import.meta.env.VITE_APP_EXPORT_API_ENDPOINT;
-    //   const response = await _fetchResponse(apiEndpoint, jsonData);
-    //   if (!response.ok) {
-    //     throw new Error("Network response was not ok");
-    //   } else {
-    //     console.log("response:", { response });
-    //   }
-    // } catch (error) {
-    //   console.error("Error:", error);
-    // }
   };
 
   const updateWorldDatabase = async (id) => {
@@ -243,7 +216,6 @@ const UseDatabase = ({ objects, field, serializeObjects, serializeField }) => {
     fetchUserDatabase,
     fetchWorldDatabase,
     createWorldDatabase,
-    exportDatabase,
     updateWorldDatabase,
   };
 };

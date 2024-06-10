@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+
 import UseDatabase from "../../services/database/UseDatabase";
 
 const ExportButton = ({ id, objects, field, serializeObjects, serializeField }) => {
@@ -11,6 +12,8 @@ const ExportButton = ({ id, objects, field, serializeObjects, serializeField }) 
 
   const _handleUpdateWorldDatabase = async () => {
     await updateWorldDatabase(id);
+    const newUrl = `/preview/${id}`;
+    window.open(newUrl, '_blank');
   };
 
   return (
