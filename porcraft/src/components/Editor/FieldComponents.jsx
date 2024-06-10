@@ -11,6 +11,8 @@ import Chess from "../../objects/Chess";
 import Pizza from "../../objects/Pizza";
 import Park from "../../objects/Park";
 import Yggdrasill from "../../objects/Yggdrasill";
+import WinterTerrain from "../../objects/WinterTerrain";
+import AlienPlanet from "../../objects/AlienPlanet";
 
 const FieldComponents = ({ field }) => {
   if (!field) {
@@ -63,6 +65,28 @@ const FieldComponents = ({ field }) => {
           <ambientLight intensity={6.5} />
           <pointLight position={[10, 10, 10]} />
           <Yggdrasill position={position} rotation={rotation} scale={scale} />
+        </Suspense>
+      );
+      break;
+    case "Winter Terrain":
+      component = (
+        <Suspense fallback={<Loader />}>
+          <ambientLight intensity={0.5} />
+          <pointLight position={[10, 10, 10]} />
+          <WinterTerrain
+            position={position}
+            rotation={rotation}
+            scale={scale}
+          />
+        </Suspense>
+      );
+      break;
+    case "Alien Planet":
+      component = (
+        <Suspense fallback={<Loader />}>
+          <ambientLight intensity={0.5} />
+          <pointLight position={[10, 10, 10]} />
+          <AlienPlanet position={position} rotation={rotation} scale={scale} />
         </Suspense>
       );
       break;

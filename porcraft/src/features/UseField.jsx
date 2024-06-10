@@ -5,6 +5,8 @@ import adjustChessForScreenSize from "../features/AdjustScreenSize/AdjustChessFo
 import adjustParkForScreenSize from "../features/AdjustScreenSize/AdjustParkForScreen";
 import adjustPizzaForScreenSize from "../features/AdjustScreenSize/AdjustPizzaForScreen";
 import adjustYggdrasillForScreenSize from "../features/AdjustScreenSize/AdjustYggdrasillForScreen";
+import adjustWinterTerrainForScreenSize from "../features/AdjustScreenSize/AdjustWinterTerrainForScreen";
+import adjustAlienPlanetForScreenSize from "../features/AdjustScreenSize/AdjustAlienPlanetForScreen";
 
 const UseField = () => {
   const [field, setField] = useState(null);
@@ -30,6 +32,12 @@ const UseField = () => {
       case "Tree Island":
         [position, rotation, scale] = adjustYggdrasillForScreenSize();
         break;
+      case "Winter Terrain":
+        [position, rotation, scale] = adjustWinterTerrainForScreenSize();
+        break;
+      case "Alien Planet":
+        [position, rotation, scale] = adjustAlienPlanetForScreenSize();
+        break;
       default:
         position = [0, 0, 0];
         rotation = [0, 0, 0];
@@ -50,7 +58,7 @@ const UseField = () => {
   };
 
   const serializeField = (selectedField) => {
-    console.log('selectedField:', selectedField);
+    console.log("selectedField:", selectedField);
     if (selectedField) {
       const serializedField = {
         id: selectedField.id,

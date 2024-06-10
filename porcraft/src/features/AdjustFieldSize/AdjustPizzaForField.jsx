@@ -1,6 +1,6 @@
 const adjustPizzaForFieldSize = () => {
     let screenScale = null;
-    let screenPosition = [0, -4, -4];
+    let screenPosition = [0, -4, 0];
   
     if (window.innerWidth < 150) {
       screenScale = [25, 25, 25];

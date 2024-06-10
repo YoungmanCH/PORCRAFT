@@ -12,7 +12,9 @@ import adjustIslandForFieldSize from "../features/AdjustFieldSize/AdjustIslandFo
 import adjustChessForFieldSize from "../features/AdjustFieldSize/AdjustChessForField";
 import adjustPizzaForFieldSize from "../features/AdjustFieldSize/AdjustPizzaForField";
 import adjustParkForFieldSize from "../features/AdjustFieldSize/AdjustParkForField";
-import adjustYggdrasillForFieldSize from "../features/AdjustFieldSize/AdjustYggdrasill";
+import adjustYggdrasillForFieldSize from "../features/AdjustFieldSize/AdjustYggdrasillForField";
+import adjustWinterTerrainForFieldSize from "../features/AdjustFieldSize/AdjustWinterTerrainForField";
+import adjustWinterAlienPlanetForFieldSize from "../features/AdjustFieldSize/AdjustAlienPlanetForField";
 
 import UseField from "../features/UseField";
 
@@ -23,6 +25,8 @@ import Chess from "../objects/Chess";
 import Pizza from "../objects/Pizza";
 import Park from "../objects/Park";
 import Yggdrasill from "../objects/Yggdrasill";
+import WinterTerrain from "../objects/WinterTerrain";
+import AlienPlanet from "../objects/AlienPlanet";
 
 const Field = () => {
   const [selectedField, setSelectedField] = useState([]);
@@ -35,6 +39,10 @@ const Field = () => {
   const [pizzaScale, pizzaPosition] = adjustPizzaForFieldSize();
   const [parkScale, parkPosition] = adjustParkForFieldSize();
   const [YggdrasillScale, YggdrasillPosition] = adjustYggdrasillForFieldSize();
+  const [WinterTerrainScale, WinterTerrainPosition] =
+    adjustWinterTerrainForFieldSize();
+  const [AlienPlanetScale, AlienPlanetPosition] =
+    adjustWinterAlienPlanetForFieldSize();
 
   const isLinkVisible = selectedField.length === 1;
 
@@ -81,7 +89,7 @@ const Field = () => {
   };
 
   return (
-    <section className="w-full h-screen overflow-hidden bg-gradient-to-r from-violet-950 via-indigo-900 to-blue-950 text-white">
+    <section className="w-full h-screen overflow-y-auto bg-gradient-to-r from-violet-950 via-indigo-900 to-blue-950 text-white">
       <p className="text-6xl font-serif mt-6 ml-14 text-center">
         Choose View Of The World
       </p>
@@ -206,8 +214,62 @@ const Field = () => {
             <OrbitControls />
           </Canvas>
         </div>
+
+        {/* 6つ目のセクション */}
+        <div className="flex flex-col items-center justify-center mx-2 my-4 bg-slate-900 rounded-xl p-4 shadow-lg">
+          <div className="flex items-center">
+            <input
+              type="checkbox"
+              className="m-2"
+              onChange={() =>
+                CheckboxClick("Winter Terrain", "/assets/3d/winter_terrain.glb")
+              }
+              checked={selectedField.includes("Winter Terrain")}
+            />
+            <div className="m-2">Winter Terrain</div>
+          </div>
+          <Canvas className="canvas-container">
+            <Suspense fallback={<Loader />}>
+              <directionalLight position={[-1, 1, 1]} intensity={2} />
+              <ambientLight intensity={3} />
+              <hemisphereLight intensity={5} />
+              <WinterTerrain
+                scale={WinterTerrainScale}
+                position={WinterTerrainPosition}
+              />
+            </Suspense>
+            <OrbitControls />
+          </Canvas>
+        </div>
+
+        {/* 7つ目のセクション */}
+        <div className="flex flex-col items-center justify-center mx-2 my-4 bg-slate-900 rounded-xl p-4 shadow-lg">
+          <div className="flex items-center">
+            <input
+              type="checkbox"
+              className="m-2"
+              onChange={() =>
+                CheckboxClick("Alien Planet", "/assets/3d/alien_planet.glb")
+              }
+              checked={selectedField.includes("Alien Planet")}
+            />
+            <div className="m-2">Alien Planet</div>
+          </div>
+          <Canvas className="canvas-container">
+            <Suspense fallback={<Loader />}>
+              <directionalLight position={[-1, 1, 1]} intensity={2} />
+              <ambientLight intensity={3} />
+              <hemisphereLight intensity={5} />
+              <AlienPlanet
+                scale={AlienPlanetScale}
+                position={AlienPlanetPosition}
+              />
+            </Suspense>
+            <OrbitControls />
+          </Canvas>
+        </div>
       </div>
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center mb-8">
         {isLinkVisible && (
           <div className="flex">
             <button
