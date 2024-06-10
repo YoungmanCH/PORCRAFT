@@ -18,11 +18,11 @@ import UseField from "../features/UseField";
 
 import UseDatabase from "../services/database/UseDatabase";
 
-import Island from "../models/Island";
-import Chess from "../models/Chess";
-import Pizza from "../models/Pizza";
-import Park from "../models/Park";
-import Yggdrasill from "../models/Yggdrasill";
+import Island from "../objects/Island";
+import Chess from "../objects/Chess";
+import Pizza from "../objects/Pizza";
+import Park from "../objects/Park";
+import Yggdrasill from "../objects/Yggdrasill";
 
 const Field = () => {
   const [selectedField, setSelectedField] = useState([]);
