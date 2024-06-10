@@ -13,7 +13,7 @@ import UseField from "../features/UseField";
 
 const Editor = () => {
   const location = useLocation();
-  const { id, fieldName, fieldPath } = location.state || {};
+  const { receiveObjects, userId, worldId, fieldName, fieldPath } = location.state || {};
 
   const [
     objects,
@@ -24,6 +24,7 @@ const Editor = () => {
     setPopupTitle,
     setPopupContent,
     removeObject,
+    initializeObjects,
     serializeObjects,
   ] = UseAddedObjects();
   
@@ -31,6 +32,12 @@ const Editor = () => {
 
   useEffect(() => {
     selectField(fieldName, fieldPath);
+
+    if (receiveObjects) {
+      initializeObjects(receiveObjects);
+    } else {
+      initializeObjects([]);
+    }
   }, []);
 
   return (
@@ -40,7 +47,8 @@ const Editor = () => {
 
       {/* Exportボタン */}
       <ExportButton
-        id={id}
+        userId={userId}
+        worldId={worldId}
         objects={objects}
         field={field}
         serializeObjects={serializeObjects}

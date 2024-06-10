@@ -53,14 +53,14 @@ const Field = () => {
     serializeField,
   });
 
-  const CheckboxClick = (selectedFieldName, modelPath) => {
+  const CheckboxClick = (selectedFieldName, fieldPath) => {
     if (selectedField.includes(selectedFieldName)) {
       setSelectedField(
         selectedField.filter((fieldName) => fieldName !== selectedFieldName)
       );
     } else {
       setSelectedField([...selectedField, selectedFieldName]);
-      setFieldPath(modelPath);
+      setFieldPath(fieldPath);
     }
   };
 
@@ -72,16 +72,19 @@ const Field = () => {
 
   const _handleCreateWorldDatabase = async () => {
     setLoading(true);
-    const id = await createWorldDatabase(field);
-    await fetchWorldDatabase(id);
-    _handleNavigate(id);
+    const worldData = await createWorldDatabase(field);
+    const userId = worldData[0];
+    const worldId = worldData[1];
+    await fetchWorldDatabase(userId, worldId);
+    _handleNavigate(userId, worldId);
     setLoading(false);
   };
 
-  const _handleNavigate = (id) => {
+  const _handleNavigate = (userId, worldId) => {
     navigate("/editor", {
       state: {
-        id: id,
+        userId: userId,
+        worldId: worldId,
         fieldName: selectedField[0],
         fieldPath: fieldPath,
       },

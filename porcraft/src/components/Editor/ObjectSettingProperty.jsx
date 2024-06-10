@@ -136,14 +136,16 @@ const ObjectSettingProperty = ({
           ✕
         </button>
       </div>
-      <div className="flex items-center ml-2">
-        <button
+      <div
+        className="flex items-center ml-2"
+        onClick={() => handleVisibilityToggle("transform")}
+      >
+        <div
           id="arrowButton"
           className={`arrow-button ${
             visibility.transform ? "arrow-down" : "arrow-right"
           }`}
-          onClick={() => handleVisibilityToggle("transform")}
-        ></button>
+        ></div>
         <div className="text-zinc-400 ml-2">Transform</div>
       </div>
       {visibility.transform && (
@@ -285,14 +287,16 @@ const ObjectSettingProperty = ({
         </div>
       )}
 
-      <div className="flex items-center ml-2">
-        <button
+      <div
+        className="flex items-center ml-2"
+        onClick={() => handleVisibilityToggle("popup")}
+      >
+        <div
           id="arrowButton"
           className={`arrow-button ${
             visibility.popup ? "arrow-down" : "arrow-right"
           }`}
-          onClick={() => handleVisibilityToggle("popup")}
-        ></button>
+        ></div>
         <div className="text-zinc-400 ml-2">Popup</div>
       </div>
       {visibility.popup && (

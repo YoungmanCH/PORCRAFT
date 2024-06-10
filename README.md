@@ -18,7 +18,7 @@ Porcraft は、ユーザーが 3D オブジェクトを追加し、シーン内�
 
 ## Architecture
 <p align="center">
-    <img src="porcraft/public/porcraft_er.png" width="90%" />
+    <img src="porcraft/public/porcraft_er_entity.png" width="90%" />
 </p>
 
 ## Infrastructure
@@ -29,11 +29,12 @@ Porcraft は、ユーザーが 3D オブジェクトを追加し、シーン内�
 
 ## Features
 
-- ✨ 新規登録/ログイン機能
+- ✨ アカウント登録/ログイン機能
 - ✨ 3Dモデルレンダリング
 - ✨ 3Dモデルエクスポート
 - ✨ 作成したサイトにて公開
 - ✨ 3Dモデルインポート(開発中)
+- ✨ AIによる生成モデルインポート(開発中)
 
 ## Contributors
 

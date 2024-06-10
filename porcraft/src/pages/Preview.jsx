@@ -10,6 +10,7 @@ import FieldComponents from "../components/Editor/FieldComponents";
 import Loader from "../components/Loader";
 import ObjectComponents from "../components/ObjectComponents";
 import Popup from "../components/Popup";
+import UseAuth from "../services/auth/UseAuth";
 import UseDatabase from "../services/database/UseDatabase";
 
 const Preview = () => {
@@ -17,8 +18,9 @@ const Preview = () => {
   const [isPopupVisible, setIsPopupVisible] = useState(false);
   const [popupTitle, setPopupTitle] = useState("");
   const [popupContent, setPopupContent] = useState("");
-  const { id } = useParams();
+  const { worldId } = useParams();
 
+  const [handleToGetCurrentUser] = UseAuth();
   const { fetchWorldDatabase } = UseDatabase({
     objects: objData.objects,
     field: objData.field,
@@ -27,7 +29,8 @@ const Preview = () => {
   useEffect(() => {
     const _handleFetchWorldDatabase = async () => {
       try {
-        const data = await fetchWorldDatabase(id);
+        const userId = await _handleFetchUserId();
+        const data = await fetchWorldDatabase(userId, worldId);
         if (data) {
           setObjectData({
             objects: data.objects ? JSON.parse(data.objects.S) : [],
@@ -39,21 +42,20 @@ const Preview = () => {
       }
     };
 
-    if (id) {
+    if (worldId) {
       _handleFetchWorldDatabase();
     }
-  }, [id]);
+  }, [worldId]);
+
+  const _handleFetchUserId = async () => {
+    const user = await handleToGetCurrentUser();
+    return user.userId;
+  };
 
   const handleObjectClick = (object) => {
     setPopupTitle(object.popupTitle);
     setPopupContent(object.popupContent);
     setIsPopupVisible((prev) => !prev);
-    console.log(
-      "popupTitle:",
-      object.popupTitle,
-      "popupContent:",
-      popupContent
-    );
   };
 
   return (

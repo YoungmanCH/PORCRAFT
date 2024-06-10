@@ -11,7 +11,7 @@ import adjustAlienPlanetForScreenSize from "../features/AdjustScreenSize/AdjustA
 const UseField = () => {
   const [field, setField] = useState(null);
 
-  const selectField = (name, modelPath) => {
+  const selectField = (name, fieldPath) => {
     const id = Math.random().toString(36).substring(2, 11);
 
     let position, rotation, scale;
@@ -48,7 +48,7 @@ const UseField = () => {
     const newField = {
       id,
       name,
-      modelPath,
+      fieldPath,
       position,
       rotation,
       scale,
@@ -58,11 +58,11 @@ const UseField = () => {
   };
 
   const serializeField = (selectedField) => {
-    console.log("selectedField:", selectedField);
     if (selectedField) {
       const serializedField = {
         id: selectedField.id,
         name: selectedField.name,
+        path: selectedField.fieldPath,
         position: selectedField.position,
         rotation: selectedField.rotation,
         scale: selectedField.scale,

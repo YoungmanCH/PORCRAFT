@@ -1,8 +1,9 @@
 /* eslint-disable react/prop-types */
 
+import { useState } from "react";
 import UseDatabase from "../../services/database/UseDatabase";
 
-const ExportButton = ({ id, objects, field, serializeObjects, serializeField }) => {
+const ExportButton = ({ userId, worldId, objects, field, serializeObjects, serializeField }) => {
   const { updateWorldDatabase } = UseDatabase({
     objects,
     field,
@@ -10,20 +11,31 @@ const ExportButton = ({ id, objects, field, serializeObjects, serializeField }) 
     serializeField,
   });
 
+  const [loading, setLoading] = useState(false);
+
   const _handleUpdateWorldDatabase = async () => {
-    await updateWorldDatabase(id);
-    const newUrl = `/preview/${id}`;
-    window.open(newUrl, '_blank');
+    setLoading(true);
+    try {
+      await updateWorldDatabase(userId, worldId);
+      const newUrl = `/preview/${worldId}`;
+      window.open(newUrl, '_blank');
+    } catch (error) {
+      console.error("Error updating world database:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <button
-      className="absolute bottom-3 right-3 trans-btn z-10"
+      className={`absolute bottom-3 right-3 trans-btn z-10 ${loading ? 'cursor-not-allowed opacity-50' : ''}`}
       onClick={_handleUpdateWorldDatabase}
+      disabled={loading}
     >
-      Export
+      {loading ? "Loading..." : "Export"}
     </button>
   );
 };
 
 export default ExportButton;
+
