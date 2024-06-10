@@ -4,27 +4,9 @@ import { useNavigate } from "react-router-dom";
 import UseAuth from "../services/auth/UseAuth";
 
 const Home = () => {
-  const [currentImage, setCurrentImage] = useState(0);
   const [currentUser, setUser] = useState();
   const navigate = useNavigate();
   const [handleToGetCurrentUser] = UseAuth();
-
-  const images = [
-    "./src/images/land1.png",
-    "./src/images/colorful.jpg",
-    "./src/images/future.jpg",
-  ];
-  const calculateBGPosition = (index) => {
-    return `${index + 100}% 50%`;
-  };
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImage((prevImage) => (prevImage + 1) % images.length);
-    }, 2000);
-
-    return () => clearInterval(interval);
-  }, []);
 
   useEffect(() => {
     _handleToGetCurrentUser();
@@ -49,17 +31,27 @@ const Home = () => {
       <div
         style={{
           width: "100%",
-          height: "56.25vw",
-          backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),url(${images[currentImage]})`,
+          height: "100vh",
+          display: "flex",
+          backgroundImage: `url("assets/images/planet-astronaut.jpg")`,
           backgroundSize: "cover",
-          backgroundPosition: calculateBGPosition(currentImage),
           transition: "background-position 1s ease-in-out",
         }}
       >
         <div className="flex items-center justify-center h-full ">
           <div className="start ml-20">
-            <h1 className="text-7xl font-serif tracking-wider">PORCRAFT</h1>
-            <p className="start-text ml-10 font-thin font-sans">
+            <h1
+              className="text-7xl font-serif tracking-wider"
+              style={{
+                background:
+                  "linear-gradient(to right, #0ea5e9, #5eead4, #ebf8e1, white)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+              }}
+            >
+              PORCRAFT
+            </h1>
+            <p className="ml-10 font-medium font-sans text-2xl text-teal-400">
               Create your own portfolio<br></br>
               with 3D objects!
             </p>
@@ -67,6 +59,9 @@ const Home = () => {
               <div
                 onClick={handleNavigate}
                 className="btn pading-all-20px text-3xl rounded-3xl"
+                style={{
+                  background: "linear-gradient(to right, #1d4ed8, #0284c7, #5eead4)",
+                }}
               >
                 Get started !
               </div>

@@ -27,6 +27,7 @@ import Yggdrasill from "../models/Yggdrasill";
 const Field = () => {
   const [selectedField, setSelectedField] = useState([]);
   const [fieldPath, setFieldPath] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const [islandScale, islandPosition] = adjustIslandForFieldSize();
@@ -62,9 +63,11 @@ const Field = () => {
   }, [selectedField, fieldPath]);
 
   const _handleCreateWorldDatabase = async () => {
+    setLoading(true);
     const id = await createWorldDatabase(field);
     await fetchWorldDatabase(id);
     _handleNavigate(id);
+    setLoading(false);
   };
 
   const _handleNavigate = (id) => {
@@ -78,15 +81,15 @@ const Field = () => {
   };
 
   return (
-    <section className="w-full h-screen overflow-hidden bg-white">
-      <p className="text-6xl font-serif mt-10 ml-14">
+    <section className="w-full h-screen overflow-hidden bg-gradient-to-r from-violet-950 via-indigo-900 to-blue-950 text-white">
+      <p className="text-6xl font-serif mt-6 ml-14 text-center">
         Choose View Of The World
       </p>
-      <div className="w-full h-20"></div>
-      <div className="grid grid-cols-3 gap-4 place-content-stretch h-">
+      <div className="w-full h-8"></div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-6">
         {/* 1つ目のセクション */}
-        <div className="flex flex-col items-center justify-center mx-2 my-4">
-          <div className="flex">
+        <div className="flex flex-col items-center justify-center mx-2 my-4 bg-slate-900 rounded-xl p-4 shadow-lg">
+          <div className="flex items-center">
             <input
               type="checkbox"
               className="m-2"
@@ -105,7 +108,6 @@ const Field = () => {
               <directionalLight position={[-1, 1, 1]} intensity={2} />
               <ambientLight intensity={3} />
               <hemisphereLight intensity={5} />
-
               <Island scale={islandScale} position={islandPosition} />
             </Suspense>
             <OrbitControls />
@@ -113,8 +115,8 @@ const Field = () => {
         </div>
 
         {/* 2つ目のセクション */}
-        <div className="flex flex-col items-center justify-center mx-2 my-4">
-          <div className="flex">
+        <div className="flex flex-col items-center justify-center mx-2 my-4 bg-slate-900 rounded-xl p-4 shadow-lg">
+          <div className="flex items-center">
             <input
               type="checkbox"
               className="m-2"
@@ -128,7 +130,6 @@ const Field = () => {
               <directionalLight position={[-1, 1, 1]} intensity={2} />
               <ambientLight intensity={3} />
               <hemisphereLight intensity={5} />
-
               <Chess scale={chessScale} position={chessPosition} />
             </Suspense>
             <OrbitControls />
@@ -136,8 +137,8 @@ const Field = () => {
         </div>
 
         {/* 3つ目のセクション */}
-        <div className="flex flex-col items-center justify-center mx-2 my-4">
-          <div className="flex">
+        <div className="flex flex-col items-center justify-center mx-2 my-4 bg-slate-900 rounded-xl p-4 shadow-lg">
+          <div className="flex items-center">
             <input
               type="checkbox"
               className="m-2"
@@ -151,7 +152,6 @@ const Field = () => {
               <directionalLight position={[-1, 1, 1]} intensity={2} />
               <ambientLight intensity={3} />
               <hemisphereLight intensity={5} />
-
               <Pizza scale={pizzaScale} position={pizzaPosition} />
             </Suspense>
             <OrbitControls />
@@ -159,8 +159,8 @@ const Field = () => {
         </div>
 
         {/* 4つ目のセクション */}
-        <div className="flex flex-col items-center justify-center mx-2 my-4">
-          <div className="flex">
+        <div className="flex flex-col items-center justify-center mx-2 my-4 bg-slate-900 rounded-xl p-4 shadow-lg">
+          <div className="flex items-center">
             <input
               type="checkbox"
               className="m-2"
@@ -174,7 +174,6 @@ const Field = () => {
               <directionalLight position={[-1, 1, 1]} intensity={2} />
               <ambientLight intensity={3} />
               <hemisphereLight intensity={5} />
-
               <Park scale={parkScale} position={parkPosition} />
             </Suspense>
             <OrbitControls />
@@ -182,8 +181,8 @@ const Field = () => {
         </div>
 
         {/* 5つ目のセクション */}
-        <div className="flex flex-col items-center justify-center mx-2 my-4">
-          <div className="flex">
+        <div className="flex flex-col items-center justify-center mx-2 my-4 bg-slate-900 rounded-xl p-4 shadow-lg">
+          <div className="flex items-center">
             <input
               type="checkbox"
               className="m-2"
@@ -199,7 +198,6 @@ const Field = () => {
               <directionalLight position={[-1, 1, 1]} intensity={2} />
               <ambientLight intensity={3} />
               <hemisphereLight intensity={5} />
-
               <Yggdrasill
                 scale={YggdrasillScale}
                 position={YggdrasillPosition}
@@ -209,20 +207,24 @@ const Field = () => {
           </Canvas>
         </div>
       </div>
-      <hr />
       <div className="flex flex-col items-center">
         {isLinkVisible && (
           <div className="flex">
             <button
-              className="btn rounded-xl mt-10 text-3xl"
+              className={`btn bg-blue-600 hover:bg-blue-700 text-white rounded-xl mt-10 text-3xl px-6 py-2 ${
+                loading ? "cursor-not-allowed opacity-50" : ""
+              }`}
+              style={{
+                background:
+                  "linear-gradient(to right, #1d4ed8, #0284c7, #14b8a6)",
+              }}
               onClick={_handleCreateWorldDatabase}
+              disabled={loading}
             >
-              Create new world !
+              {loading ? "Creating..." : "Create new world!"}
             </button>
           </div>
         )}
-
-        <hr />
       </div>
     </section>
   );
