@@ -7,5 +7,6 @@ import Field from './Field';
 import Home from './Home';
 import WorldLibrary from './WorldLibrary';
 import Preview from './Preview';
+import Mode from './Mode';
 
-export { Home, About, SignUp, SignIn, ConfirmSignUp, Editor, Field, WorldLibrary, Preview };
+export { Home, About, SignUp, SignIn, ConfirmSignUp, Editor, Field, WorldLibrary, Preview, Mode };

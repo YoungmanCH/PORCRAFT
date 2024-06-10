@@ -17,6 +17,7 @@ import {
   SignUp,
   SignIn,
   ConfirmSignUp,
+  Mode,
 } from "./pages";
 
 // LocationProvider コンポーネントを作成して、location を子コンポーネントで利用可能にします。
@@ -44,6 +45,7 @@ const App = () => {
               <Route path="/field" element={<Field />} />
               <Route path="/preview/:id" element={<Preview />} />
               <Route path="/worldLibrary" element={<WorldLibrary />} />
+              <Route path="/mode" element={<Mode />} />
             </Routes>
           </main>
         )}

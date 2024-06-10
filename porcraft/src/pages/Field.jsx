@@ -90,10 +90,10 @@ const Field = () => {
 
   return (
     <section className="w-full h-screen overflow-y-auto bg-gradient-to-r from-violet-950 via-indigo-900 to-blue-950 text-white">
-      <p className="text-6xl font-serif mt-6 ml-14 text-center">
-        Choose View Of The World
+      <p className="text-6xl font-sans font-bold mt-10 ml-14 text-center">
+        Select view of the world
       </p>
-      <div className="w-full h-8"></div>
+      <div className="w-full h-10"></div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-6">
         {/* 1つ目のセクション */}
         <div className="flex flex-col items-center justify-center mx-2 my-4 bg-slate-900 rounded-xl p-4 shadow-lg">

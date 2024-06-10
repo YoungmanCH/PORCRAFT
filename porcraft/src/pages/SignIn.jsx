@@ -31,7 +31,7 @@ const SignIn = () => {
   };
 
   const _handleNavigate = () => {
-    navigate("/field");
+    navigate("/mode");
   };
 
   return (

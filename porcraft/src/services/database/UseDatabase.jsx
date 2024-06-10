@@ -122,6 +122,31 @@ const UseDatabase = ({ objects, field, serializeObjects, serializeField }) => {
       console.log("Error:", error);
     }
   };
+  const fetchAllWorldDatabaseWithUserId = async (userId) => {
+    try {
+      const apiEndpoint = import.meta.env.VITE_APP_GET_ALL_WORLD_WITH_USER_ID_API_ENDPOINT;
+      const queryParams = _getWorldQueryParams(userId);
+      const url = `${apiEndpoint}?${queryParams}`;
+      const response = await fetch(url, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const jsonData = await response.json();
+      console.log('jsonData:', jsonData);
+      const data = jsonData ? JSON.parse(jsonData.body) : null;
+      console.log('data:', data);
+      return data;
+    } catch (error) {
+      console.log("Error:", error);
+    }
+  };
 
   const updateWorldDatabase = async (id) => {
     try {
@@ -215,6 +240,7 @@ const UseDatabase = ({ objects, field, serializeObjects, serializeField }) => {
     createUserDatabase,
     fetchUserDatabase,
     fetchWorldDatabase,
+    fetchAllWorldDatabaseWithUserId,
     createWorldDatabase,
     updateWorldDatabase,
   };
