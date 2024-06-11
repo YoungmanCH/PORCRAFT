@@ -9,6 +9,7 @@ export default defineConfig({
   server: {
     host: true,
     cors: true,
+    overlay: false,
   },
   optimizeDeps: {
     include: ["aws-amplify"],
