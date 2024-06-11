@@ -5,7 +5,7 @@
     <img src="porcraft/public/react-icon.png" width="30">
 </p>
 <p align="center">
-  <img src="porcraft/public/assets/images/planet-earth-background.jpg" width="500" />
+  <img src="porcraft/public/preview_image.png" width="500" />
 </p>
 
 Porcraftは、驚異的な3Dポートフォリオを即座に作成できる革新的なウェブアプリケーションです。従来の2Dポートフォリオとは異なり、Porcraftを使用すると、自分やチームの紹介を視覚的に魅力的な方法で表現することができます。

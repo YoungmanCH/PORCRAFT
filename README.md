@@ -1,7 +1,7 @@
 <h1 align="center">Porcraft✨</h1>
 
 <p align="center">
-  <img src="porcraft/public/assets/images/planet-earth-background.jpg" width="500" />
+  <img src="porcraft/public/preview_image.png" width="500" />
 </p>
 
 Porcraft is a revolutionary web application that allows you to create stunning 3D portfolios instantly. Unlike traditional 2D portfolios, Porcraft enables you to express your identity and introduce yourself or your team in a visually immersive way.
