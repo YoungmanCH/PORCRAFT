@@ -20,7 +20,7 @@ const Preview = () => {
   const [popupContent, setPopupContent] = useState("");
   const { worldId } = useParams();
 
-  const [handleToGetCurrentUser] = UseAuth();
+  const [getAuthenticatedUser] = UseAuth();
   const { fetchWorldDatabase } = UseDatabase({
     objects: objData.objects,
     field: objData.field,
@@ -48,8 +48,8 @@ const Preview = () => {
   }, [worldId]);
 
   const _handleFetchUserId = async () => {
-    const user = await handleToGetCurrentUser();
-    return user.userId;
+    const user = await getAuthenticatedUser();
+    return user.username;
   };
 
   const handleObjectClick = (object) => {

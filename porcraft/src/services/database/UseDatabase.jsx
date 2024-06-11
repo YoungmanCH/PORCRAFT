@@ -6,21 +6,16 @@ import { v4 as uuidv4 } from "uuid";
 
 const UseDatabase = ({ objects, field, serializeObjects, serializeField }) => {
   const [currentUser, setUser] = useState();
-  const [handleToGetCurrentUser] = UseAuth();
+  const [getAuthenticatedUser] = UseAuth();
 
   useEffect(() => {
-    _handleToGetCurrentUser();
+    _handleToGetAuthenticatedUser();
   }, []);
 
-  const createUserDatabase = async () => {
+  const createUserDatabase = async (user) => {
     try {
-      await _handleToGetCurrentUser();
-      if (currentUser == null) {
-        console.log("State: User is not sign in.");
-        return;
-      }
       const apiEndpoint = import.meta.env.VITE_APP_CREATE_USER_API_ENDPOINT;
-      const jsonData = _stringfyToJsonForCreateUser();
+      const jsonData = _stringfyToJsonForCreateUser(user);
 
       const response = await fetch(apiEndpoint, {
         method: "POST",
@@ -42,7 +37,7 @@ const UseDatabase = ({ objects, field, serializeObjects, serializeField }) => {
 
   const fetchUserDatabase = async () => {
     try {
-      await _handleToGetCurrentUser();
+      await _handleToGetAuthenticatedUser();
       if (currentUser == null) {
         console.log("State: User is not sign in.");
         return;
@@ -71,13 +66,14 @@ const UseDatabase = ({ objects, field, serializeObjects, serializeField }) => {
 
   const createWorldDatabase = async (selectedField) => {
     try {
-      await _handleToGetCurrentUser();
+      await _handleToGetAuthenticatedUser();
       if (currentUser == null) {
         console.log("State: User is not sign in.");
         return;
       }
       const apiEndpoint = import.meta.env.VITE_APP_CREATE_WORLD_API_ENDPOINT;
       const userDatabase = await fetchUserDatabase();
+      console.log("userDatabase:", userDatabase);
       const userId = userDatabase.id.S;
       const worldId = uuidv4();
       const jsonData = _stringfyToJsonForCreateWorld(
@@ -147,7 +143,7 @@ const UseDatabase = ({ objects, field, serializeObjects, serializeField }) => {
 
   const updateWorldDatabase = async (userId, worldId) => {
     try {
-      await _handleToGetCurrentUser();
+      await _handleToGetAuthenticatedUser();
       if (currentUser == null) {
         console.log("State: User is not sign in.");
         return;
@@ -166,21 +162,22 @@ const UseDatabase = ({ objects, field, serializeObjects, serializeField }) => {
     }
   };
 
-  const _handleToGetCurrentUser = async () => {
-    const user = await handleToGetCurrentUser();
+  const _handleToGetAuthenticatedUser = async () => {
+    const user = await getAuthenticatedUser();
     setUser(user);
   };
 
-  const _stringfyToJsonForCreateUser = () => {
+  const _stringfyToJsonForCreateUser = (user) => {
+    // TODO: modified name.
     return JSON.stringify({
-      userId: currentUser.userId,
-      email: currentUser.signInDetails.loginId,
-      name: currentUser.name ? currentUser.name : currentUser.userId,
+      userId: user.username,
+      email: user.session.signInDetails.loginId,
+      name: user.name ? user.name : user.username,
     });
   };
 
   const _getQueryParams = () => {
-    return new URLSearchParams({ userId: currentUser.userId }).toString();
+    return new URLSearchParams({ userId: currentUser.username }).toString();
   };
 
   const _getWorldQueryParams = (userId, worldId) => {

@@ -1,17 +1,22 @@
-import { getCurrentUser } from "@aws-amplify/auth";
+import { fetchAuthSession, getCurrentUser } from "aws-amplify/auth";
 
 const UseAuth = () => {
-  const handleToGetCurrentUser = async () => {
+  const getAuthenticatedUser = async () => {
     try {
-      const user =  await getCurrentUser();
-      return user;
+      const { username, signInDetails } = await getCurrentUser();
+      const { tokens: session } = await fetchAuthSession();
+      return {
+        username,
+        session,
+        authenticationFlowType: signInDetails.authFlowType,
+      };
     } catch (error) {
-      console.log("error:", error.message);
+      console.log("Failed to getting authenticated user:", error.message);
       return null;
     }
   };
 
-  return [handleToGetCurrentUser];
+  return [getAuthenticatedUser];
 };
 
 export default UseAuth;

@@ -2,12 +2,19 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { signIn } from "@aws-amplify/auth";
 
+import UseAuth from "../services/auth/UseAuth";
+import UseDatabase from "../services/database/UseDatabase";
+
 const SignIn = () => {
   // username is email.
   const [username, setEmail] = useState("");
 
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
+
+  const [getAuthenticatedUser] = UseAuth();
+  const { fetchUserDatabase, createUserDatabase } = UseDatabase({});
+
   const navigate = useNavigate();
 
   const handleSetEmail = (e) => {
@@ -24,9 +31,46 @@ const SignIn = () => {
         username,
         password,
       });
+      const user = await _handleToGetAuthenticatedUser();
+      if (user == null) {
+        console.log("State: User is not sign in.");
+        return;
+      }
+
+      const userDatabase = await _handleFetchUserDatabase();
+      if (userDatabase == null) {
+        await _handleCreateUserDatabase(user);
+      }
+
       _handleNavigate();
     } catch (error) {
       setMessage(`Error signing up:, ${error.message}`);
+    }
+  };
+
+  const _handleToGetAuthenticatedUser = async () => {
+    try {
+      const user = await getAuthenticatedUser();
+      return user;
+    } catch (error) {
+      console.log("Error: failed to get current user.", error);
+      return null;
+    }
+  };
+
+  const _handleFetchUserDatabase = async () => {
+    try {
+      return await fetchUserDatabase();
+    } catch (error) {
+      console.error("Error creating user database:", error);
+    }
+  };
+
+  const _handleCreateUserDatabase = async (user) => {
+    try {
+      await createUserDatabase(user);
+    } catch (error) {
+      console.error("Error creating user database:", error);
     }
   };
 
