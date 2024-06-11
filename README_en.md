@@ -110,3 +110,14 @@ Clone the repository and install dependencies:
 git clone https://github.com/YoungmanCH/PORCRAFT.git
 cd porcraft
 npm install
+```
+
+<br>
+
+Start the development server:
+
+```bash
+npm run dev
+```
+
+After running the above command, open your browser and navigate to http://localhost:5173 to see the application in action.

@@ -111,3 +111,13 @@ Porcraftは、一つのアプリではなく、クリエイティビティと技
 git clone https://github.com/YoungmanCH/PORCRAFT.git
 cd porcraft
 npm install
+```
+
+<br>
+
+開発サーバーを起動します：
+```bash
+npm run dev
+```
+
+上記のコマンドを実行した後、ブラウザで http://localhost:5173 にアクセスして、アプリケーションを確認します。
