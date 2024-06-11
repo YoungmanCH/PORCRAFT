@@ -9,7 +9,7 @@ const WorldLibrary = () => {
   const [selectedWorld, setSelectedWorld] = useState(null);
   const [worlds, setWorlds] = useState([]);
   const navigate = useNavigate();
-  const [handleToGetCurrentUser] = UseAuth();
+  const [getAuthenticatedUser] = UseAuth();
   const { fetchAllWorldDatabaseWithUserId } = UseDatabase({});
 
   useEffect(() => {
@@ -29,8 +29,8 @@ const WorldLibrary = () => {
   }, []);
 
   const _handleFetchUserId = async () => {
-    const user = await handleToGetCurrentUser();
-    return user.userId;
+    const user = await getAuthenticatedUser();
+    return user.username;
   };
 
   const _getWorldDataToMap = (worldsData) => {

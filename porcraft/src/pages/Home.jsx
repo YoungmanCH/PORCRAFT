@@ -6,14 +6,14 @@ import UseAuth from "../services/auth/UseAuth";
 const Home = () => {
   const [currentUser, setUser] = useState();
   const navigate = useNavigate();
-  const [handleToGetCurrentUser] = UseAuth();
+  const [getAuthenticatedUser] = UseAuth();
 
   useEffect(() => {
-    _handleToGetCurrentUser();
+    _handleToGetAuthenticatedUser();
   }, []);
 
-  const _handleToGetCurrentUser = async () => {
-    const user = await handleToGetCurrentUser();
+  const _handleToGetAuthenticatedUser = async () => {
+    const user = await getAuthenticatedUser();
     setUser(user);
   };
 
