@@ -15,12 +15,9 @@ import SpaceStation from "../objects/SpaceStation";
 const ObjectComponents = ({ name, position, rotation, scale, onClick }) => {
   const handleClick = () => {
     onClick();
-    console.log(`${name} was clicked!`);
   };
 
   let component = null;
-
-  console.log("name:", name);
 
   switch (name) {
     case "Flying dragon":

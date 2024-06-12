@@ -10,7 +10,6 @@ import FieldComponents from "../components/Editor/FieldComponents";
 import Loader from "../components/Loader";
 import ObjectComponents from "../components/ObjectComponents";
 import Popup from "../components/Popup";
-import UseAuth from "../services/auth/UseAuth";
 import UseDatabase from "../services/database/UseDatabase";
 
 const Preview = () => {
@@ -20,8 +19,7 @@ const Preview = () => {
   const [popupContent, setPopupContent] = useState("");
   const { worldId } = useParams();
 
-  const [getAuthenticatedUser] = UseAuth();
-  const { fetchWorldDatabase } = UseDatabase({
+  const { fetchUserWorldsWithWorldId, fetchWorldDatabase } = UseDatabase({
     objects: objData.objects,
     field: objData.field,
   });
@@ -29,7 +27,8 @@ const Preview = () => {
   useEffect(() => {
     const _handleFetchWorldDatabase = async () => {
       try {
-        const userId = await _handleFetchUserId();
+        const userWorlds = await fetchUserWorldsWithWorldId(worldId);
+        const userId = userWorlds[0].userId.S;
         const data = await fetchWorldDatabase(userId, worldId);
         if (data) {
           setObjectData({
@@ -47,16 +46,30 @@ const Preview = () => {
     }
   }, [worldId]);
 
-  const _handleFetchUserId = async () => {
-    const user = await getAuthenticatedUser();
-    return user.username;
-  };
-
   const handleObjectClick = (object) => {
     setPopupTitle(object.popupTitle);
     setPopupContent(object.popupContent);
     setIsPopupVisible((prev) => !prev);
   };
+
+  useEffect(() => {
+    const canvas = document.querySelector('canvas');
+    const passiveEventOptions = { passive: true };
+
+    const addPassiveEventListener = (element, event, handler) => {
+      element.addEventListener(event, handler, passiveEventOptions);
+    };
+
+    if (canvas) {
+      addPassiveEventListener(canvas, 'wheel', () => {});
+    }
+
+    return () => {
+      if (canvas) {
+        canvas.removeEventListener('wheel', () => {}, passiveEventOptions);
+      }
+    };
+  }, []);
 
   return (
     <section className="w-full h-screen flex overflow-hidden">

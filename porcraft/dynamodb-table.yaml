@@ -1,0 +1,30 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+  UserWorlds:
+    Properties:
+      AttributeDefinitions:
+        - AttributeName: userId
+          AttributeType: S
+        - AttributeName: worldId
+          AttributeType: S
+      GlobalSecondaryIndexes:
+        - IndexName: WorldIdIndex
+          KeySchema:
+            - AttributeName: worldId
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL
+          ProvisionedThroughput:
+            ReadCapacityUnits: 5
+            WriteCapacityUnits: 5
+      KeySchema:
+        - AttributeName: userId
+          KeyType: HASH
+        - AttributeName: worldId
+          KeyType: RANGE
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5
+      TableName: UserWorlds
+    Type: AWS::DynamoDB::Table
