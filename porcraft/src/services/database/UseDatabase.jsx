@@ -141,6 +141,30 @@ const UseDatabase = ({ objects, field, serializeObjects, serializeField }) => {
     }
   };
 
+  const fetchUserWorldsWithWorldId = async (worldId) => {
+    try {
+      const apiEndpoint = import.meta.env
+        .VITE_APP_GET_USERWORLDS_WITH_WORLD_ID_API_ENDPOINT;
+      const queryParams = _getUserIdQueryParamsWithWorldId(worldId);
+      const url = `${apiEndpoint}?${queryParams}`;
+      const response = await fetch(url, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const jsonData = await response.json();
+      return jsonData ? JSON.parse(jsonData.body) : null;
+    } catch (error) {
+      console.log("Error:", error);
+    }
+  };
+
   const updateWorldDatabase = async (userId, worldId) => {
     try {
       await _handleToGetAuthenticatedUser();
@@ -186,6 +210,10 @@ const UseDatabase = ({ objects, field, serializeObjects, serializeField }) => {
 
   const _getWorldQueryParamsWithUserId = (userId) => {
     return new URLSearchParams({ userId: userId }).toString();
+  };
+
+  const _getUserIdQueryParamsWithWorldId = (worldId) => {
+    return new URLSearchParams({ worldId: worldId }).toString();
   };
 
   const _stringfyToJsonForCreateWorld = (
@@ -242,6 +270,7 @@ const UseDatabase = ({ objects, field, serializeObjects, serializeField }) => {
     fetchUserDatabase,
     fetchWorldDatabase,
     fetchAllWorldDatabaseWithUserId,
+    fetchUserWorldsWithWorldId,
     createWorldDatabase,
     updateWorldDatabase,
   };
