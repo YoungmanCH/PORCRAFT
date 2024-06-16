@@ -65,24 +65,24 @@ const WorldLibrary = () => {
   };
 
   return (
-    <section className="w-full h-screen bg-gradient-to-r from-purple-800 via-indigo-600 to-purple-500 text-white flex flex-col items-center font-sans">
-      <h1 className="text-6xl font-bold my-8">My World Repository</h1>
+    <section className="w-full h-screen pt-8 bg-gradient-to-r from-purple-800 via-indigo-600 to-purple-500 text-white flex flex-col items-center font-sans">
+      <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold my-8 text-center px-4">My World Repository</h1>
       <div className="flex-1 w-full overflow-auto">
-        <div className="w-full max-w-4xl px-6 mx-auto">
+        <div className="w-full max-w-4xl px-4 sm:px-6 mx-auto">
           {worlds.map((world) => (
             <div
               key={world.worldId}
-              className="flex items-center justify-between bg-gray-800 rounded-xl p-4 mb-4 shadow-lg border border-gray-700"
+              className="flex flex-col sm:flex-row items-center justify-between bg-gray-800 rounded-xl p-4 mb-4 shadow-lg border border-gray-700"
             >
               <input
                 type="checkbox"
                 checked={selectedWorld === world}
                 onChange={() => handleCheckboxChange(world)}
-                className="mr-4"
+                className="mr-0 sm:mr-4 mb-2 sm:mb-0"
               />
               <a
                 href={`/preview/${world.worldId}`}
-                className="text-xl text-blue-400 hover:underline"
+                className="text-lg sm:text-xl text-blue-400 hover:underline text-center sm:text-left"
               >
                 {`${world.worldId}`}
               </a>
@@ -93,7 +93,7 @@ const WorldLibrary = () => {
       <div className="my-8">
         {selectedWorld !== null && (
           <button
-            className="bg-gradient-to-r from-green-500 to-green-700 hover:from-green-700 hover:to-green-900 text-white rounded-xl text-xl px-6 py-2"
+            className="bg-gradient-to-r from-green-500 to-green-700 hover:from-green-700 hover:to-green-900 text-white rounded-xl text-lg sm:text-xl px-4 sm:px-6 py-2"
             onClick={handleEditWorld}
           >
             Edit World
@@ -102,6 +102,7 @@ const WorldLibrary = () => {
       </div>
     </section>
   );
+  
 };
 
 export default WorldLibrary;

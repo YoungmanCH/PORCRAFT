@@ -92,8 +92,8 @@ const Field = () => {
   };
 
   return (
-    <section className="w-full h-screen overflow-y-auto bg-gradient-to-r from-violet-950 via-indigo-900 to-blue-950 text-white">
-      <p className="text-6xl font-sans font-bold mt-10 ml-14 text-center">
+    <section className="w-full h-screen overflow-y-auto pt-8 bg-gradient-to-r from-violet-950 via-indigo-900 to-blue-950 text-white">
+      <p className="text-3xl md:text-6xl font-sans font-bold mt-10 text-center px-4 md:px-0">
         Select view of the world
       </p>
       <div className="w-full h-10"></div>

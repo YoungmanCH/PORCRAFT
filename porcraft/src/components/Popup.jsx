@@ -1,47 +1,66 @@
 /* eslint-disable react/prop-types */
 
 import React from "react";
+import "../components/css/Popup.css";
 
 const Popup = ({ isVisible, setIsVisible, title, content }) => {
   if (!isVisible) {
     return null;
   }
 
+  const parseContent = (text) => {
+    const linkRegex = /(https?:\/\/[^\s]+)/g;
+    return text.split("\n").map((line, index) => (
+      <React.Fragment key={index}>
+        {line.split(linkRegex).map((part, i) =>
+          linkRegex.test(part) ? (
+            <div key={i} className="my-1">
+              <a href={part} target="_blank" rel="noopener noreferrer" className="text-blue-500 underline">
+                {part}
+              </a>
+            </div>
+          ) : (
+            <div key={i} className="my-1">
+              {part}
+            </div>
+          )
+        )}
+        <br key={`br-${index}`} />
+      </React.Fragment>
+    ));
+  };
+
   return (
     <div
       style={{
-        position: "fixed", // 画面に対して固定位置
+        position: "fixed",
         top: "50%",
         left: "50%",
-        transform: "translate(-50%, -50%)", // 中央に配置
-        width: "60vw", // 幅をビューポートの75%に
-        height: "60vh", // 高さをビューポートの75%に
+        transform: "translate(-50%, -50%)",
         backgroundColor: "white",
         zIndex: 1000,
         display: "flex",
-        flexDirection: "column", // 中央に寄せる
+        flexDirection: "column",
         borderRadius: "20px",
         boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
       }}
+      className="modal-container"
     >
       <button
         className="text-black self-end pt-5 pr-5"
         onClick={() => setIsVisible(false)}
-        >
+      >
         ✕
       </button>
       <div className="flex justify-center mt-10">
         <h2 className="text-4xl font-serif tracking-wider">{title}</h2>
       </div>
-      <div className="flex justify-center overflow-auto text-xl pt-20">
-        {content.split("\n").map((line, index) => (
-          <React.Fragment key={index}>
-            {line}
-            <br />
-          </React.Fragment>
-        ))}
+      <div
+        className="flex flex-col justify-center overflow-auto text-xl pt-20 px-10"
+        style={{ whiteSpace: "pre-wrap", wordBreak: "break-word" }}
+      >
+        {parseContent(content)}
       </div>
-
     </div>
   );
 };
