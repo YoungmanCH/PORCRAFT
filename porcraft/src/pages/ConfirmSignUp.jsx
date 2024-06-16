@@ -45,10 +45,10 @@ const ConfirmSignUp = () => {
           backgroundPosition: "center",
         }}
       >
-        <div className="flex w-full">
-          <div className="w-1/2 p-24 flex justify-center items-center">
+        <div className="flex w-full flex-wrap md:flex-nowrap">
+          <div className="w-full md:w-1/2 p-6 md:p-24 flex justify-center items-center">
             <p
-              className="text-8xl font-sans"
+              className="text-4xl md:text-8xl font-sans text-center md:text-left"
               style={{
                 background:
                   "linear-gradient(to right, #fde047, #f59e0b, #ea580c, #991b1b)",
@@ -59,8 +59,8 @@ const ConfirmSignUp = () => {
               Confirm your account with Porcraft.
             </p>
           </div>
-          <div className="w-1/2 p-24 bg-gray-950 opacity-85 flex flex-col justify-center">
-            <p className="font-sans text-zinc-100 text-4xl text-left mb-6">
+          <div className="w-full md:w-1/2 p-6 md:p-24 bg-gray-950 opacity-85 flex flex-col justify-center">
+            <p className="font-sans text-zinc-100 text-2xl md:text-4xl text-center md:text-left mb-6">
               Enter the confirmation code
             </p>
             {message && <p className="text-zinc-300">{message}</p>}
@@ -73,7 +73,7 @@ const ConfirmSignUp = () => {
                   id="email"
                   type="text"
                   placeholder="your email"
-                  className="bg-red-700 text-zinc-300 mt-1 w-3/4 p-2 rounded-md"
+                  className="bg-red-700 text-zinc-300 mt-1 w-full md:w-3/4 p-2 rounded-md"
                   onChange={handleSetEmail}
                 />
               </div>
@@ -85,7 +85,7 @@ const ConfirmSignUp = () => {
                   id="code"
                   type="text"
                   placeholder="enter your confirmation code"
-                  className="bg-red-700 text-zinc-300 mt-1 w-3/4 p-2 rounded-md"
+                  className="bg-red-700 text-zinc-300 mt-1 w-full md:w-3/4 p-2 rounded-md"
                   onChange={handleSetCode}
                 />
               </div>
@@ -93,7 +93,7 @@ const ConfirmSignUp = () => {
                 <input
                   type="submit"
                   value="Confirm Sign Up"
-                  className="cursor-pointer hover:opacity-80 text-white w-3/4 my-6 py-2 px-4 rounded-md"
+                  className="cursor-pointer hover:opacity-80 text-white w-full md:w-3/4 my-6 py-2 px-4 rounded-md"
                   style={{
                     background: "linear-gradient(to right, #f97316, #ea580c)",
                   }}

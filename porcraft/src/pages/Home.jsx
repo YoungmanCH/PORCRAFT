@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import UseAuth from "../services/auth/UseAuth";
+import "../components/css/Home.css";
 
 const Home = () => {
   const [currentUser, setUser] = useState();
@@ -26,43 +27,17 @@ const Home = () => {
   };
 
   return (
-    <section className="w-full h-screen relative">
-      {/* スライドショー部分 */}
-      <div
-        style={{
-          width: "100%",
-          height: "100vh",
-          display: "flex",
-          backgroundImage: `url("assets/images/planet-astronaut.jpg")`,
-          backgroundSize: "cover",
-          transition: "background-position 1s ease-in-out",
-        }}
-      >
-        <div className="flex items-center justify-center h-full ">
-          <div className="start ml-20">
-            <h1
-              className="text-7xl font-serif tracking-wider"
-              style={{
-                background:
-                  "linear-gradient(to right, #0ea5e9, #5eead4, #ebf8e1, white)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-              }}
-            >
-              PORCRAFT
-            </h1>
-            <p className="ml-10 font-medium font-sans text-2xl text-teal-400">
+    <section className="home-container">
+      <div className="home-background">
+        <div className="home-content">
+          <div className="home-start">
+            <h1 className="home-title">PORCRAFT</h1>
+            <p className="home-description">
               Create your own portfolio<br></br>
               with 3D objects!
             </p>
-            <div className="flex">
-              <div
-                onClick={handleNavigate}
-                className="btn pading-all-20px text-3xl rounded-3xl"
-                style={{
-                  background: "linear-gradient(to right, #1d4ed8, #0284c7, #5eead4)",
-                }}
-              >
+            <div className="home-button-container">
+              <div onClick={handleNavigate} className="home-button">
                 Get started !
               </div>
             </div>

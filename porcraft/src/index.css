@@ -52,12 +52,11 @@ body:has(.card[data-color="green"]:hover) {
   } */
 
   .btn {
-    
-    @apply text-white bg-gradient-to-r from-[#78f37d] to-[#7be97f] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium  w-full sm:w-auto px-12 py-5 text-center;
+    @apply text-white bg-gradient-to-r focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium sm:w-auto px-12 py-5 text-center;
   }
 
   .header {
-    @apply flex justify-between items-center  py-4 mx-7  absolute top-0 bg-transparent z-10 right-0 left-0;
+    @apply flex justify-between items-center py-4 mx-7 absolute top-0 bg-transparent z-10 right-0 left-0;
   }
 
   .footer {
@@ -194,29 +193,4 @@ body:has(.card[data-color="green"]:hover) {
   border: #fff;
   box-shadow: 0.6vmin 0.6vmin #fff, 1vmin 1vmin #d2e4ff, 1vmin 1vmin #d2e4ff,
     0.65vmin 1vmin #d2e4ff, 1vmin 0.65vmin #d2e4ff;
-}
-
-/* Editor */
-.trans-btn{
-  color:#BDEC8E;
-  background-color: rgba(0, 0, 0, 0.5);
-  @apply bg-gradient-to-r rounded-xl focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium  w-full sm:w-auto px-12 py-5 text-center;
-}
-
-.arrow-button {
-  background-color: transparent;
-  border: solid 3px transparent;
-  border-top-color: rgb(161 161 170);
-  border-right-color: rgb(161 161 170);
-  cursor: pointer;
-  outline: none;
-  transition: transform 0.01s ease;
-}
-
-.arrow-right {
-  transform: rotate(45deg); /* 右向き */
-}
-
-.arrow-down {
-  transform: rotate(135deg); /* 下向き */
 }
