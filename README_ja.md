@@ -120,4 +120,12 @@ npm install
 npm run dev
 ```
 
+<br />
+
+本番環境
+npm run buildで既にbuildしていることを前提に起動：
+```
+serve -s dist -l 3000
+```
+
 上記のコマンドを実行した後、ブラウザで http://localhost:5173 にアクセスして、アプリケーションを確認します。

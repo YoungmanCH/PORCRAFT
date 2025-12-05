@@ -120,4 +120,12 @@ Start the development server:
 npm run dev
 ```
 
+<br />
+
+Production Enviroment
+Launch assuming the build is already complete via `npm run build`:
+```
+serve -s dist -l 3000
+```
+
 After running the above command, open your browser and navigate to http://localhost:5173 to see the application in action.
